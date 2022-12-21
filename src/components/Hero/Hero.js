@@ -37,7 +37,7 @@ function Hero() {
         </div>
         <div className="carousel-inner relative w-full overflow-hidden">
           <div className="carousel-item active relative float-left w-full">
-            <img src={book} className="block w-full " alt="briancon" />
+            <img src={book} className="block w-full" alt="briancon" />
           </div>
           <div className="carousel-item relative float-left w-full">
             <img

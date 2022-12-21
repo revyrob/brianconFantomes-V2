@@ -4,7 +4,7 @@ function Info() {
   return (
     <section id="about" className="bg-gray-900  md:grid grid-cols-2 px-16 pt-8">
       <div></div>
-      <div className="p-4 bg-gray-200 md:p-8  lg:p-16">
+      <div className="p-4 bg-gray-200 md:p-8  lg:p-12 rounded-md">
         <h2 className="font-creepster text-2xl p-2 border-b-2 border-gray-500">
           AUDIO WALK
         </h2>
@@ -17,7 +17,7 @@ function Info() {
         </p>
       </div>
 
-      <div className="p-4 mt-8 bg-gray-200 md:p-8 lg:p-16">
+      <div className="p-4 mt-8 bg-gray-200 md:p-8 lg:p-12 rounded-md">
         <h2 className="text-2xl p-2 border-b-2 border-gray-500 font-creepster">
           ABOUT
         </h2>
@@ -29,7 +29,7 @@ function Info() {
       </div>
       <div></div>
       <div></div>
-      <div className="p-4 mt-8 bg-gray-200 md:p-8 lg:p-16">
+      <div className="p-4 mt-8 bg-gray-200 md:p-8 lg:p-12 rounded-md">
         <h2 className="text-2xl p-2 border-b-2 border-gray-500 font-creepster">
           YOU NEED
         </h2>
@@ -40,7 +40,7 @@ function Info() {
           old town of Briançon is mystical as dusk arrives.
         </p>
       </div>
-      <div className="p-4 mt-8 bg-gray-200 md:p-8 lg:p-16">
+      <div className="p-4 mt-8 mb-8 bg-gray-200 md:p-8 lg:p-12 rounded-md">
         <h2 className="text-2xl p-2 border-b-2 border-gray-500 font-creepster">
           WARNING
         </h2>

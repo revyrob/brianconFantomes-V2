@@ -2,7 +2,7 @@ import React from "react";
 
 function FAQ() {
   return (
-    <section id="faq">
+    <section className="p-4" id="faq">
       <h1 className="text-2xl p-2 border-b-2 border-gray-500 font-creepster">
         FAQ
       </h1>
