@@ -1,8 +1,6 @@
 import "./Hero.scss";
 import briancon from "../../assets/photos/briancon.jpg";
-import brianconSnow from "../../assets/photos/brianconSnow.jpg";
 import book from "../../assets/photos/photoByAaronBurdenOnUnsplash2.jpg";
-import ImageGallery from "react-image-gallery";
 import gargouille from "../../assets/photos/gargouille1.jpg";
 
 function Hero() {
@@ -36,30 +34,30 @@ function Hero() {
           ></button>
         </div>
         <div className="carousel-inner relative w-full overflow-hidden">
-          <div className="carousel-item active relative float-left w-full">
+          <div className="carousel-item active relative float-left w-full bg-gray-900">
             <img
               src={book}
-              className="block w-full mt-12 md:w-11/12 mx-auto md:mt-0"
+              className="block w-full mt-12 md:w-4/5 mx-auto md:mt-0 slideImage"
               alt="briancon"
             />
           </div>
-          <div className="carousel-item relative float-left w-full ">
+          <div className="carousel-item relative float-left w-full bg-gray-900">
             <img
               src={briancon}
-              className="block w-full mt-12 md:w-11/12 mx-auto md:mt-0"
+              className="block w-full mt-12 md:w-4/5 mx-auto md:mt-0 slideImage"
               alt="book and headphones"
             />
           </div>
-          <div className="carousel-item relative float-left w-full ">
+          <div className="carousel-item relative float-left w-full bg-gray-900">
             <img
               src={gargouille}
-              className="block w-full mt-12 md:w-11/12 mx-auto md:mt-0"
+              className="block w-full mt-12 md:w-4/5 mx-auto md:mt-0 slideImage"
               alt="snowBriancon"
             />
           </div>
         </div>
         <button
-          className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
+          className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0 "
           type="button"
           data-bs-target="#carouselExampleCaptions"
           data-bs-slide="prev"

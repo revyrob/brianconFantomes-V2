@@ -2,7 +2,10 @@ import React from "react";
 
 function Info() {
   return (
-    <section id="about" className="bg-gray-900  md:grid grid-cols-2 px-16 pt-8">
+    <section
+      id="about"
+      className="bg-gray-900  md:grid grid-cols-2 px-16 pt-8 max-w-6xl mx-auto"
+    >
       <div></div>
       <div className="p-4 bg-gray-200 md:p-8  lg:p-12 rounded-md">
         <h2 className="font-creepster text-2xl p-2 border-b-2 border-gray-500">
