@@ -37,21 +37,21 @@ function Hero() {
           <div className="carousel-item active relative float-left w-full bg-gray-900">
             <img
               src={book}
-              className="block w-full mt-12 md:w-4/5 mx-auto md:mt-0 slideImage"
+              className="block w-full mt-12 md:w-4/5 mx-auto md:mt-0 "
               alt="briancon"
             />
           </div>
           <div className="carousel-item relative float-left w-full bg-gray-900">
             <img
               src={briancon}
-              className="block w-full mt-12 md:w-4/5 mx-auto md:mt-0 slideImage"
+              className="block w-full mt-12 md:w-4/5 mx-auto md:mt-0 "
               alt="book and headphones"
             />
           </div>
           <div className="carousel-item relative float-left w-full bg-gray-900">
             <img
               src={gargouille}
-              className="block w-full mt-12 md:w-4/5 mx-auto md:mt-0 slideImage"
+              className="block w-full mt-12 md:w-4/5 mx-auto md:mt-0 "
               alt="snowBriancon"
             />
           </div>
