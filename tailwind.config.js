@@ -12,6 +12,10 @@ module.exports = {
         oswald: ['"Oswald"'],
         creepster: ['"Creepster"'],
       },
+      backgroundImage: {
+        "chevron-up": "url('/assets/icons/chevron-up.svg')",
+        "chevron-down": "url('/assets/icons/chevron-down.svg')",
+      },
     },
   },
 };
