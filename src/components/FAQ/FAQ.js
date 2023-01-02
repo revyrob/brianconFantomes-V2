@@ -12,18 +12,32 @@ function FAQ() {
   //if isShown is false not all questions are displayed.  If true all questions are displayed
   const [isShown, setIsShown] = useState(false);
 
+  //the state for the chevron image
+  const [chevron, setChevron] = useState(false);
+
   //toggle function for drop down
   function toggle() {
     //if selected the question drop down, compare previous state
     setIsShown((prevCheck) => !prevCheck);
+    setChevron(!chevron);
   }
 
   return (
     <section className="p-4" id="faq">
       <div className="flex mx-auto w-full border-b-2 justify-center">
         <h1 className="text-2xl p-2  border-gray-500 font-creepster">FAQ</h1>
-        <div class="bg-[url('../../assets/icons/chevron-up.svg')]"></div>
-        <img src={chevronUp} alt="chevron up" onClick={() => toggle()} />
+        <button className="">
+          {chevron === false ? (
+            <img
+              src={chevronDown}
+              alt="chevron down"
+              onClick={() => toggle()}
+            />
+          ) : (
+            <img src={chevronUp} alt="chevron up" onClick={() => toggle()} />
+          )}
+        </button>
+        {/* <img src={chevronUp} alt="chevron up" onClick={() => toggle()} /> */}
       </div>
       <div className="w-max-3/4 my-6">
         <h2 className="text-lg font-oswald">
