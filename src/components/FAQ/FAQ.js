@@ -29,22 +29,41 @@ function FAQ() {
         <button className="">
           {chevron === false ? (
             <img
-              src={chevronDown}
+              src={chevronUp}
               alt="chevron down"
               onClick={() => toggle()}
+              //className="hover:w-6"
             />
           ) : (
-            <img src={chevronUp} alt="chevron up" onClick={() => toggle()} />
+            <img
+              src={chevronDown}
+              alt="chevron up"
+              onClick={() => toggle()}
+              //className="hover:s stroke-slate-100"
+            />
           )}
         </button>
         {/* <img src={chevronUp} alt="chevron up" onClick={() => toggle()} /> */}
       </div>
       <div className="w-max-3/4 my-6">
-        <h2 className="text-lg font-oswald">
-          This first question shoudln't drop?
-        </h2>
-        <p className="text-base">Here is the response.</p>
+        {chevron === false ? (
+          <div>
+            <h2 className="text-lg font-oswald">
+              This first question shoudln't drop?
+            </h2>
+            <p className="text-base">Here is the response.</p>
+            <h2 className="text-lg font-oswald">. . . </h2>
+          </div>
+        ) : (
+          <div>
+            <h2 className="text-lg font-oswald">
+              This first question shoudln't drop?
+            </h2>
+            <p className="text-base">Here is the response.</p>
+          </div>
+        )}
       </div>
+
       {isShown && (
         <div>
           {questions?.map((question) => (
