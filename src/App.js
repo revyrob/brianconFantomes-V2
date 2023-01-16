@@ -6,11 +6,12 @@ import Footer from "./components/Footer/Footer";
 import FAQ from "./components/FAQ/FAQ";
 //import { Carousel } from "flowbite-react";
 import Carousel from "./components/Carousel/carousel";
+import Nav from "./components/Nav/Nav";
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Nav />
       <Carousel />
       <Info />
       <FAQ />
