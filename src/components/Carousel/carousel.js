@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
-//import "./carousel.scss";
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

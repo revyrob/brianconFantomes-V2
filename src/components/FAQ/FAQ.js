@@ -28,22 +28,11 @@ function FAQ() {
         <h1 className="text-2xl p-2  border-gray-500 font-creepster">FAQ</h1>
         <button className="">
           {chevron === false ? (
-            <img
-              src={chevronUp}
-              alt="chevron down"
-              onClick={() => toggle()}
-              //className="hover:w-6"
-            />
+            <img src={chevronUp} alt="chevron down" onClick={() => toggle()} />
           ) : (
-            <img
-              src={chevronDown}
-              alt="chevron up"
-              onClick={() => toggle()}
-              //className="hover:s stroke-slate-100"
-            />
+            <img src={chevronDown} alt="chevron up" onClick={() => toggle()} />
           )}
         </button>
-        {/* <img src={chevronUp} alt="chevron up" onClick={() => toggle()} /> */}
       </div>
       <div className="w-max-3/4 my-6">
         {chevron === false ? (
