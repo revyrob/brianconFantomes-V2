@@ -1,0 +1,20 @@
+[
+    {
+        "id": "fc0e816c-14c0-45a8-91fe-0ec3385cad9d",
+        "title": "Porte de Pignerol",
+        "chapter": "Chapter 1",
+        "audio": "../../audio/audioAng/Chpt1.mp3"
+    },
+    {
+        "id": "b8a1025a-a95c-4cc9-8dca-34711cdc8d8d",
+        "title": "Chemin de Ronde",
+        "chapter": "Chapter 2",
+        "audio": "../../audio/audioAng/Chpt2.mp3"
+    },
+    {
+        "id": "fc0e816c-14c0-45a8-91fe-0ec254435ad9d",
+        "title": "Chemin du Fort des Tetes",
+        "chapter": "Chapter 3",
+        "audio": "../../audio/audioAng/Chpt3.mp3"
+    }
+]

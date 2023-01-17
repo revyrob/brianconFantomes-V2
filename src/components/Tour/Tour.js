@@ -1,11 +1,15 @@
 import React from "react";
-import ReactAudioPlayer from "react-audio-player";
+import CardTour from "../CardTour/CardTour";
+import engTour from "../../data/engAudio.json";
+//import fraTour from "../../../data/audioFra";
 
 function Tour() {
+  console.log(engTour);
   return (
     <section>
-      <div>Tour</div>
-      <ReactAudioPlayer src="../../audio/Chpt1.mp3" autoPlay controls />
+      {engTour?.map((chpt) => (
+        <CardTour chapter={chpt} />
+      ))}
     </section>
   );
 }
