@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
-import "./carousel.scss";
+//import "./carousel.scss";
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -44,10 +44,16 @@ const Carousel = () => {
           ></img>
         </div>
         <div className="absolute bottom-5 inset-x-0 flex justify-center gap-2.5">
-          <div className="carousel__icon" onClick={prevSlide}>
+          <div
+            className="w-2 h-1 flex flex-col justify-center items-center cursor-pointer text-white mx-4 "
+            onClick={prevSlide}
+          >
             <ArrowBackOutlinedIcon />
           </div>
-          <div className="carousel__icon" onClick={nextSlide}>
+          <div
+            className="w-2 h-1 flex flex-col justify-center items-center cursor-pointer text-white  mx-4"
+            onClick={nextSlide}
+          >
             <ArrowForwardOutlinedIcon />
           </div>
         </div>

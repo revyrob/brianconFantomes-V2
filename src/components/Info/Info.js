@@ -35,19 +35,18 @@ function Info() {
       </motion.div>
     );
   }
+  function CardEmpty() {
+    return <div className="bg-gray-900"></div>;
+  }
   const info = [
-    // {
-    //   id: "134d3",
-    //   title: "",
-    //   descrip: "",
-    // },
     {
       id: "1343",
       title: "ABOUT AUDIO WALK",
       descrip:
         "An extraordinary adventure in the old town of Briançon! Travel through time, and visit the Vauban city in a different way. Let us frighten and surprise you as we guide you through the alleys and passages. You will be transported back in time and hear the tales of the fires that have ravaged the town twice, the meeting of witches, and much more! Discover the dark history and legends of Briançon with Briançon Fantômes!",
     },
-
+    {},
+    {},
     {
       id: "1sdsdf43",
       title: "YOU NEED",
@@ -70,9 +69,13 @@ function Info() {
       //bg-gray-900 sm:m-2 p-2 md:grid grid-cols-2 px-16 pt-8 max-w-6xl mx-auto
       className="bg-gray-900 pb-4 md:grid grid-cols-2  pt-8 max-w-6xl mx-auto"
     >
-      {info?.map((i) => (
-        <Card key={i.id} title={i.title} descrip={i.descrip} />
-      ))}
+      {info?.map((i) =>
+        i.id === undefined ? (
+          <CardEmpty />
+        ) : (
+          <Card key={i.id} title={i.title} descrip={i.descrip} />
+        )
+      )}
 
       {/* <div></div>
       <div className="p-4 bg-gray-200 md:p-8  lg:p-12 rounded-md">
