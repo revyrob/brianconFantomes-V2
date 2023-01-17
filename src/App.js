@@ -6,6 +6,7 @@ import Carousel from "./components/Carousel/carousel";
 import Nav from "./components/Nav/Nav";
 import Credits from "./components/Credits/Credits";
 import Tour from "./components/Tour/Tour";
+import Map from "./components/Map/Map";
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
       </div>
       <Carousel />
       <Info />
+      <Map />
       <Tour />
-      <FAQ />
       <Credits />
+      <FAQ />
       <Footer />
     </div>
   );
