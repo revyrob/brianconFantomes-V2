@@ -9,22 +9,22 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+//import Button from "@mui/material/Button";
+//import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+//import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../../assets/logo/logoskull.png";
 import englishFlag from "../../assets/photos/englishFlag.jpg";
 import frenchFlag from "../../assets/photos/frenchFlag.jpg";
 
-const pages = ["About", "Contact", "FAQ"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+//const pages = ["About", "Contact", "FAQ"];
+//const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [anchorMenu, setAnchorMenu] = useState(null);
+  //const [anchorMenu, setAnchorMenu] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -49,7 +49,7 @@ function Nav() {
   };
 
   return (
-    <AppBar position="fixed" className="bg-gray-900">
+    <AppBar position="static" className="bg-gray-900 max-w-screen-xl mx-auto">
       <Container maxWidth="2xl" className="bg-gray-900">
         <Toolbar disableGutters>
           <Typography
@@ -269,7 +269,7 @@ function Nav() {
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <button
                 type="button"
-                className="border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-2 py-1.5 text-center mx-4 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                className="border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-2 py-1.5 text-center mx-4 md: dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
               >
                 Start Show
               </button>
