@@ -5,6 +5,7 @@ import FAQ from "./components/FAQ/FAQ";
 import Carousel from "./components/Carousel/carousel";
 import Nav from "./components/Nav/Nav";
 import Credits from "./components/Credits/Credits";
+import Tour from "./components/Tour/Tour";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       </div>
       <Carousel />
       <Info />
+      <Tour />
       <FAQ />
       <Credits />
       <Footer />
