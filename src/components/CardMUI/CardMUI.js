@@ -10,7 +10,7 @@ export default function CardMUI({ chapter }) {
   return (
     <Card
       sx={{ display: "flex" }}
-      className="sm: flex-col-reverse rounded-r-lg shadow-xl m-4 "
+      className="sm: flex-col-reverse rounded-r-lg shadow-xl my-8 mx-12"
     >
       <Box sx={{ display: "flex", flexDirection: "column" }} className="">
         <CardContent sx={{ flex: "1 0 auto" }}>
