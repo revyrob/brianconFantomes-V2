@@ -106,13 +106,6 @@ function Nav() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {/* {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
-
               <MenuItem onClick={handleCloseNavMenu}>
                 <a href="#about">
                   <Typography className="text-black" sx={{ minWidth: 100 }}>
@@ -181,15 +174,6 @@ function Nav() {
             className="flex justify-left items-center"
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
           >
-            {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))} */}
             <a href="#about">
               <Typography className="text-white" sx={{ minWidth: 100 }}>
                 About
@@ -265,16 +249,18 @@ function Nav() {
             </MenuItem>
           </Menu>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <button
-                type="button"
-                className="border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-2 py-1.5 text-center mx-4 md: dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-              >
-                Start Show
-              </button>
-            </IconButton>
-          </Box>
+          <a href="#tour">
+            <Box sx={{ flexGrow: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <button
+                  type="button"
+                  className=" border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-2 py-1.5 text-center mx-4 md: dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                >
+                  Start Show
+                </button>
+              </IconButton>
+            </Box>
+          </a>
         </Toolbar>
       </Container>
     </AppBar>

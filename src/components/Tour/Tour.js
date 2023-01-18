@@ -5,7 +5,6 @@ import engTour from "../../data/engAudio.json";
 import CardMUI from "../CardMUI/CardMUI";
 
 function Tour() {
-  console.log(engTour);
   return (
     <section
       id="tour"

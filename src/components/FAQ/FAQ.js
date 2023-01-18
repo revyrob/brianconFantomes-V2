@@ -26,11 +26,21 @@ function FAQ() {
     <section className="p-4" id="faq">
       <div className="flex mx-auto w-full border-b-2 justify-center">
         <h1 className="text-2xl p-2  border-gray-500 font-creepster">FAQ</h1>
-        <button className="">
+        <button className="transition duration-300 ease-in-out">
           {chevron === false ? (
-            <img src={chevronUp} alt="chevron down" onClick={() => toggle()} />
+            <img
+              className="hover:h-5 transition duration-300 ease-in-out "
+              src={chevronUp}
+              alt="chevron down "
+              onClick={() => toggle()}
+            />
           ) : (
-            <img src={chevronDown} alt="chevron up" onClick={() => toggle()} />
+            <img
+              className="hover:h-5 transition duration-300 ease-in-out"
+              src={chevronDown}
+              alt="chevron up"
+              onClick={() => toggle()}
+            />
           )}
         </button>
       </div>
