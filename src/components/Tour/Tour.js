@@ -1,7 +1,5 @@
 import React from "react";
-//import CardTour from "../CardTour/CardTour";
 import engTour from "../../data/engAudio.json";
-//import fraTour from "../../../data/audioFra";
 import CardMUI from "../CardMUI/CardMUI";
 
 function Tour() {
