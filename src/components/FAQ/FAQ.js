@@ -29,14 +29,14 @@ function FAQ() {
         <button className="transition duration-300 ease-in-out">
           {chevron === false ? (
             <img
-              className="hover:h-5 transition duration-300 ease-in-out "
+              className=""
               src={chevronUp}
               alt="chevron down "
               onClick={() => toggle()}
             />
           ) : (
             <img
-              className="hover:h-5 transition duration-300 ease-in-out"
+              className=""
               src={chevronDown}
               alt="chevron up"
               onClick={() => toggle()}

@@ -25,7 +25,7 @@ function Footer() {
   return (
     <section className="bg-gray-900 text-slate-50">
       <div className="md:grid grid-cols-3 px-16 pt-8">
-        <div className="flex flex-col py-4 justify-middle items-start">
+        <div className="order-last flex flex-col py-4 justify-middle items-start lg:order-first">
           <motion.div
             className="w-24 ml-[1rem]"
             initial="offscreen"
@@ -79,7 +79,7 @@ function Footer() {
             </a>
           </motion.div>
         </div>
-        <div className="flex flex-col pb-4 align-middle">
+        <div className="order-first flex flex-col pb-4 align-middle lg:order-2">
           <img
             src={logo}
             className="w-3/4 mx-auto"
@@ -104,7 +104,7 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div>
+        <div className="order-2 lg:order-last">
           <QuestionForm />
         </div>
       </div>
