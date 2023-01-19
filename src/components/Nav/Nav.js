@@ -17,7 +17,7 @@ import frenchFlag from "../../assets/photos/frenchFlag.jpg";
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [lang, setLang] = useState(null);
-  const open = Boolean(anchorEl);
+  const open = Boolean(lang);
 
   const handleClick = (event) => {
     setLang(event.currentTarget);
@@ -192,7 +192,7 @@ function Nav() {
           </Box>
 
           <Menu
-            anchorEl={anchorEl}
+            anchorEl={lang}
             id="language"
             open={open}
             onClose={handleClose}
@@ -236,14 +236,12 @@ function Nav() {
 
           <a href="#tour">
             <Box sx={{ flexGrow: 0 }}>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <button
-                  type="button"
-                  className=" border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-2 py-1.5 text-center mx-4 md: dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                >
-                  Start Show
-                </button>
-              </IconButton>
+              <button
+                type="button"
+                className=" border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-2 py-1.5 text-center mx-4 md: dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+              >
+                Start Show
+              </button>
             </Box>
           </a>
         </Toolbar>
