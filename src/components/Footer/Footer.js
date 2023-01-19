@@ -4,8 +4,8 @@ import insta from "../../assets/photos/insta-icon.png";
 import tripAdvisor from "../../assets/photos/tripadvisor.png";
 import logo from "../../assets/logo/logoskull.png";
 import spotify from "../../assets/icons/spotify-icon.svg";
-import Question from "../Question/Question";
 import { motion } from "framer-motion";
+import QuestionForm from "../QuestionForm/QuestionForm";
 
 function Footer() {
   const footerVarients = {
@@ -105,7 +105,7 @@ function Footer() {
           </div>
         </div>
         <div>
-          <Question />
+          <QuestionForm />
         </div>
       </div>
       <p className="mx-auto pb-4">Copyright Briancon Fantomes 2020</p>
