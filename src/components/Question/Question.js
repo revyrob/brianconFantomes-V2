@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Formik, Form } from "formik";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Textarea from "@mui/joy/Textarea";
 //import Modal from "react-bootstrap/Modal";
 //import Button1 from "react-bootstrap/Button";
 
@@ -27,7 +28,7 @@ function AskQuestions() {
   };
 
   return (
-    <>
+    <div className="bg-white p-4 flex flex-col justify-around">
       <Formik
         initialValues={{ question: "" }}
         onSubmit={async (values) => {
@@ -36,7 +37,7 @@ function AskQuestions() {
         }}
       >
         <Form className="form" method="post" onSubmit={handleComment}>
-          <div className="form__form">
+          <div className="form__form flex flex-col justify-around ">
             <TextField
               name="Name"
               required
@@ -74,21 +75,7 @@ function AskQuestions() {
           </div>
         </Form>
       </Formik>
-
-      {/* <Modal show={show} onHide={handleShow}>
-        <Modal.Header closeButton>
-          <Modal.Title>Thanks for your question!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Check back tomorrow for an answer to your question.
-        </Modal.Body>
-        <Modal.Footer>
-          <Button1 variant="primary" onClick={handleClose}>
-            Ok👌
-          </Button1>
-        </Modal.Footer>
-      </Modal> */}
-    </>
+    </div>
   );
 }
 
