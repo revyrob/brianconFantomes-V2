@@ -9,8 +9,6 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-//import Button from "@mui/material/Button";
-//import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/logo/logoskull.png";
 import englishFlag from "../../assets/photos/englishFlag.jpg";
@@ -18,20 +16,17 @@ import frenchFlag from "../../assets/photos/frenchFlag.jpg";
 
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [lang, setLang] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setLang(event.currentTarget);
   };
   const handleClose = () => {
-    setAnchorEl(null);
+    setLang(null);
   };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
