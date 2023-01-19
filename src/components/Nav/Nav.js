@@ -12,19 +12,13 @@ import Avatar from "@mui/material/Avatar";
 //import Button from "@mui/material/Button";
 //import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-//import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../../assets/logo/logoskull.png";
 import englishFlag from "../../assets/photos/englishFlag.jpg";
 import frenchFlag from "../../assets/photos/frenchFlag.jpg";
 
-//const pages = ["About", "Contact", "FAQ"];
-//const settings = ["Profile", "Account", "Dashboard", "Logout"];
-
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
-  //const [anchorMenu, setAnchorMenu] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -42,10 +36,6 @@ function Nav() {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
