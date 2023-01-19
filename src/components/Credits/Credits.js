@@ -15,7 +15,7 @@ function Credits() {
           <li>Secession Studies - Heart of Darkness</li>
           <li>Achille-Claude Debussy - Suite bergamasque: Clair de lune</li>
           <li>Mussorgsky - Night on the Bare Mountain</li>
-          <li>Gustav Mahler - Adagietto from Symphony no. 5</li>
+          <li>Gustav Mahler - Adagietto from Symphony No. 5</li>
           <li>Frédéric Chopin - Prelude in E-Minor Op. 28 No. 4</li>
           <li>Vozes da Tranquilidade - Missa Cum Jubilo Sanctus</li>
           <li>Mark Korven - What Went We</li>
