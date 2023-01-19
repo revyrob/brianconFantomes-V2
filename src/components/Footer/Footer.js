@@ -5,15 +5,79 @@ import tripAdvisor from "../../assets/photos/tripadvisor.png";
 import logo from "../../assets/logo/logoskull.png";
 import spotify from "../../assets/icons/spotify-icon.svg";
 import Question from "../Question/Question";
+import { motion } from "framer-motion";
 
 function Footer() {
+  const footerVarients = {
+    offscreen: {
+      x: 1000,
+    },
+    onscreen: {
+      x: 0,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 1.2,
+      },
+    },
+  };
   return (
     <section className="bg-gray-900 text-slate-50">
       <div className="md:grid grid-cols-3 px-16 pt-8">
-        <div className="">
-          <br></br>
-          <p>36 Grande Rue</p>
-          <p>Briancon, France</p>
+        <div className="flex flex-col py-4 justify-middle items-start">
+          <motion.div
+            className="w-24 ml-[1rem]"
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.8 }}
+            variants={footerVarients}
+          >
+            <a href="#about">
+              <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
+                Show
+              </p>
+            </a>
+          </motion.div>
+          <motion.div
+            className="w-24 ml-[2rem]"
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.8 }}
+            variants={footerVarients}
+          >
+            <a href="#about">
+              <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
+                About
+              </p>
+            </a>
+          </motion.div>
+          <motion.div
+            className="w-24 ml-[3rem]"
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.8 }}
+            variants={footerVarients}
+          >
+            <a href="#faq">
+              <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
+                Credits
+              </p>
+            </a>
+          </motion.div>
+          <motion.div
+            className="w-24 ml-[4rem]"
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.8 }}
+            variants={footerVarients}
+          >
+            <a href="#faq">
+              <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
+                FAQ
+              </p>
+            </a>
+          </motion.div>
         </div>
         <div className="flex flex-col pb-4 align-middle">
           <img
@@ -44,7 +108,7 @@ function Footer() {
           <Question />
         </div>
       </div>
-      <p className="mx-auto">Copyright Briancon Fantomes 2020</p>
+      <p className="mx-auto pb-4">Copyright Briancon Fantomes 2020</p>
     </section>
   );
 }
