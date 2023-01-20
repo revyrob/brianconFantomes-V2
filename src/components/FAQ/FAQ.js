@@ -47,33 +47,32 @@ function FAQ() {
       <div className="w-max-3/4 my-6">
         {chevron === false ? (
           <div>
-            <h2 className="text-lg font-oswald">
-              This first question shoudln't drop?
-            </h2>
-            <p className="text-base">Here is the response.</p>
+            <h2 className="text-lg font-oswald">{questions[0].question}</h2>
+            <p className="text-base">{questions[0].response}</p>
             <h2 className="text-lg font-oswald">. . . </h2>
           </div>
         ) : (
           <div>
-            <h2 className="text-lg font-oswald">
-              This first question shoudln't drop?
-            </h2>
-            <p className="text-base">Here is the response.</p>
+            {isShown && (
+              <div
+                style={{
+                  transform: "translateY(10px)",
+                  opacity: 1,
+                  transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+                }}
+              >
+                {questions?.map((question) => (
+                  <Question
+                    key={question.id}
+                    question={question.question}
+                    response={question.response}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
-
-      {isShown && (
-        <div>
-          {questions?.map((question) => (
-            <Question
-              key={question.id}
-              question={question.question}
-              response={question.response}
-            />
-          ))}
-        </div>
-      )}
     </section>
   );
 }

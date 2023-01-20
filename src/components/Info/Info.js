@@ -1,5 +1,4 @@
 import React from "react";
-import CardInfo from "../CardInfo/CardInfo";
 import CardEmpty from "../CardEmpty/CardEmpty";
 import allInfo from "../../data/info.json";
 import { useState } from "react";
