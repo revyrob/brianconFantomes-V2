@@ -4,80 +4,74 @@ import insta from "../../assets/photos/insta-icon.png";
 import tripAdvisor from "../../assets/photos/tripadvisor.png";
 import logo from "../../assets/logo/logoskull.png";
 import spotify from "../../assets/icons/spotify-icon.svg";
-import { motion } from "framer-motion";
 import QuestionForm from "../QuestionForm/QuestionForm";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 
 function Footer() {
-  const footerVarients = {
-    offscreen: {
-      x: 1000,
-    },
-    onscreen: {
-      x: 0,
-      rotate: 0,
-      transition: {
-        type: "spring",
-        bounce: 0.4,
-        duration: 1.2,
-      },
-    },
-  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
     <section className="bg-gray-900 text-slate-50">
-      <div className="md:grid grid-cols-3 px-16 pt-8">
+      <div className="md:grid grid-cols-3 px-16 pt-8" ref={ref}>
         <div className="order-last flex flex-col py-4 justify-middle items-start lg:order-first">
-          <motion.div
+          <div
             className="w-24 ml-[1rem]"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={footerVarients}
+            style={{
+              transform: isInView ? "none" : "translateX(500px)",
+              opacity: isInView ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
           >
             <a href="#about">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 Show
               </p>
             </a>
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             className="w-24 ml-[2rem]"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={footerVarients}
+            style={{
+              transform: isInView ? "none" : "translateX(500px)",
+              opacity: isInView ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
           >
             <a href="#about">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 About
               </p>
             </a>
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             className="w-24 ml-[3rem]"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={footerVarients}
+            style={{
+              transform: isInView ? "none" : "translateX(500px)",
+              opacity: isInView ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
           >
             <a href="#faq">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 Credits
               </p>
             </a>
-          </motion.div>
-          <motion.div
+          </div>
+          <div
             className="w-24 ml-[4rem]"
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={footerVarients}
+            style={{
+              transform: isInView ? "none" : "translateX(500px)",
+              opacity: isInView ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
           >
             <a href="#faq">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 FAQ
               </p>
             </a>
-          </motion.div>
+          </div>
         </div>
         <div className="order-first flex flex-col pb-4 align-middle lg:order-2">
           <img
