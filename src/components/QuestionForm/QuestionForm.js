@@ -26,21 +26,13 @@ function QuestionForm() {
       >
         <Form className="form" method="post" onSubmit={handleComment}>
           <div className="form__form flex flex-col justify-between h-72 ">
-            <TextField
-              name="name"
-              required
-              fullWidth
-              id="name"
-              label="Name"
-              autoFocus
-            />
+            <TextField name="name" required fullWidth id="name" label="Name" />
             <TextField
               name="email"
               required
               fullWidth
               id="email"
               label="Email"
-              autoFocus
             />
             <TextField
               name="question"
@@ -48,7 +40,6 @@ function QuestionForm() {
               fullWidth
               id="question"
               label="Question"
-              autoFocus
             />
 
             <Button

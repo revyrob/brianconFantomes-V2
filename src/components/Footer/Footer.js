@@ -5,34 +5,67 @@ import tripAdvisor from "../../assets/photos/tripadvisor.png";
 import logo from "../../assets/logo/logoskull.png";
 import spotify from "../../assets/icons/spotify-icon.svg";
 import QuestionForm from "../QuestionForm/QuestionForm";
+import { useRef } from "react";
+import { useInView } from "framer-motion";
 
 function Footer() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
     <section className="bg-gray-900 text-slate-50">
-      <div className="md:grid grid-cols-3 px-16 pt-8">
+      <div className="md:grid grid-cols-3 px-16 pt-8" ref={ref}>
         <div className="order-last flex flex-col py-4 justify-middle items-start lg:order-first">
-          <div className="w-24 ml-[1rem]">
+          <div
+            className="w-24 ml-[1rem]"
+            style={{
+              transform: isInView ? "none" : "translateX(500px)",
+              opacity: isInView ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
+          >
             <a href="#about">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 Show
               </p>
             </a>
           </div>
-          <div className="w-24 ml-[2rem]">
+          <div
+            className="w-24 ml-[2rem]"
+            style={{
+              transform: isInView ? "none" : "translateX(500px)",
+              opacity: isInView ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
+          >
             <a href="#about">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 About
               </p>
             </a>
           </div>
-          <div className="w-24 ml-[3rem]">
+          <div
+            className="w-24 ml-[3rem]"
+            style={{
+              transform: isInView ? "none" : "translateX(500px)",
+              opacity: isInView ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
+          >
             <a href="#faq">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 Credits
               </p>
             </a>
           </div>
-          <div className="w-24 ml-[4rem]">
+          <div
+            className="w-24 ml-[4rem]"
+            style={{
+              transform: isInView ? "none" : "translateX(500px)",
+              opacity: isInView ? 1 : 0,
+              transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+            }}
+          >
             <a href="#faq">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 FAQ
