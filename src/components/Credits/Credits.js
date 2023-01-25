@@ -1,14 +1,18 @@
 import React from "react";
+import credits from "../../data/credits.json";
+import { useState } from "react";
 
 function Credits() {
+  const [credit] = useState(credits);
+
   return (
     <section className="p-4">
       <div className="flex mx-auto w-full border-b-2 justify-center">
         <h1 className="text-2xl p-2  border-gray-500 font-creepster">
-          Credits
+          {credit[0].title}
         </h1>
       </div>
-      <h2 className="text-lg mt-6">Music</h2>
+      <h2 className="text-lg mt-6">{credit[1].title}</h2>
       <div className="my-2">
         <ul>
           <li>Bach - Toccata and Fugue in D Minor</li>
@@ -24,7 +28,7 @@ function Credits() {
           <li>Alexander Litvinovsky - Le Grand Cahier: X. L'Incendie</li>
         </ul>
       </div>
-      <h2 className="text-lg mt-6 ">Historical References</h2>
+      <h2 className="text-lg mt-6 ">{credit[2].title}</h2>
       <div className="my-2">
         <ul>
           <li>Briançon à travers l'histoire - Jacqueline Routier</li>
@@ -32,7 +36,7 @@ function Credits() {
           <li>The History of Serre Chevalier and Briançon - Susan Lomas</li>
         </ul>
       </div>
-      <h2 className="text-lg mt-6 ">Writer/Producer/Web Developer</h2>
+      <h2 className="text-lg mt-6 ">{credit[3].title}</h2>
       <div className="my-2">
         <p>
           <a href="https://kaylerobson.com" rel="noreferrer" target="_blank">

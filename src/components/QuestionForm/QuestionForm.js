@@ -8,17 +8,18 @@ function QuestionForm() {
   const form = useRef();
 
   //event handler for creating new comment
-  const handleComment = (event) => {
-    event.preventDefault();
-    const question = event.target.question.value;
-    if (question !== "") {
-      event.preventDefault();
-    }
-  };
+  // const handleComment = (event) => {
+  //   event.preventDefault();
+  //   const question = event.target.question.value;
+  //   if (question !== "") {
+  //     event.preventDefault();
+  //   }
+  // };
 
-  const SERVICE_ID = process.env.SERVICE_ID;
-  const TEMPLATE_ID = process.env.TEMPLATE_ID;
-  const PUBLIC_KEY = process.env.PUBLIC_KEY;
+  //const apiKey = `${process.env.REACT_APP_APIKEY}`;
+  const SERVICE_ID = `${process.env.REACT_APP_SERVICE_ID}`;
+  const TEMPLATE_ID = `${process.env.REACT_APP_TEMPLATE_ID}`;
+  const PUBLIC_KEY = `${process.env.REACT_APP_PUBLIC_KEY}`;
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -44,18 +45,24 @@ function QuestionForm() {
           alert(JSON.stringify(values, null, 2));
         }}
       >
-        <Form className="form" method="post" onSubmit={sendEmail}>
+        <Form className="form" method="post" ref={form} onSubmit={sendEmail}>
           <div className="form__form flex flex-col justify-between h-72 ">
-            <TextField name="name" required fullWidth id="name" label="Name" />
             <TextField
-              name="email"
+              name="user_name"
+              required
+              fullWidth
+              id="name"
+              label="Name"
+            />
+            <TextField
+              name="user_email"
               required
               fullWidth
               id="email"
               label="Email"
             />
             <TextField
-              name="question"
+              name="message"
               required
               fullWidth
               id="question"
@@ -64,6 +71,7 @@ function QuestionForm() {
 
             <Button
               type="submit"
+              value="send"
               fullWidth
               variant="contained"
               style={{ backgroundColor: "#fcaf34", color: "white" }}

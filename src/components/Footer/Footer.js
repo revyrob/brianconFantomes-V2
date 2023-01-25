@@ -14,8 +14,34 @@ function Footer() {
 
   return (
     <section className="bg-gray-900 text-slate-50">
-      <div className="md:grid grid-cols-3 px-16 pt-8" ref={ref}>
-        <div className="order-last flex flex-col py-4 justify-middle items-start lg:order-first">
+      <div className="lg:grid grid-cols-3 px-16 pt-8" ref={ref}>
+        <div className="md:order-2 flex flex-col pb-4 align-middle ">
+          <img
+            src={logo}
+            className="max-w-[18rem] mx-auto"
+            alt="briancon fantomes logo"
+          />
+          <div className="flex flex-row justify-center">
+            <a href="https://www.facebook.com/BrianconFantomes/">
+              <img className="h-8 m-2" src={facebook} alt="facebook-icon" />
+            </a>
+            <a href="https://www.instagram.com/brianconfantomes/">
+              <img className="h-8 m-2" src={insta} alt="instagram-icon" />
+            </a>
+            <a href="https://www.tripadvisor.com/Attraction_Review-g219218-d21176245-Reviews-Briancon_Fantomes-Briancon_Hautes_Alpes_Provence_Alpes_Cote_d_Azur.html">
+              <img
+                className="h-8 m-2"
+                src={tripAdvisor}
+                alt="tripAdvisor-icon"
+              />
+            </a>
+            <a href="https://open.spotify.com/playlist/3tCHTiFJrSC1HexGdCDesq">
+              <img className="h-8 m-2" src={spotify} alt="spotify-icon" />
+            </a>
+          </div>
+        </div>
+
+        <div className=" flex flex-col py-4 pb-6 justify-middle items-start md:order-3 md:pb-0">
           <div
             className="w-24 ml-[1rem]"
             style={{
@@ -73,32 +99,8 @@ function Footer() {
             </a>
           </div>
         </div>
-        <div className="order-first flex flex-col pb-4 align-middle lg:order-2">
-          <img
-            src={logo}
-            className="w-3/4 mx-auto"
-            alt="briancon fantomes logo"
-          />
-          <div className="flex flex-row justify-center">
-            <a href="https://www.facebook.com/BrianconFantomes/">
-              <img className="h-8 m-2" src={facebook} alt="facebook-icon" />
-            </a>
-            <a href="https://www.instagram.com/brianconfantomes/">
-              <img className="h-8 m-2" src={insta} alt="instagram-icon" />
-            </a>
-            <a href="https://www.tripadvisor.com/Attraction_Review-g219218-d21176245-Reviews-Briancon_Fantomes-Briancon_Hautes_Alpes_Provence_Alpes_Cote_d_Azur.html">
-              <img
-                className="h-8 m-2"
-                src={tripAdvisor}
-                alt="tripAdvisor-icon"
-              />
-            </a>
-            <a href="https://open.spotify.com/playlist/3tCHTiFJrSC1HexGdCDesq">
-              <img className="h-8 m-2" src={spotify} alt="spotify-icon" />
-            </a>
-          </div>
-        </div>
-        <div className="order-2 lg:order-last">
+
+        <div className="pb-6 md:order-1">
           <QuestionForm />
         </div>
       </div>
