@@ -80,24 +80,19 @@
     ],
     "faq": [
         {
-            "id": "25ce5d91-a262-4dcf-bb87-42b87546bcfa",
-            "question": "Where can I get the audio?",
-            "response": "We are hosting the audio on YouTube. Find it for free when search 'Briancon Fantomes'."
-        },
-        {
             "id": "b6f35f03-7936-409b-bd2a-446bcc5f30e7",
             "question": "How long is the audio tour?",
-            "response": "60 to 90 minutes."
+            "response": "If you are walking, 60 to 90 minutes.  If you are listening within the comfort of your home, 30 minutes"
         },
         {
             "id": "1b964601-a6dd-4fcc-b5f3-1000338c9557",
             "question": "Do I need to do all the stops?",
-            "response": "No, there is no order and you are not required to do all the stops with the audio."
+            "response": "No, there is no order and you are not required to do all the stops within the audio."
         },
         {
             "id": "9c268c0a-83dc-4b96-856a-bb5ded2772b1",
             "question": "How much does it cost?",
-            "response": " It is free! We do appreciate you to visit our youTube channel, like the audio on Spotify, and give us a review on Trip Advisor and/or Google."
+            "response": " It is free! We do appreciate postive reviews on Trip Advisor and/or Google so that others find us and listen to the audio."
         }
     ],
     "info": [
@@ -111,7 +106,7 @@
         {
             "id": "1sdsdf43",
             "title": "YOU NEED",
-            "descrip": "You will need a smartphone, headphones, and Internet/Data. Briançon Fantômes takes between 60-90 minutes to complete and we recommend to do it in the late afternoon or evening because the atmosphere in the old town of Briançon is mystical as dusk arrives."
+            "descrip": "You will need a smartphone, headphones, and Internet/Data. Briançon Fantômes takes between 60-90 minutes to complete if you are completing the walk plus audio. It is recommendded to complete the audio tour in the late afternoon or evening because the atmosphere in the old town of Briançon is mystical as dusk arrives."
         },
         {
             "id": "1sdf43",
