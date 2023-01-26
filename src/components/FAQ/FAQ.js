@@ -1,13 +1,14 @@
 import React from "react";
 import chevronDown from "../../assets/icons/chevron-down.svg";
 import chevronUp from "../../assets/icons/chevron-up.svg";
-import allQuestions from "../../data/faq.json";
+import info from "../../data/en.json";
 import { useState } from "react";
 import Question from "../Question/Question";
 
 function FAQ() {
   //set questions with state
-  const [questions] = useState(allQuestions);
+  const [questions] = useState(info.faq);
+  console.log(info);
 
   //if isShown is false not all questions are displayed.  If true all questions are displayed
   const [isShown, setIsShown] = useState(false);

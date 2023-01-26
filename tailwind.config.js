@@ -18,18 +18,28 @@ module.exports = {
       },
       keyframes: {
         wave: {
-          "0%": { transform: "rotate(0.0deg)" },
-          "10%": { transform: "rotate(14deg)" },
-          "20%": { transform: "rotate(-8deg)" },
-          "30%": { transform: "rotate(14deg)" },
-          "40%": { transform: "rotate(-4deg)" },
-          "50%": { transform: "rotate(10.0deg)" },
-          "60%": { transform: "rotate(0.0deg)" },
-          "100%": { transform: "rotate(0.0deg)" },
+          "0%": { transform: "translateY(0)" },
+          "10%": { transform: "translateY([-100px])" },
+          "20%": { transform: "translateY([-200px])" },
+          "30%": { transform: "translateY([-300px])" },
+          "40%": { transform: "translateY([-400px])" },
+          "50%": { transform: "translateY([-500px])" },
+          "60%": { transform: "translateY([-600px])" },
+          "100%": { transform: "translateY([-700px])" },
+        },
+        marquee: {
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-100%)" },
+        },
+        marquee2: {
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0%)" },
         },
       },
       animation: {
         "waving-hand": "wave 2s linear infinite",
+
+        "marquee-infinite": "marquee 20s linear infinite",
       },
     },
   },

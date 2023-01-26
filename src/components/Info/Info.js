@@ -1,12 +1,12 @@
 import React from "react";
 import CardEmpty from "../CardEmpty/CardEmpty";
-import allInfo from "../../data/info.json";
+import allInfo from "../../data/en.json";
 import { useState } from "react";
 import CardSlide from "../CardSlide/CardSlide";
 
 function Info() {
   //set questions with state
-  const [info] = useState(allInfo);
+  const [info] = useState(allInfo.info);
 
   return (
     <section
@@ -15,8 +15,9 @@ function Info() {
     >
       {info?.map((i) =>
         i.id === undefined ? (
-          <CardEmpty />
+          <CardEmpty key={info.indexOf(i)} />
         ) : (
+          //translate here
           <CardSlide key={i.id} title={i.title} descrip={i.descrip} />
         )
       )}
