@@ -8,7 +8,6 @@ import Question from "../Question/Question";
 function FAQ() {
   //set questions with state
   const [questions] = useState(info.faq);
-  console.log(info);
 
   //if isShown is false not all questions are displayed.  If true all questions are displayed
   const [isShown, setIsShown] = useState(false);

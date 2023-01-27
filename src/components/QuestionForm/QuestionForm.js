@@ -14,21 +14,47 @@ function QuestionForm() {
   const TEMPLATE_ID = `${process.env.REACT_APP_TEMPLATE_ID}`;
   const PUBLIC_KEY = `${process.env.REACT_APP_PUBLIC_KEY}`;
 
+  //function to clearForm after it has been successful
+  const clearForm = (e) => {
+    e.target.user_name.value = "";
+    e.target.user_email.value = "";
+    e.target.message.value = "";
+  };
+
+  //function to validate Email
+  function validateEmail(value) {
+    let errorMessage;
+    if (!value) {
+      errorMessage = "Email Required";
+      toast("Email Required");
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+      errorMessage = "Invalid email address";
+      toast("Invalid email address");
+    }
+    return errorMessage;
+  }
+
+  //send email function for emailjs
   const sendEmail = (e) => {
     e.preventDefault();
-
-    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
-      (result) => {
-        //put a module in here if it was successful
-        toast("Your question has been sent!");
-        console.log(result.text);
-      },
-      (error) => {
-        //put a modal in here if it wasn't successful
-        toast("Sorry your question was not sent😟");
-        console.log(error.text);
-      }
-    );
+    const email = e.target.user_email.value;
+    if (validateEmail(email)) {
+      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
+        (result) => {
+          //put a module in here if it was successful
+          toast("Your question has been sent!");
+          clearForm(e);
+          //console.log(result.text);
+        },
+        (error) => {
+          //put a modal in here if it wasn't successful
+          toast("Sorry your question was not sent😟");
+          //console.log(error.text);
+        }
+      );
+    } else {
+      toast("Invalid Email");
+    }
   };
   return (
     <div
@@ -36,10 +62,11 @@ function QuestionForm() {
       className="bg-slate-50 p-4 flex flex-col justify-around rounded-md"
     >
       <Formik
-        initialValues={{ question: "" }}
-        onSubmit={async (values) => {
+        initialValues={{ user_name: "", user_email: "", message: "" }}
+        onSubmit={async (values, { resetForm }) => {
           await new Promise((resolve) => setTimeout(resolve, 500));
           alert(JSON.stringify(values, null, 2));
+          resetForm({ user_name: "", user_email: "", message: "" });
         }}
       >
         <Form className="form" method="post" ref={form} onSubmit={sendEmail}>
@@ -53,6 +80,7 @@ function QuestionForm() {
             />
             <TextField
               name="user_email"
+              validate={validateEmail}
               required
               fullWidth
               id="email"
@@ -76,10 +104,10 @@ function QuestionForm() {
             >
               Submit
             </Button>
+            <ToastContainer />
           </div>
         </Form>
       </Formik>
-      <ToastContainer />
     </div>
   );
 }
