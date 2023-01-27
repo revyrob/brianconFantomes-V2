@@ -3,18 +3,11 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function QuestionForm() {
   const form = useRef();
-
-  //event handler for creating new comment
-  // const handleComment = (event) => {
-  //   event.preventDefault();
-  //   const question = event.target.question.value;
-  //   if (question !== "") {
-  //     event.preventDefault();
-  //   }
-  // };
 
   //const apiKey = `${process.env.REACT_APP_APIKEY}`;
   const SERVICE_ID = `${process.env.REACT_APP_SERVICE_ID}`;
@@ -26,9 +19,13 @@ function QuestionForm() {
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
       (result) => {
+        //put a module in here if it was successful
+        toast("Your question has been sent!");
         console.log(result.text);
       },
       (error) => {
+        //put a modal in here if it wasn't successful
+        toast("Sorry your question was not sent😟");
         console.log(error.text);
       }
     );
@@ -82,6 +79,7 @@ function QuestionForm() {
           </div>
         </Form>
       </Formik>
+      <ToastContainer />
     </div>
   );
 }
