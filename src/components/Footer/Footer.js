@@ -50,7 +50,7 @@ function Footer() {
               transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
             }}
           >
-            <a href="#about">
+            <a href="#tour">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 Show
               </p>
@@ -78,7 +78,7 @@ function Footer() {
               transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
             }}
           >
-            <a href="#faq">
+            <a href="#credits">
               <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
                 Credits
               </p>

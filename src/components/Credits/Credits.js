@@ -6,7 +6,7 @@ function Credits() {
   const [credit] = useState(info.credits);
   //console.log(credit[0].heading.title);
   return (
-    <section className="p-4 h-[300px] relative truncate">
+    <section id="credits" className="p-4 h-[300px] relative truncate">
       <div className="flex mx-auto w-full border-b-2 justify-center">
         <h1 className="text-2xl p-2  border-gray-500 font-creepster">
           {credit[0].heading.title}
