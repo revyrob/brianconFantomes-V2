@@ -5,63 +5,94 @@ import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from "react";
 
 function QuestionForm() {
   const form = useRef();
+
+  const intialValues = { email: "", name: "", message: "" };
+  const [formValues, setFormValues] = useState(intialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   //const apiKey = `${process.env.REACT_APP_APIKEY}`;
   const SERVICE_ID = `${process.env.REACT_APP_SERVICE_ID}`;
   const TEMPLATE_ID = `${process.env.REACT_APP_TEMPLATE_ID}`;
   const PUBLIC_KEY = `${process.env.REACT_APP_PUBLIC_KEY}`;
 
-  //function to clearForm after it has been successful
-  const clearForm = (e) => {
-    e.target.user_name.value = "";
-    e.target.user_email.value = "";
-    e.target.message.value = "";
+  //no errors and pressed on submit
+  const submit = () => {
+    sendEmail();
   };
 
-  //function to validate Email
-  function validateEmail(value) {
-    let errorMessage;
-    if (!value) {
-      errorMessage = "Email Required";
-      toast("Email Required");
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/.test(value)) {
-      errorMessage = "Invalid email address";
-      console.log(value);
-      toast("Invalid email address");
+  //input change handler
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  //function to clearForm after it has been successful
+  // const clearForm = (e) => {
+  //   e.target.user_name.value = "";
+  //   e.target.user_email.value = "";
+  //   e.target.message.value = "";
+  // };
+
+  //form submission handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmitting(true);
+  };
+
+  //form validation handler
+  const validate = (values) => {
+    let errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+    //validation for email that has numbers/letters + @ + .'somthing'
+    if (!values.email) {
+      errors.email = "Cannot be blank";
+    } else if (!regex.test(values.email)) {
+      errors.email = "Invalid email format";
     }
-    return errorMessage;
-  }
+
+    return errors;
+  };
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmitting) {
+      submit();
+    }
+  }, [formErrors, isSubmitting]);
 
   //send email function for emailjs
   const sendEmail = (e) => {
-    e.preventDefault();
-    const email = e.target.user_email.value;
-    if (validateEmail(email)) {
-      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
-        (result) => {
-          //put a module in here if it was successful
-          toast("Your question has been sent!");
-          clearForm(e);
-          //console.log(result.text);
-        },
-        (error) => {
-          //put a modal in here if it wasn't successful
-          toast("Sorry your question was not sent😟");
-          //console.log(error.text);
-        }
-      );
-    } else {
-      toast("Invalid Email");
-    }
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
+      (result) => {
+        //put a module in here if it was successful
+        setFormValues({ email: "", name: "", message: "" });
+        toast("Your question has been sent!");
+
+        //console.log(result.text);
+      },
+      (error) => {
+        //put a modal in here if it wasn't successful
+        toast("Sorry your question was not sent😟");
+        //console.log(error.text);
+      }
+    );
   };
+
   return (
     <div
       id="contact"
       className="bg-slate-50 p-4 flex flex-col justify-around rounded-md"
     >
+      {Object.keys(formErrors).length === 0 && isSubmitting && (
+        <span className="success-msg">Form submitted successfully</span>
+      )}
+
       <Formik
         initialValues={{ user_name: "", user_email: "", message: "" }}
         onSubmit={async (values, { resetForm }) => {
@@ -70,29 +101,41 @@ function QuestionForm() {
           resetForm({ user_name: "", user_email: "", message: "" });
         }}
       >
-        <Form className="form" method="post" ref={form} onSubmit={sendEmail}>
+        <Form className="form" method="post" ref={form} onSubmit={handleSubmit}>
           <div className="form__form flex flex-col justify-between h-72 ">
             <TextField
-              name="user_name"
+              name="name"
+              value={formValues.name}
+              onChange={handleChange}
               required
               fullWidth
               id="name"
               label="Name"
             />
             <TextField
-              name="user_email"
-              validate={validateEmail}
+              name="email"
+              value={formValues.email}
+              onChange={handleChange}
+              className={formErrors.email && "border-red-800"}
               required
               fullWidth
               id="email"
               label="Email"
+              type="email"
             />
+            {formErrors.email && (
+              <span className="text-red-700 mt-4 items-start">
+                {formErrors.email}
+              </span>
+            )}
             <TextField
               name="message"
+              value={formValues.message}
               required
               fullWidth
               id="question"
               label="Question"
+              onChange={handleChange}
             />
 
             <Button
