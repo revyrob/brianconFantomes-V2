@@ -72,7 +72,7 @@ function QuestionForm() {
       (result) => {
         //put a module in here if it was successful
         setFormValues({ email: "", name: "", message: "" });
-        toast("Your question has been sent!");
+        //toast("Your question has been sent!");
 
         //console.log(result.text);
       },
@@ -90,7 +90,9 @@ function QuestionForm() {
       className="bg-slate-50 p-4 flex flex-col justify-around rounded-md"
     >
       {Object.keys(formErrors).length === 0 && isSubmitting && (
-        <span className="success-msg">Form submitted successfully</span>
+        <span className="text-white bg-green-600 inline-block w-full align-center p-2 mb-2 rounded">
+          Form submitted successfully
+        </span>
       )}
 
       <Formik
@@ -124,7 +126,7 @@ function QuestionForm() {
               type="email"
             />
             {formErrors.email && (
-              <span className="text-red-700 mt-4 items-start">
+              <span className="text-red-700 flex items-start ml-2">
                 {formErrors.email}
               </span>
             )}
