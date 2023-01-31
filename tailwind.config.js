@@ -11,6 +11,8 @@ module.exports = {
       fontFamily: {
         oswald: ['"Oswald"'],
         creepster: ['"Creepster"'],
+        monospace: "monospace",
+        Roboto: "Roboto",
       },
       backgroundImage: {
         "chevron-up": "url('/assets/icons/chevron-up.svg')",

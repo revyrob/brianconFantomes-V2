@@ -9,12 +9,12 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
+//import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/logo/logoskull.png";
 //import englishFlag from "../../assets/photos/englishFlag.jpg";
-import frenchFlag from "../../assets/photos/frenchFlag.jpg";
-import eng from "../../language/en.json";
+//import frenchFlag from "../../assets/photos/frenchFlag.jpg";
+//import eng from "../../language/en.json";
 import LanguageSelector from "../LanguageSelector/LanguageSelector";
 
 function Nav() {
@@ -23,7 +23,7 @@ function Nav() {
   const open = Boolean(lang);
 
   const { dictionary } = useContext(LanguageContext);
-  console.log(dictionary.nav);
+  //console.log(dictionary.nav);
   // const handleClick = (event) => {
   //   setLang(event.currentTarget);
   // };
@@ -42,7 +42,7 @@ function Nav() {
   const headings = dictionary.nav;
 
   return (
-    <AppBar position="static" className="bg-gray-900 max-w-screen-xl mx-auto">
+    <AppBar position="static" className="bg-gray-900 max-w-screen-xl mx-auto ">
       <Container maxWidth="2xl" className="bg-gray-900">
         <Toolbar disableGutters>
           <Typography
@@ -53,8 +53,8 @@ function Nav() {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
               fontWeight: 700,
+              fontFamily: "oswald",
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
@@ -102,7 +102,7 @@ function Nav() {
               {headings.map((i) => (
                 <MenuItem onClick={handleCloseNavMenu} key={i.toString()}>
                   <a href={`#${i.toLowerCase()}`}>
-                    <Typography className="text-black" sx={{ minWidth: 100 }}>
+                    <Typography className="text-black " sx={{ minWidth: 100 }}>
                       {i}
                     </Typography>
                   </a>
@@ -110,7 +110,7 @@ function Nav() {
               ))}
 
               <MenuItem>
-                <LanguageSelector styling="border-none bg-white" />
+                <LanguageSelector styling="border-none bg-white font-Roboto" />
               </MenuItem>
             </Menu>
           </Box>
@@ -123,7 +123,7 @@ function Nav() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: "oswald",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -149,7 +149,7 @@ function Nav() {
                 </Typography>
               </a>
             ))}
-            <LanguageSelector styling="border-none bg-gray-900" />
+            <LanguageSelector styling="border-none bg-gray-900 font-Roboto" />
           </Box>
 
           <Menu

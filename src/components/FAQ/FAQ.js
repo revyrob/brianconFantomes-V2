@@ -1,13 +1,14 @@
-import React from "react";
 import chevronDown from "../../assets/icons/chevron-down.svg";
 import chevronUp from "../../assets/icons/chevron-up.svg";
-import info from "../../language/en.json";
-import { useState } from "react";
 import Question from "../Question/Question";
+import React, { useContext, useState } from "react";
+import { LanguageContext } from "../../Language";
 
 function FAQ() {
+  const { dictionary } = useContext(LanguageContext);
+
   //set questions with state
-  const [questions] = useState(info.faq);
+  const [questions] = useState(dictionary.faq);
 
   //if isShown is false not all questions are displayed.  If true all questions are displayed
   const [isShown, setIsShown] = useState(false);

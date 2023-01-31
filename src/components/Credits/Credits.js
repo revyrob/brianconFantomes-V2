@@ -1,13 +1,9 @@
-//import info from "../../language/en.json";
 import React, { useContext } from "react";
 import { LanguageContext } from "../../Language";
 
 function Credits() {
   const { dictionary } = useContext(LanguageContext);
-  //console.log(dictionary.credits);
 
-  //const [credit] = useState(info.credits);
-  //console.log(credit[0].heading.title);
   return (
     <section id="credits" className="p-4 h-[300px] relative truncate">
       <div className="flex mx-auto w-full border-b-2 justify-center">

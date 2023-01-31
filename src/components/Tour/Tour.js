@@ -1,10 +1,13 @@
-import React from "react";
-import engTour from "../../language/en.json";
 import CardMUI from "../CardMUI/CardMUI";
+import React, { useContext, useState } from "react";
+import { LanguageContext } from "../../Language";
 
 function Tour() {
+  const { dictionary } = useContext(LanguageContext);
+
   //get the audio tour from the language json file
-  const audio = engTour.audio;
+  const [audio] = useState(dictionary.audio);
+
   return (
     <section
       id="tour"
