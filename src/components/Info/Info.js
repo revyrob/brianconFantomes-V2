@@ -1,10 +1,12 @@
-import React from "react";
 import CardEmpty from "../CardEmpty/CardEmpty";
 import allInfo from "../../language/en.json";
-import { useState } from "react";
 import CardSlide from "../CardSlide/CardSlide";
+import React, { useContext, useState } from "react";
+//import { Text, LanguageContext } from "../containers/Language";
 
 function Info() {
+  //const { dictionary } = useContext(LanguageContext);
+
   //set questions with state
   const [info] = useState(allInfo.info);
 

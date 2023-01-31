@@ -1,35 +1,18 @@
 {
     "nav": [
-        {
-            "headings": [
-                "About",
-                "FAQ",
-                "Contact"
-            ]
-        }
+        "About",
+        "FAQ",
+        "Contact"
     ],
     "lang": [
-        {
-            "languages": [
-                "English",
-                "French"
-            ]
-        }
+        "English",
+        "French"
     ],
-    "credits": [
-        {
-            "heading": {
-                "title": "Credits"
-            }
-        },
-        {
-            "subheading": [
-                "Music",
-                "Historical References",
-                "Writer/Producer/Web Developer"
-            ]
-        }
-    ],
+    "button": "Start Show",
+    "credits": "Credits",
+    "heading1": "Music",
+    "heading2": "Historical References",
+    "heading3": "Writer/Producer/Web Developer",
     "audio": [
         {
             "id": "fc0e816c-14c0-45a8-91fe-0ec3385cad9d",

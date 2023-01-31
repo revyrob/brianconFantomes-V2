@@ -1,20 +1,23 @@
-import React from "react";
-import info from "../../language/en.json";
-import { useState } from "react";
+//import info from "../../language/en.json";
+import React, { useContext } from "react";
+import { LanguageContext } from "../../Language";
 
 function Credits() {
-  const [credit] = useState(info.credits);
+  const { dictionary } = useContext(LanguageContext);
+  //console.log(dictionary.credits);
+
+  //const [credit] = useState(info.credits);
   //console.log(credit[0].heading.title);
   return (
     <section id="credits" className="p-4 h-[300px] relative truncate">
       <div className="flex mx-auto w-full border-b-2 justify-center">
         <h1 className="text-2xl p-2  border-gray-500 font-creepster">
-          {credit[0].heading.title}
+          {dictionary.credits}
         </h1>
       </div>
       <div className="flex w-full justify-center truncate">
         <div className="animate-marquee-infinite relative ">
-          <h2 className="text-lg mt-6">{credit[1].subheading[0]}</h2>
+          <h2 className="text-lg mt-6">{dictionary.heading1}</h2>
           <div className="my-2">
             <ul>
               <li>Bach - Toccata and Fugue in D Minor</li>
@@ -30,7 +33,7 @@ function Credits() {
               <li>Alexander Litvinovsky - Le Grand Cahier: X. L'Incendie</li>
             </ul>
           </div>
-          <h2 className="text-lg mt-6 ">{credit[1].subheading[1]}</h2>
+          <h2 className="text-lg mt-6 ">{dictionary.heading2}</h2>
           <div className="my-2">
             <ul>
               <li>Briançon à travers l'histoire - Jacqueline Routier</li>
@@ -38,7 +41,7 @@ function Credits() {
               <li>The History of Serre Chevalier and Briançon - Susan Lomas</li>
             </ul>
           </div>
-          <h2 className="text-lg mt-6 ">{credit[1].subheading[2]}</h2>
+          <h2 className="text-lg mt-6 ">{dictionary.heading3}</h2>
           <div className="my-2">
             <p>
               <a

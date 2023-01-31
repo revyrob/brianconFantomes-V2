@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useContext } from "react";
+import { LanguageContext } from "../../Language";
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -11,18 +12,21 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/logo/logoskull.png";
-import englishFlag from "../../assets/photos/englishFlag.jpg";
+//import englishFlag from "../../assets/photos/englishFlag.jpg";
 import frenchFlag from "../../assets/photos/frenchFlag.jpg";
 import eng from "../../language/en.json";
+import LanguageSelector from "../LanguageSelector/LanguageSelector";
 
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [lang, setLang] = useState(null);
   const open = Boolean(lang);
 
-  const handleClick = (event) => {
-    setLang(event.currentTarget);
-  };
+  const { dictionary } = useContext(LanguageContext);
+  console.log(dictionary.nav);
+  // const handleClick = (event) => {
+  //   setLang(event.currentTarget);
+  // };
   const handleClose = () => {
     setLang(null);
   };
@@ -35,8 +39,8 @@ function Nav() {
   };
 
   //get the headings
-  const headings = eng.nav[0].headings;
-  console.log(headings);
+  const headings = dictionary.nav;
+
   return (
     <AppBar position="static" className="bg-gray-900 max-w-screen-xl mx-auto">
       <Container maxWidth="2xl" className="bg-gray-900">
@@ -96,7 +100,7 @@ function Nav() {
               }}
             >
               {headings.map((i) => (
-                <MenuItem onClick={handleCloseNavMenu}>
+                <MenuItem onClick={handleCloseNavMenu} key={i.toString()}>
                   <a href={`#${i.toLowerCase()}`}>
                     <Typography className="text-black" sx={{ minWidth: 100 }}>
                       {i}
@@ -106,21 +110,7 @@ function Nav() {
               ))}
 
               <MenuItem>
-                <Typography className="text-black" sx={{ minWidth: 100 }}>
-                  English
-                </Typography>
-                <IconButton
-                  onClick={handleClick}
-                  size="small"
-                  sx={{ ml: 2 }}
-                  aria-controls={open ? "language" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                >
-                  <Avatar sx={{ width: 32, height: 32 }}>
-                    <img className="h-full" src={englishFlag} alt="english" />
-                  </Avatar>
-                </IconButton>
+                <LanguageSelector styling="border-none bg-white" />
               </MenuItem>
             </Menu>
           </Box>
@@ -153,36 +143,13 @@ function Nav() {
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
           >
             {headings.map((i) => (
-              <a href={`#${i.toLowerCase()}`}>
+              <a href={`#${i.toLowerCase()}`} key={i.toString()}>
                 <Typography className="text-white" sx={{ minWidth: 100 }}>
                   {i}
                 </Typography>
               </a>
             ))}
-            {/* <a href="#faq">
-              <Typography className="text-white" sx={{ minWidth: 100 }}>
-                FAQ
-              </Typography>
-            </a>
-            <a href="#contact">
-              <Typography className="text-white" sx={{ minWidth: 100 }}>
-                Contact
-              </Typography>
-            </a> */}
-            <a href="#french">
-              <IconButton
-                onClick={handleClick}
-                size="small"
-                sx={{ ml: 2 }}
-                aria-controls={open ? "language" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-              >
-                <Avatar sx={{ width: 32, height: 32 }}>
-                  <img className="h-full " src={englishFlag} alt="english" />
-                </Avatar>
-              </IconButton>
-            </a>
+            <LanguageSelector styling="border-none bg-gray-900" />
           </Box>
 
           <Menu
@@ -220,12 +187,12 @@ function Nav() {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem>
+            {/* <MenuItem>
               <Avatar>
                 <img className="h-full" src={frenchFlag} alt="french" />
               </Avatar>{" "}
               French
-            </MenuItem>
+            </MenuItem> */}
           </Menu>
 
           <a href="#tour">
@@ -234,7 +201,7 @@ function Nav() {
                 type="button"
                 className=" border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-2 py-1.5 text-center mx-4 md: dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
               >
-                Start Show
+                {dictionary.button}
               </button>
             </Box>
           </a>

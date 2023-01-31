@@ -1,18 +1,18 @@
 {
-    "credits": [
-        {
-            "heading": {
-                "title": "Crédits"
-            }
-        },
-        {
-            "subheading": [
-                "Musique",
-                "Références Historiques",
-                "Rédactrice/Productrice/Web Développeuse"
-            ]
-        }
+    "nav": [
+        "A Propos",
+        "FAQ",
+        "Contact"
     ],
+    "lang": [
+        "Anglais",
+        "Francais"
+    ],
+    "button": "Spectacle",
+    "credits": "Crédits",
+    "heading1": "Musique",
+    "heading2": "Références Historiques",
+    "heading3": "Rédactrice/Productrice/Web Développeuse",
     "audio": [
         {
             "id": "fc0e816c-14c0-45a8-91fe-0ec3sfddscad9d",
