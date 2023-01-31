@@ -186,16 +186,9 @@ function Nav() {
             }}
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-          >
-            {/* <MenuItem>
-              <Avatar>
-                <img className="h-full" src={frenchFlag} alt="french" />
-              </Avatar>{" "}
-              French
-            </MenuItem> */}
-          </Menu>
+          ></Menu>
 
-          <a href="#show">
+          <a href="#tour">
             <Box sx={{ flexGrow: 0 }}>
               <button
                 type="button"

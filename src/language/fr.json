@@ -115,9 +115,32 @@
         }
     ],
     "footer": [
-        "Spectacle",
-        "A Propos",
-        "Crédits",
-        "FAQ"
+        {
+            "id": "tour",
+            "title": "Commence Spectacle",
+            "size": "1"
+        },
+        {
+            "id": "about",
+            "title": "À propos",
+            "size": "2"
+        },
+        {
+            "id": "credits",
+            "title": "Crédits",
+            "size": "1"
+        },
+        {
+            "id": "faq",
+            "title": "FAQ",
+            "size": "2"
+        }
+    ],
+    "id": [
+        "tour",
+        "about",
+        "credits",
+        "faq",
+        "contact"
     ]
 }

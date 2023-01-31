@@ -9,6 +9,7 @@ function Info() {
   //set questions with state
   //const [info] = useState(dictionary.info);
   //const info = dictionary.info;
+  //console.log(dictionary.footer[1].id);
 
   return (
     <section

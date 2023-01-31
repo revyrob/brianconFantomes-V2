@@ -6,7 +6,7 @@ import spotify from "../../assets/icons/spotify-icon.svg";
 import QuestionForm from "../QuestionForm/QuestionForm";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { LanguageContext } from "../../Language";
 
 function Footer() {
@@ -17,7 +17,7 @@ function Footer() {
 
   //use context to bring in the dictionary of the the two languages
   const { dictionary } = useContext(LanguageContext);
-
+  console.log(dictionary.footer[2].size);
   return (
     <section className="bg-gray-900 text-slate-50">
       <div className="lg:grid grid-cols-3 px-16 pt-8" ref={ref}>
@@ -51,16 +51,16 @@ function Footer() {
           {dictionary.footer?.map((headings) => (
             <div
               key={toString(headings)}
-              className={`w-24 ml-[${dictionary.footer.indexOf(headings)}rem]`}
+              className={`w-24 ml-[${headings.size}rem]`}
               style={{
                 transform: isInView ? "none" : "translateX(500px)",
                 opacity: isInView ? 1 : 0,
                 transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
               }}
             >
-              <a href={`#${headings.toLowerCase()}`}>
+              <a href={`#${headings.id}`}>
                 <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
-                  {headings}
+                  {headings.title}
                 </p>
               </a>
             </div>
