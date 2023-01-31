@@ -6,6 +6,7 @@ import { LanguageContext } from "../../Language";
 
 function FAQ() {
   const { dictionary } = useContext(LanguageContext);
+  console.log(dictionary.faq[0]);
 
   //set questions with state
   //const [questions] = useState(dictionary.faq);
@@ -49,9 +50,9 @@ function FAQ() {
         {chevron === false ? (
           <div>
             <h2 className="text-lg font-oswald">
-              {dictionary.questions[0].question}
+              {dictionary.faq[0].question}
             </h2>
-            <p className="text-base">{dictionary.questions[0].response}</p>
+            <p className="text-base">{dictionary.faq[0].response}</p>
             <h2 className="text-lg font-oswald">. . . </h2>
           </div>
         ) : (
@@ -64,7 +65,7 @@ function FAQ() {
                   transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
                 }}
               >
-                {dictionary.questions?.map((question) => (
+                {dictionary.faq?.map((question) => (
                   <Question
                     key={question.id}
                     question={question.question}
