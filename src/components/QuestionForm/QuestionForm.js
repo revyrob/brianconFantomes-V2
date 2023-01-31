@@ -15,7 +15,6 @@ function QuestionForm() {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  //const apiKey = `${process.env.REACT_APP_APIKEY}`;
   const SERVICE_ID = `${process.env.REACT_APP_SERVICE_ID}`;
   const TEMPLATE_ID = `${process.env.REACT_APP_TEMPLATE_ID}`;
   const PUBLIC_KEY = `${process.env.REACT_APP_PUBLIC_KEY}`;
