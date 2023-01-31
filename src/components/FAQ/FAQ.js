@@ -8,7 +8,7 @@ function FAQ() {
   const { dictionary } = useContext(LanguageContext);
 
   //set questions with state
-  const [questions] = useState(dictionary.faq);
+  //const [questions] = useState(dictionary.faq);
 
   //if isShown is false not all questions are displayed.  If true all questions are displayed
   const [isShown, setIsShown] = useState(false);
@@ -48,8 +48,10 @@ function FAQ() {
       <div className="w-max-3/4 my-6">
         {chevron === false ? (
           <div>
-            <h2 className="text-lg font-oswald">{questions[0].question}</h2>
-            <p className="text-base">{questions[0].response}</p>
+            <h2 className="text-lg font-oswald">
+              {dictionary.questions[0].question}
+            </h2>
+            <p className="text-base">{dictionary.questions[0].response}</p>
             <h2 className="text-lg font-oswald">. . . </h2>
           </div>
         ) : (
@@ -62,7 +64,7 @@ function FAQ() {
                   transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
                 }}
               >
-                {questions?.map((question) => (
+                {dictionary.questions?.map((question) => (
                   <Question
                     key={question.id}
                     question={question.question}
