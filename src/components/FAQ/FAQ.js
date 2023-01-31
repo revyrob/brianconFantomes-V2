@@ -1,7 +1,7 @@
 import React from "react";
 import chevronDown from "../../assets/icons/chevron-down.svg";
 import chevronUp from "../../assets/icons/chevron-up.svg";
-import info from "../../data/en.json";
+import info from "../../language/en.json";
 import { useState } from "react";
 import Question from "../Question/Question";
 

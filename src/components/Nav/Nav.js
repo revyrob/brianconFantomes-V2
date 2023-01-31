@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/logo/logoskull.png";
 import englishFlag from "../../assets/photos/englishFlag.jpg";
 import frenchFlag from "../../assets/photos/frenchFlag.jpg";
+import eng from "../../language/en.json";
 
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -33,6 +34,9 @@ function Nav() {
     setAnchorElNav(null);
   };
 
+  //get the headings
+  const headings = eng.nav[0].headings;
+  console.log(headings);
   return (
     <AppBar position="static" className="bg-gray-900 max-w-screen-xl mx-auto">
       <Container maxWidth="2xl" className="bg-gray-900">
@@ -91,27 +95,16 @@ function Nav() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <a href="#about">
-                  <Typography className="text-black" sx={{ minWidth: 100 }}>
-                    About
-                  </Typography>
-                </a>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <a href="#faq">
-                  <Typography className="text-black" sx={{ minWidth: 100 }}>
-                    FAQ
-                  </Typography>
-                </a>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <a href="#contact">
-                  <Typography className="text-black" sx={{ minWidth: 100 }}>
-                    Contact
-                  </Typography>
-                </a>
-              </MenuItem>
+              {headings.map((i) => (
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <a href={`#${i.toLowerCase()}`}>
+                    <Typography className="text-black" sx={{ minWidth: 100 }}>
+                      {i}
+                    </Typography>
+                  </a>
+                </MenuItem>
+              ))}
+
               <MenuItem>
                 <Typography className="text-black" sx={{ minWidth: 100 }}>
                   English
@@ -159,13 +152,14 @@ function Nav() {
             className="flex justify-left items-center"
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
           >
-            <a href="#about">
-              <Typography className="text-white" sx={{ minWidth: 100 }}>
-                About
-              </Typography>
-            </a>
-
-            <a href="#faq">
+            {headings.map((i) => (
+              <a href={`#${i.toLowerCase()}`}>
+                <Typography className="text-white" sx={{ minWidth: 100 }}>
+                  {i}
+                </Typography>
+              </a>
+            ))}
+            {/* <a href="#faq">
               <Typography className="text-white" sx={{ minWidth: 100 }}>
                 FAQ
               </Typography>
@@ -174,7 +168,7 @@ function Nav() {
               <Typography className="text-white" sx={{ minWidth: 100 }}>
                 Contact
               </Typography>
-            </a>
+            </a> */}
             <a href="#french">
               <IconButton
                 onClick={handleClick}

@@ -1,5 +1,5 @@
 import React from "react";
-import info from "../../data/en.json";
+import info from "../../language/en.json";
 import { useState } from "react";
 
 function Credits() {

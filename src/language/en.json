@@ -1,4 +1,21 @@
 {
+    "nav": [
+        {
+            "headings": [
+                "About",
+                "FAQ",
+                "Contact"
+            ]
+        }
+    ],
+    "lang": [
+        {
+            "languages": [
+                "English",
+                "French"
+            ]
+        }
+    ],
     "credits": [
         {
             "heading": {

@@ -1,6 +1,6 @@
 import React from "react";
 import CardEmpty from "../CardEmpty/CardEmpty";
-import allInfo from "../../data/en.json";
+import allInfo from "../../language/en.json";
 import { useState } from "react";
 import CardSlide from "../CardSlide/CardSlide";
 
