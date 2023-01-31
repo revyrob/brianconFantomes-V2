@@ -113,5 +113,11 @@
             "title": "ATTENTION",
             "descrip": "Briançon Fantômes n'est pas pour les timides ! Il n'est pas recommandé aux enfants de moins de 8 ans d'écouter la visite audio. La ville est escarpée et a des surfaces inégales, veuillez faire attention lorsque vous vous promenez dans et autour de la vieille ville. Arrêtez-vous dans une zone sûre lorsque vous écoutez l'audio de la visite."
         }
+    ],
+    "footer": [
+        "Spectacle",
+        "A Propos",
+        "Crédits",
+        "FAQ"
     ]
 }

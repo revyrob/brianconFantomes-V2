@@ -5,11 +5,8 @@ import React, { useContext, useState } from "react";
 import { LanguageContext } from "../../Language";
 
 function FAQ() {
+  //use context to bring in the dictionary of the the two languages
   const { dictionary } = useContext(LanguageContext);
-  console.log(dictionary.faq[0]);
-
-  //set questions with state
-  //const [questions] = useState(dictionary.faq);
 
   //if isShown is false not all questions are displayed.  If true all questions are displayed
   const [isShown, setIsShown] = useState(false);

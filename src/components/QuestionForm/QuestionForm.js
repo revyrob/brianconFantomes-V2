@@ -30,13 +30,6 @@ function QuestionForm() {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  //function to clearForm after it has been successful
-  // const clearForm = (e) => {
-  //   e.target.user_name.value = "";
-  //   e.target.user_email.value = "";
-  //   e.target.message.value = "";
-  // };
-
   //form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();

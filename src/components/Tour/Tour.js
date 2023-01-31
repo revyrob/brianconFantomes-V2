@@ -10,7 +10,7 @@ function Tour() {
 
   return (
     <section
-      id="tour"
+      id={`#${dictionary.footer[0].toLowerCase()}`}
       className="flex flex-wrap bg-gray-900 px-4 justify-center items-center pt-10"
     >
       {dictionary.audio?.map((chpt) => (

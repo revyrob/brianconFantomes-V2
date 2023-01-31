@@ -195,7 +195,7 @@ function Nav() {
             </MenuItem> */}
           </Menu>
 
-          <a href="#tour">
+          <a href="#show">
             <Box sx={{ flexGrow: 0 }}>
               <button
                 type="button"
