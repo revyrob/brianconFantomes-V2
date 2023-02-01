@@ -17,7 +17,7 @@ function Footer() {
 
   //use context to bring in the dictionary of the the two languages
   const { dictionary } = useContext(LanguageContext);
-  console.log(dictionary.footer[2].size);
+
   return (
     <section className="bg-gray-900 text-slate-50">
       <div className="lg:grid grid-cols-3 px-16 pt-8" ref={ref}>

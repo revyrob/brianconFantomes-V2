@@ -8,26 +8,22 @@
         {
             "id": "tour",
             "title": "Start Show",
-            "time": ".5",
-            "size": 1
+            "time": ".5"
         },
         {
             "id": "about",
             "title": "About",
-            "time": "1.0",
-            "size": 2
+            "time": "1.0"
         },
         {
             "id": "credits",
             "title": "Credits",
-            "time": "1.5",
-            "size": 4
+            "time": "1.5"
         },
         {
             "id": "faq",
             "title": "FAQ",
-            "time": "2.0",
-            "size": 20
+            "time": "2.0"
         }
     ],
     "lang": [
@@ -140,11 +136,14 @@
             "descrip": "Briançon Fantômes is not for the faint-hearted! Children under 8 years old are not recommended to listen to the audio tour. The town is steep and has uneven surfaces, please pay attention while walking through and around the old town. Stop in a safe area when listening to the audio for the tour."
         }
     ],
-    "id": [
-        "tour",
-        "about",
-        "credits",
-        "faq",
-        "contact"
-    ]
+    "form": [
+        "Email",
+        "Name",
+        "Question",
+        "Submit"
+    ],
+    "blankError": "Cannot be blank",
+    "invalidFormat": "Invalid email format",
+    "notSubmitted": "Sorry your question was not sent😟",
+    "submitted": "Form submitted successfully"
 }

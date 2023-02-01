@@ -118,33 +118,32 @@
         {
             "id": "tour",
             "title": "Commence Spectacle",
-            "time": ".5",
-            "size": 1
+            "time": ".5"
         },
         {
             "id": "about",
             "title": "À propos",
-            "time": "1.0",
-            "size": 2
+            "time": "1.0"
         },
         {
             "id": "credits",
             "title": "Crédits",
-            "time": "1.5",
-            "size": 4
+            "time": "1.5"
         },
         {
             "id": "faq",
             "title": "FAQ",
-            "time": "2.0",
-            "size": 20
+            "time": "2.0"
         }
     ],
-    "id": [
-        "tour",
-        "about",
-        "credits",
-        "faq",
-        "contact"
-    ]
+    "form": [
+        "Email",
+        "Nom",
+        "Question",
+        "Soumettre"
+    ],
+    "blankError": "Ne peut être vide",
+    "invalidFormat": "Format d'email invalide",
+    "notSubmitted": "Désolé votre question n'a pas été envoyée😟",
+    "submitted": "Formulaire envoyé avec succès"
 }
