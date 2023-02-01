@@ -8,29 +8,33 @@
         {
             "id": "tour",
             "title": "Start Show",
-            "size": "1"
+            "time": ".5",
+            "size": 1
         },
         {
             "id": "about",
             "title": "About",
-            "size": "2"
+            "time": "1.0",
+            "size": 2
         },
         {
             "id": "credits",
             "title": "Credits",
-            "size": "1"
+            "time": "1.5",
+            "size": 4
         },
         {
             "id": "faq",
             "title": "FAQ",
-            "size": "2"
+            "time": "2.0",
+            "size": 20
         }
     ],
     "lang": [
         "English",
         "French"
     ],
-    "button": "Show",
+    "button": "Start Show",
     "credits": "Credits",
     "heading1": "Music",
     "heading2": "Historical References",

@@ -47,19 +47,19 @@ function Footer() {
           </div>
         </div>
 
-        <div className=" flex flex-col py-4 pb-6 justify-middle items-start md:order-3 md:pb-0">
+        <div className=" flex flex-col pt-4 pb-6 justify-middle items-center md:order-3 ">
           {dictionary.footer?.map((headings) => (
             <div
               key={toString(headings)}
-              className={`w-24 ml-[${headings.size}rem]`}
               style={{
                 transform: isInView ? "none" : "translateX(500px)",
                 opacity: isInView ? 1 : 0,
-                transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+                transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${headings.time}s`,
+                width: "8rem",
               }}
             >
               <a href={`#${headings.id}`}>
-                <p className="text-slate-50 py-5 text-lg align-middle border-l-2 hover:border-x-2">
+                <p className="text-slate-50 py-5 text-lg text-middle border-l-2 hover:border-x-2">
                   {headings.title}
                 </p>
               </a>
