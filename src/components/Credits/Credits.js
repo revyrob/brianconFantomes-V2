@@ -13,7 +13,7 @@ function Credits() {
       </div>
       <div className="flex w-full justify-center truncate">
         <div className="animate-marquee-infinite relative ">
-          <h2 className="text-lg mt-6">{dictionary.heading1}</h2>
+          <h2 className="mt-6 p-4 md:text-lg ">{dictionary.heading1}</h2>
           <div className="my-2">
             <ul>
               <li>Bach - Toccata and Fugue in D Minor</li>
