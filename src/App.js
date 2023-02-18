@@ -16,7 +16,7 @@ function App() {
         <div className="bg-gray-900">
           <Nav />
         </div>
-        <Carousel />
+        {/* <Carousel /> */}
         <Info />
         <Map />
         <Tour />
