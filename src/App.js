@@ -19,9 +19,9 @@ function App() {
       <Info />
       <Map />
       <Tour />
-      {/* <Credits />
-      <FAQ /> */}
-      <Footer />
+      <Credits />
+      <FAQ />
+      {/* <Footer /> */}
     </LanguageProvider>
   );
 }
