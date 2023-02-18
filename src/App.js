@@ -15,12 +15,12 @@ function App() {
       <div className="bg-gray-900">
         <Nav />
       </div>
-      <Carousel />
-      {/* <Info />
+      {/* <Carousel /> */}
+      {/* <Info /> */}
       <Map />
       <Tour />
       <Credits />
-      <FAQ /> */}
+      <FAQ />
       <Footer />
     </LanguageProvider>
   );
