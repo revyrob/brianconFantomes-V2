@@ -9,12 +9,8 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-//import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/logo/logoskull.png";
-//import englishFlag from "../../assets/photos/englishFlag.jpg";
-//import frenchFlag from "../../assets/photos/frenchFlag.jpg";
-//import eng from "../../language/en.json";
 import LanguageSelector from "../LanguageSelector/LanguageSelector";
 
 function Nav() {
@@ -23,10 +19,7 @@ function Nav() {
   const open = Boolean(lang);
 
   const { dictionary } = useContext(LanguageContext);
-  //console.log(dictionary.nav);
-  // const handleClick = (event) => {
-  //   setLang(event.currentTarget);
-  // };
+
   const handleClose = () => {
     setLang(null);
   };
@@ -189,10 +182,16 @@ function Nav() {
           ></Menu>
 
           <a href="#tour">
-            <Box sx={{ flexGrow: 0 }}>
+            <Box
+              sx={{
+                flexGrow: 0,
+                marginTop: ".375rem",
+                marginBottom: ".375rem",
+              }}
+            >
               <button
                 type="button"
-                className=" border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-2 py-1.5 text-center mx-4 md: dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                className=" border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-2 text-center mx-4 md: dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
               >
                 {dictionary.button}
               </button>
