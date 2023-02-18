@@ -22,7 +22,7 @@ function FAQ() {
   }
 
   return (
-    <section className="p-4" id="faq">
+    <section className="p-4 text-center" id="faq">
       <div className="flex mx-auto w-full border-b-2 justify-center">
         <h1 className="text-2xl p-2  border-gray-500 font-creepster">FAQ</h1>
         <button className="transition duration-300 ease-in-out">
