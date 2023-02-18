@@ -12,12 +12,12 @@ import { LanguageProvider } from "./Language";
 function App() {
   return (
     <LanguageProvider>
-      {/* <div className="bg-gray-900">
+      <div className="bg-gray-900">
         <Nav />
-      </div> */}
-      {/* <Carousel /> */}
-      {/* <Info /> */}
-      {/* <Map /> */}
+      </div>
+      <Carousel />
+      <Info />
+      <Map />
       <Tour />
       {/* <Credits />
       <FAQ />
