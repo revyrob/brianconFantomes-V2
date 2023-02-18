@@ -17,7 +17,7 @@ function App() {
       </div> */}
       {/* <Carousel /> */}
       {/* <Info /> */}
-      <Map />
+      {/* <Map /> */}
       <Tour />
       <Credits />
       <FAQ />
