@@ -22,7 +22,7 @@ const Carousel = () => {
   return (
     <>
       <section className="w-[99%]">
-        <div className="h-[calc(100%_-_100px)] w-screen relative overflow-hidden ">
+        <div className="h-[calc(100vh_-_100px)] w-screen relative overflow-hidden ">
           <div
             className="h-full flex w-[300%] transition-all duration-1000"
             style={{ transform: `translate(-${currentSlide * 100}vw)` }}
