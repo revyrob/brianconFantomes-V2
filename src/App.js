@@ -17,11 +17,11 @@ function App() {
       </div>
       <Carousel />
       <Info />
-      {/* <Map /> */}
-      {/* <Tour />
+      <Map />
+      <Tour />
       <Credits />
       <FAQ />
-      <Footer /> */}
+      <Footer />
     </LanguageProvider>
   );
 }
