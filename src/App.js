@@ -20,8 +20,8 @@ function App() {
       <Map />
       <Tour />
       {/* <Credits />
-      <FAQ />
-      <Footer /> */}
+      <FAQ /> */}
+      <Footer />
     </LanguageProvider>
   );
 }
