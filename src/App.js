@@ -21,7 +21,7 @@ function App() {
       <Tour />
       <Credits />
       <FAQ />
-      {/* <Footer /> */}
+      <Footer />
     </LanguageProvider>
   );
 }

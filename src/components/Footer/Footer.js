@@ -21,10 +21,10 @@ function Footer() {
   return (
     <section className="bg-gray-900 text-slate-50">
       <div className="lg:grid grid-cols-3 px-16 pt-8" ref={ref}>
-        <div className="md:order-2 flex flex-col pb-4 align-middle ">
+        <div className="md:order-2 flex flex-col pb-4 align-middle text-center">
           <img
             src={logo}
-            className="max-w-[18rem] mx-auto"
+            className="sm:w-[12rem] md:w-[18rem] mx-auto"
             alt="briancon fantomes logo"
           />
           <div className="flex flex-row justify-center">
@@ -52,14 +52,14 @@ function Footer() {
             <div
               key={toString(headings)}
               style={{
-                transform: isInView ? "none" : "translateX(500px)",
+                transform: isInView ? "none" : "translateY(-200px)",
                 opacity: isInView ? 1 : 0,
                 transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${headings.time}s`,
                 width: "8rem",
               }}
             >
               <a href={`#${headings.id}`}>
-                <p className="text-slate-50 py-5 text-lg text-middle border-l-2 hover:border-x-2">
+                <p className="text-slate-50 p-5 text-lg text-middle border-l-2 hover:border-x-2">
                   {headings.title}
                 </p>
               </a>
@@ -71,7 +71,7 @@ function Footer() {
           <QuestionForm />
         </div>
       </div>
-      <p className="mx-auto pb-4">©️ Briancon Fantomes 2020</p>
+      <p className="mx-auto pb-4 text-center">©️ Briancon Fantomes 2020</p>
     </section>
   );
 }
