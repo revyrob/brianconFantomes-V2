@@ -16,11 +16,11 @@ function App() {
         <Nav />
       </div>
       <Carousel />
-      <Info />
+      {/* <Info />
       <Map />
       <Tour />
       <Credits />
-      <FAQ />
+      <FAQ /> */}
       <Footer />
     </LanguageProvider>
   );

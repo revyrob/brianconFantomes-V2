@@ -23,11 +23,11 @@ const Carousel = () => {
     <>
       <section className="w-[99%]">
         {/* height is in vh */}
-        <div className="h-[calc(100%_-_100px)] w-screen relative overflow-hidden ">
+        <div className="h-[calc(100vh_-_100px)] w-screen relative overflow-hidden ">
           <div
             className="h-full flex w-[300%] transition-all duration-1000"
             //if in vw than it pictures look best
-            style={{ transform: `translate(-${currentSlide * 100}%)` }}
+            style={{ transform: `translate(-${currentSlide * 100}vw)` }}
           >
             <img
               className="w-screen h-full object-cover"
