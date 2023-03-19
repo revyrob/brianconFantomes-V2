@@ -4,12 +4,11 @@ Briancon Fantomes is a Frontend application made with React.  For the styling I 
 ## 🚀 Deployed Site
 https://brianconfantomes.com
 
-## 📷 Images/Demo!
+## 📷 Demo!
 
-[bFV2](https://user-images.githubusercontent.com/66695865/226184329-3d7b0940-aef6-47f7-adff-90344f2497e3.png)
+<!-- ![bFV2](https://user-images.githubusercontent.com/66695865/218232487-76b6dade-f51a-401f-a66f-22172fb7925c.png) -->
+![brianconVideo](https://user-images.githubusercontent.com/66695865/226185343-5a1925fe-ac8b-422d-9c25-a11656f67c89.gif)
 
-
-<a href="https://clipchamp.com/watch/TF4GkbRMyWi/embed">Video</a>
 
 
 ## 💻 Built with
