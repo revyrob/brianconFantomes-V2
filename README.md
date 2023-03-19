@@ -1,5 +1,5 @@
-# 👻 Briancon Fantomes -  Frontend 
-Briancon Fantomes is a Frontend application made with React.  For the styling I used Tailwind, which is helpful for reusing components..  The audio files are currently stored on the frontend which I don't believe is a problem since they are small files.  I used the MUI library to help with building some of the components such as the navigation bar.  I used Framer-motion for the animations.  The contact form was built with Formik and Emailjs is used for the emails to be directed to my business email with the clients name, email address, and message.  All text within the application is stored within a json file because I used React's createContext to change the language (which is defaulted to French since the tour is in France) and if the user choices English it will be saved within their browser settings. The audio files are also in French and English and swap depending on the delected language
+# 👻 Briancon Fantomes  
+Briancon Fantomes is an audio tour site for the old town of Briancon in France.  For the styling I used Tailwind, which is helpful for reusing components.  The audio files are currently stored on the frontend which I don't believe is a problem since they are small files.  I used the MUI library to help with building some of the components such as the navigation bar.  I used Framer-motion for the animations.  The contact form was built with Formik and Emailjs is used for the emails to be directed to my business email with the clients name, email address, and message.  All text within the application is stored within a json file because I used React's createContext to change the language (which is defaulted to French since the tour is in France) and if the user choses English it will be saved within their browser settings. The audio files are also in French and English and swap depending on the delected language
 
 ## 🚀 Deployed Site
 https://brianconfantomes.com
@@ -37,11 +37,11 @@ https://brianconfantomes.com
 
 ## 🔮 Future Plans for Briancon Fantomes
 
-<li>There is a problem within mobile response in corresponse with the 300vw of the banner photos, need to solve</li>
 <li>I am looking into building a mobile application with flutter</li>
+<li>Add Jest Testing</li>
 <li>Add users</li>
 <li>Add admin</li>
 <li>Add subscription</li>
-<li>Learn how to put it within a staging environment to test</li>
-<li>Connect to www.brianconfantomes.com to replace the older html page</li>
+
+
 
