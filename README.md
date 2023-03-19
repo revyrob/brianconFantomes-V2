@@ -5,8 +5,10 @@ Briancon Fantomes is a Frontend application made with React.  For the styling I 
 https://brianconfantomes.com
 
 ## 📷 Images/Demo
-<img src="https://brianconfantomes.com/demo/bFV2.png" alt="image briancon fantomes />
 ![bFV2](https://user-images.githubusercontent.com/66695865/218232487-76b6dade-f51a-401f-a66f-22172fb7925c.png)
+
+https://user-images.githubusercontent.com/66695865/226183162-ee074626-7872-468a-bb5a-db3262fa3c6c.mp4
+
 
 ## 💻 Built with
 <li>React</li>
