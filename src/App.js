@@ -8,8 +8,17 @@ import Credits from "./components/Credits/Credits";
 import Tour from "./components/Tour/Tour";
 import Map from "./components/Map/Map";
 import { LanguageProvider } from "./Language";
+import { useEffect } from "react";
+import ReactGA from "react-ga";
+
+const TRACKING_ID = "UA-201468426-1"; // OUR_TRACKING_ID
+
+ReactGA.initialize(TRACKING_ID);
 
 function App() {
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
   return (
     <LanguageProvider>
       <div className="bg-gray-900">
