@@ -60,7 +60,7 @@ function QuestionForm() {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
       submit();
     }
-  }, [formErrors, isSubmitting]);
+  }, [submit, formErrors, isSubmitting]);
 
   //send email function for emailjs
   const sendEmail = (e) => {
