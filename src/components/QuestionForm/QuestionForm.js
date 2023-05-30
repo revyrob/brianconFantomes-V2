@@ -81,6 +81,7 @@ function QuestionForm() {
       id="contact"
       className="bg-slate-50 p-4 flex flex-col justify-around rounded-md"
     >
+      <h3 className="text-black 2xl">{dictionary.nav[2]}</h3>
       {Object.keys(formErrors).length === 0 && isSubmitting && (
         <span className="text-white bg-green-600 inline-block w-full align-center p-2 mb-2 rounded">
           {`${dictionary.submitted}`}
