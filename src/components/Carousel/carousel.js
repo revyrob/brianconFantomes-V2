@@ -32,17 +32,17 @@ const Carousel = () => {
             <img
               className="w-screen h-full object-cover"
               src={data[0]}
-              alt="slide 0"
+              alt="book with headphones"
             ></img>
             <img
               className="w-screen h-full object-cover"
               src={data[1]}
-              alt="slide 1"
+              alt="braincon winter"
             ></img>
             <img
               className="w-screen h-full object-cover"
               src={data[2]}
-              alt="slide 2"
+              alt="gargouille"
             ></img>
           </div>
           <div className="absolute bottom-5 inset-x-0 flex justify-center gap-2.5">
