@@ -26,7 +26,10 @@
       "time": "2.0"
     }
   ],
-  "lang": ["English", "French"],
+  "lang": [
+    {"lang":"English", "flag":"../../images/english_flag.svg"},
+    {"lang":"French", "flag":"../../images/french_flag.svg"}
+  ],
   "button": "Audio Tour",
   "credits": "Credits",
   "heading1": "Music",

@@ -4,7 +4,10 @@
     { "id": "fc0e809ojpoioc3siiiokd9d", "title": "FAQ", "link": "faq" },
     { "id": "fc0e809ojpoioc3swesd888", "title": "Contact", "link": "contact" }
   ],
-  "lang": ["Anglais", "Francais"],
+  "lang": [
+    {"lang":"Anglais", "flag":"../../images/english_flag.svg"},
+    {"lang":"Francais", "flag":"../../images/french_flag.svg"}
+  ],
   "button": "Audio Tour",
   "credits": "Crédits",
   "heading1": "Musique",

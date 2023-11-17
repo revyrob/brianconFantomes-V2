@@ -137,12 +137,12 @@ function Nav() {
           >
             {headings.map((i) => (
               <a href={`#${i.link}`} key={i.id}>
-                <Typography className="text-white" sx={{ minWidth: 100 }}>
+                <Typography className="text-white flex justify-center" sx={{ minWidth: 100 }}>
                   {i.title}
                 </Typography>
               </a>
             ))}
-            <LanguageSelector styling="border-none bg-gray-900 font-Roboto" />
+            <LanguageSelector styling="border-none bg-gray-900 font-Roboto px-8" />
           </Box>
 
           <Menu
