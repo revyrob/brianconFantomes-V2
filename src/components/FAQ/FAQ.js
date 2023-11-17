@@ -23,38 +23,11 @@ function FAQ() {
 
   return (
     <section className="p-4 text-center" id="faq">
-      <div className="flex mx-auto w-full border-b-2 justify-center">
+      <div className=" mx-auto w-full border-b-2 justify-center">
         <h1 className="text-2xl p-2  border-gray-500 font-creepster">FAQ</h1>
-        <button className="transition duration-300 ease-in-out">
-          {chevron === false ? (
-            <img
-              className=""
-              src={chevronUp}
-              alt="chevron down "
-              onClick={() => toggle()}
-            />
-          ) : (
-            <img
-              className=""
-              src={chevronDown}
-              alt="chevron up"
-              onClick={() => toggle()}
-            />
-          )}
-        </button>
-      </div>
-      <div className="w-max-3/4 my-6">
-        {chevron === false ? (
-          <div>
-            <h2 className="text-lg font-oswald">
-              {dictionary.faq[0].question}
-            </h2>
-            <p className="text-base">{dictionary.faq[0].response}</p>
-            <h2 className="text-lg font-oswald">. . . </h2>
           </div>
-        ) : (
           <div>
-            {isShown && (
+           
               <div
                 style={{
                   transform: "translateY(10px)",
@@ -70,10 +43,9 @@ function FAQ() {
                   />
                 ))}
               </div>
-            )}
+        
           </div>
-        )}
-      </div>
+        
     </section>
   );
 }

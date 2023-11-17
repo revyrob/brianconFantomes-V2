@@ -33,7 +33,6 @@ function Nav() {
 
   //get the headings
   const headings = dictionary.nav;
-
   return (
     <AppBar position="static" className="bg-gray-900 max-w-screen-xl mx-auto ">
       <Container maxWidth="2xl" className="bg-gray-900">
@@ -93,10 +92,11 @@ function Nav() {
               }}
             >
               {headings.map((i) => (
-                <MenuItem onClick={handleCloseNavMenu} key={i.toString()}>
-                  <a href={`#${i.toLowerCase()}`}>
+                
+                <MenuItem onClick={handleCloseNavMenu} key={i.id}>
+                  <a href={`#${i.link}`}>
                     <Typography className="text-black " sx={{ minWidth: 100 }}>
-                      {i}
+                      {i.title}
                     </Typography>
                   </a>
                 </MenuItem>
@@ -136,13 +136,13 @@ function Nav() {
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
           >
             {headings.map((i) => (
-              <a href={`#${i.toLowerCase()}`} key={i.toString()}>
-                <Typography className="text-white" sx={{ minWidth: 100 }}>
-                  {i}
+              <a href={`#${i.link}`} key={i.id}>
+                <Typography className="text-white flex justify-center" sx={{ minWidth: 100 }}>
+                  {i.title}
                 </Typography>
               </a>
             ))}
-            <LanguageSelector styling="border-none bg-gray-900 font-Roboto" />
+            <LanguageSelector styling="border-none bg-gray-900 font-Roboto px-8" />
           </Box>
 
           <Menu
