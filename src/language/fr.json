@@ -1,5 +1,9 @@
 {
-  "nav": ["A Propos", "FAQ", "Contact"],
+  "nav": [
+    { "id": "fc0e809ojpoioc3sfddscad9d", "title": "A Propos", "link": "about" },
+    { "id": "fc0e809ojpoioc3siiiokd9d", "title": "FAQ", "link": "faq" },
+    { "id": "fc0e809ojpoioc3swesd888", "title": "Contact", "link": "contact" }
+  ],
   "lang": ["Anglais", "Francais"],
   "button": "Audio Tour",
   "credits": "Crédits",
@@ -85,7 +89,7 @@
     {
       "id": "9c268c0a-83dc-45ttt-856a-bb5ded2772b1",
       "question": "Combien ça coûte?",
-      "response": " Ce est gratuit! Nous apprécions les critiques positives sur Trip Advisor et/ou Google afin que d'autres nous trouvent et écoutent l'audio."
+      "response": " C'est gratuit! Nous apprécions les critiques positives sur Trip Advisor et/ou Google afin que d'autres nous trouvent et écoutent l'audio."
     }
   ],
   "info": [
