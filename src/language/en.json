@@ -1,5 +1,9 @@
 {
-  "nav": ["About", "FAQ", "Contact"],
+  "nav": [
+  {"id":"fc0e809ojpouuvgddscad9d","title":"About", "link":"about"},
+  {"id":"fc0eesecfcioc3siiiokd9d","title":"FAQ", "link":"faq"},
+  {"id":"fc0e809ojpoioc3soioklkl","title":"Contact", "link":"contact"}
+ ],
   "footer": [
     {
       "id": "tour",
@@ -22,7 +26,10 @@
       "time": "2.0"
     }
   ],
-  "lang": ["English", "French"],
+  "lang": [
+    {"lang":"English", "flag":"../../images/english_flag.svg"},
+    {"lang":"French", "flag":"../../images/french_flag.svg"}
+  ],
   "button": "Audio Tour",
   "credits": "Credits",
   "heading1": "Music",

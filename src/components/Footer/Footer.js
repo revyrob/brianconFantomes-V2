@@ -14,6 +14,7 @@ function Footer() {
   //view and then then navbar is brought on screen
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  let currentYear = new Date().getFullYear();
 
   //use context to bring in the dictionary of the the two languages
   const { dictionary } = useContext(LanguageContext);
@@ -71,7 +72,11 @@ function Footer() {
           <QuestionForm />
         </div>
       </div>
+<<<<<<< HEAD
       <p className="mx-auto pb-4 text-center">©️ Briancon Fantomes 2024</p>
+=======
+      <p className="mx-auto pb-4 text-center">©️ Briancon Fantomes {currentYear}</p>
+>>>>>>> 06232a04a4e198a92cfd2a1ac22c627b2b11ebd4
     </section>
   );
 }

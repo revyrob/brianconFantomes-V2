@@ -38,7 +38,7 @@ export default function CardMUI({ chapter }) {
         //sx={{ width: 151 }}
         image={chapter.img}
         alt={chapter.title}
-        className="sm:brightness-125 h-48 object-cover md:h-52 w-32 "
+        className="sm:brightness-125 h-48 object-cover md:h-52 w-32 transition-all hover:scale-110 ease-in-out object-cover	"
       />
     </Card>
   );
