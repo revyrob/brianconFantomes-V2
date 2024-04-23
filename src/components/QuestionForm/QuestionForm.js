@@ -24,9 +24,6 @@ function QuestionForm() {
   const PUBLIC_KEY = `${process.env.REACT_APP_PUBLIC_KEY}`;
 
   //no errors and pressed on submit
-  const submit = () => {
-    sendEmail();
-  };
 
   //input change handler
   const handleChange = (e) => {
@@ -56,12 +53,6 @@ function QuestionForm() {
     return errors;
   };
 
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmitting) {
-      submit();
-    }
-  }, [submit, formErrors, isSubmitting]);
-
   //send email function for emailjs
   const sendEmail = (e) => {
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY).then(
@@ -75,6 +66,16 @@ function QuestionForm() {
       }
     );
   };
+
+  useEffect(() => {
+    const submit = () => {
+      sendEmail();
+    };
+    if (Object.keys(formErrors).length === 0 && isSubmitting) {
+      submit();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formErrors, isSubmitting]);
 
   return (
     <div

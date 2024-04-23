@@ -3,7 +3,7 @@ import insta from "../../assets/photos/insta-icon.png";
 import tripAdvisor from "../../assets/photos/tripadvisor.png";
 import logo from "../../assets/logo/logoskull.png";
 import spotify from "../../assets/icons/spotify-icon.svg";
-//import QuestionForm from "../QuestionForm/QuestionForm";
+import QuestionForm from "../QuestionForm/QuestionForm";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import React, { useContext } from "react";
@@ -67,9 +67,11 @@ function Footer() {
           ))}
         </div>
 
-        <div className="pb-6 md:order-1">{/* <QuestionForm /> */}</div>
+        <div className="pb-6 md:order-1">
+          <QuestionForm />
+        </div>
       </div>
-      <p className="mx-auto pb-4 text-center">©️ Briancon Fantomes 2020</p>
+      <p className="mx-auto pb-4 text-center">©️ Briancon Fantomes 2024</p>
     </section>
   );
 }
