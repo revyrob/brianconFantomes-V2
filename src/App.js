@@ -7,10 +7,20 @@ import Nav from "./components/Nav/Nav";
 import Credits from "./components/Credits/Credits";
 import Tour from "./components/Tour/Tour";
 import Map from "./components/Map/Map";
+import { LanguageProvider } from "./Language";
+import { useEffect } from "react";
+import ReactGA from "react-ga";
+
+const TRACKING_ID = "UA-201468426-1"; // OUR_TRACKING_ID
+
+ReactGA.initialize(TRACKING_ID);
 
 function App() {
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
   return (
-    <div className="App ">
+    <LanguageProvider>
       <div className="bg-gray-900">
         <Nav />
       </div>
@@ -21,7 +31,7 @@ function App() {
       <Credits />
       <FAQ />
       <Footer />
-    </div>
+    </LanguageProvider>
   );
 }
 

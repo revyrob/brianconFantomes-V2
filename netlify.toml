@@ -1,0 +1,26 @@
+[build]
+base = ""
+publish = "build/"
+command = "npm run build"
+
+[[redirects]]
+from = "/*"
+to = "index.html"
+status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "no-referrer"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+  cache-control = '''
+  max-age=604800,
+  no-cache,
+  no-store,
+  must-revalidate'''

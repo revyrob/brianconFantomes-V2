@@ -1,4 +1,5 @@
-import * as React from "react";
+import React, { useContext } from "react";
+import { LanguageContext } from "../../Language";
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,20 +9,17 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/logo/logoskull.png";
-import englishFlag from "../../assets/photos/englishFlag.jpg";
-import frenchFlag from "../../assets/photos/frenchFlag.jpg";
+import LanguageSelector from "../LanguageSelector/LanguageSelector";
 
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [lang, setLang] = useState(null);
   const open = Boolean(lang);
 
-  const handleClick = (event) => {
-    setLang(event.currentTarget);
-  };
+  const { dictionary } = useContext(LanguageContext);
+
   const handleClose = () => {
     setLang(null);
   };
@@ -33,8 +31,10 @@ function Nav() {
     setAnchorElNav(null);
   };
 
+  //get the headings
+  const headings = dictionary.nav;
   return (
-    <AppBar position="static" className="bg-gray-900 max-w-screen-xl mx-auto">
+    <AppBar position="static" className="bg-gray-900 max-w-screen-xl mx-auto ">
       <Container maxWidth="2xl" className="bg-gray-900">
         <Toolbar disableGutters>
           <Typography
@@ -45,8 +45,8 @@ function Nav() {
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
               fontWeight: 700,
+              fontFamily: "oswald",
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
@@ -91,43 +91,19 @@ function Nav() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem onClick={handleCloseNavMenu}>
-                <a href="#about">
-                  <Typography className="text-black" sx={{ minWidth: 100 }}>
-                    About
-                  </Typography>
-                </a>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <a href="#faq">
-                  <Typography className="text-black" sx={{ minWidth: 100 }}>
-                    FAQ
-                  </Typography>
-                </a>
-              </MenuItem>
-              <MenuItem onClick={handleCloseNavMenu}>
-                <a href="#contact">
-                  <Typography className="text-black" sx={{ minWidth: 100 }}>
-                    Contact
-                  </Typography>
-                </a>
-              </MenuItem>
+              {headings.map((i) => (
+                
+                <MenuItem onClick={handleCloseNavMenu} key={i.id}>
+                  <a href={`#${i.link}`}>
+                    <Typography className="text-black " sx={{ minWidth: 100 }}>
+                      {i.title}
+                    </Typography>
+                  </a>
+                </MenuItem>
+              ))}
+
               <MenuItem>
-                <Typography className="text-black" sx={{ minWidth: 100 }}>
-                  English
-                </Typography>
-                <IconButton
-                  onClick={handleClick}
-                  size="small"
-                  sx={{ ml: 2 }}
-                  aria-controls={open ? "language" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                >
-                  <Avatar sx={{ width: 32, height: 32 }}>
-                    <img className="h-full" src={englishFlag} alt="english" />
-                  </Avatar>
-                </IconButton>
+                <LanguageSelector styling="border-none bg-white font-Roboto" />
               </MenuItem>
             </Menu>
           </Box>
@@ -140,7 +116,7 @@ function Nav() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: "oswald",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -159,36 +135,14 @@ function Nav() {
             className="flex justify-left items-center"
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
           >
-            <a href="#about">
-              <Typography className="text-white" sx={{ minWidth: 100 }}>
-                About
-              </Typography>
-            </a>
-
-            <a href="#faq">
-              <Typography className="text-white" sx={{ minWidth: 100 }}>
-                FAQ
-              </Typography>
-            </a>
-            <a href="#contact">
-              <Typography className="text-white" sx={{ minWidth: 100 }}>
-                Contact
-              </Typography>
-            </a>
-            <a href="#french">
-              <IconButton
-                onClick={handleClick}
-                size="small"
-                sx={{ ml: 2 }}
-                aria-controls={open ? "language" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-              >
-                <Avatar sx={{ width: 32, height: 32 }}>
-                  <img className="h-full " src={englishFlag} alt="english" />
-                </Avatar>
-              </IconButton>
-            </a>
+            {headings.map((i) => (
+              <a href={`#${i.link}`} key={i.id}>
+                <Typography className="text-white flex justify-center" sx={{ minWidth: 100 }}>
+                  {i.title}
+                </Typography>
+              </a>
+            ))}
+            <LanguageSelector styling="border-none bg-gray-900 font-Roboto px-8" />
           </Box>
 
           <Menu
@@ -225,22 +179,21 @@ function Nav() {
             }}
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-          >
-            <MenuItem>
-              <Avatar>
-                <img className="h-full" src={frenchFlag} alt="french" />
-              </Avatar>{" "}
-              French
-            </MenuItem>
-          </Menu>
+          ></Menu>
 
           <a href="#tour">
-            <Box sx={{ flexGrow: 0 }}>
+            <Box
+              sx={{
+                flexGrow: 0,
+                marginTop: ".375rem",
+                marginBottom: ".375rem",
+              }}
+            >
               <button
                 type="button"
-                className=" border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-2 py-1.5 text-center mx-4 md: dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                className=" border-solid border-white border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-1.5 py-1.5 text-center mx-4 md:dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
               >
-                Start Show
+                {dictionary.button}
               </button>
             </Box>
           </a>

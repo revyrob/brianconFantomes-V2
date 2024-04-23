@@ -21,26 +21,28 @@ const Carousel = () => {
 
   return (
     <>
-      <section className="w-[99vw]">
-        <div className="h-[calc(100vh_-_100px)] w-screen relative overflow-hidden ">
+      <section className="w-[99%]">
+        {/* height is in vh */}
+        <div className="h-[calc(95vh_-_100px)] w-screen relative overflow-hidden ">
           <div
-            className="h-full flex w-[300vw] transition-all duration-1000"
+            className="h-full flex w-[300%] transition-all duration-1000"
+            //if in vw than it pictures look best
             style={{ transform: `translate(-${currentSlide * 100}vw)` }}
           >
             <img
               className="w-screen h-full object-cover"
               src={data[0]}
-              alt="slide 0"
+              alt="book with headphones"
             ></img>
             <img
               className="w-screen h-full object-cover"
               src={data[1]}
-              alt="slide 1"
+              alt="braincon winter"
             ></img>
             <img
               className="w-screen h-full object-cover"
               src={data[2]}
-              alt="slide 2"
+              alt="gargouille"
             ></img>
           </div>
           <div className="absolute bottom-5 inset-x-0 flex justify-center gap-2.5">

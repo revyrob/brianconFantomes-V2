@@ -1,0 +1,144 @@
+{
+  "nav": [
+    { "id": "fc0e809ojpoioc3sfddscad9d", "title": "A Propos", "link": "about" },
+    { "id": "fc0e809ojpoioc3siiiokd9d", "title": "FAQ", "link": "faq" },
+    { "id": "fc0e809ojpoioc3swesd888", "title": "Contact", "link": "contact" }
+  ],
+  "lang": [
+    {"lang":"Anglais", "flag":"../../images/english_flag.svg"},
+    {"lang":"Francais", "flag":"../../images/french_flag.svg"}
+  ],
+  "button": "Audio Tour",
+  "credits": "Crédits",
+  "heading1": "Musique",
+  "heading2": "Références Historiques",
+  "heading3": "Rédactrice/Productrice/Web Développeuse",
+  "audio": [
+    {
+      "id": "fc0e816c-14c0-45a8-91fe-0ec3sfddscad9d",
+      "title": "Porte de Pignerol",
+      "chapter": "Chapitre 1",
+      "audio": "../../audio/audioFra/Chpt1.mp3",
+      "img": "../../images/routePhotos/arret1.jpg"
+    },
+    {
+      "id": "b8a1025a-a95c-44fr-8dca-34711cdc8d8d",
+      "title": "Chemin de Ronde",
+      "chapter": "Chapitre 2",
+      "audio": "../../audio/audioFra/Chpt2.mp3",
+      "img": "../../images/routePhotos/arret2.jpg"
+    },
+    {
+      "id": "fc0e816c-23ds-45a8-91fe-0ec254435ad9d",
+      "title": "Chemin du Fort des Tetes",
+      "chapter": "Chapitre 3",
+      "audio": "../../audio/audioFra/Chpt3.mp3",
+      "img": "../../images/routePhotos/arret3.jpg"
+    },
+    {
+      "id": "fc054trc-14c0-1111-91fe-0ec254435ad9d",
+      "title": "Rue du Pont d'Asfeld",
+      "chapter": "Chapitre 4",
+      "audio": "../../audio/audioFra/Chpt4.mp3",
+      "img": "../../images/routePhotos/arret4.jpg"
+    },
+    {
+      "id": "fc0e816c-14c0-45a8-234e-0ec28976ui9d",
+      "title": "Rue Domaine Chautard",
+      "chapter": "Chapitre 5",
+      "audio": "../../audio/audioFra/Chpt5.mp3",
+      "img": "../../images/routePhotos/arret5.jpg"
+    },
+    {
+      "id": "fc0e816c-23ddd-45a8-91fe-0ec254435ad9d",
+      "title": "Place d'Armes",
+      "chapter": "Chapitre 6",
+      "audio": "../../audio/audioFra/Chpt6.mp3",
+      "img": "../../images/routePhotos/arret6.jpg"
+    },
+    {
+      "id": "jkgl9809c-14c0-d34f-91fe-0ec254435ad9d",
+      "title": "Rue Mercerie",
+      "chapter": "Chapitre 7",
+      "audio": "../../audio/audioFra/Chpt7.mp3",
+      "img": "../../images/routePhotos/arret7.jpg"
+    },
+    {
+      "id": "fc0e816c-14c0-45a8-954df-0dfs454435ad9d",
+      "title": "Avenue Vauban",
+      "chapter": "Chapitre 8",
+      "audio": "../../audio/audioFra/Chpt8.mp3",
+      "img": "../../images/routePhotos/arret8.jpg"
+    },
+    {
+      "id": "fc0e81dasd-14c0-45a8-91fe-1ec254435ad9d",
+      "title": "Rue du Pont d'Asfeld",
+      "chapter": "Chapitre 9",
+      "audio": "../../audio/audioFra/Chpt9.mp3",
+      "img": "../../images/routePhotos/arret9.jpg"
+    }
+  ],
+  "faq": [
+    {
+      "id": "b6f35f03-7936-409b-bd2a-446bcc5f30e7",
+      "question": "Combien de temps dure la visite audio?",
+      "response": "Si, vous marchez, 60 à 90 minutes. Si vous écoutez dans le confort de votre maison, 30 minutes."
+    },
+    {
+      "id": "1b964601-a6dd-4fcc-b5f3-10sdfdsfx9557",
+      "question": "Dois-je faire tous les arrêts?",
+      "response": "Non, il n'y a pas d'ordre et vous n'êtes pas obligé de faire tous les arrêts dans l'audio."
+    },
+    {
+      "id": "9c268c0a-83dc-45ttt-856a-bb5ded2772b1",
+      "question": "Combien ça coûte?",
+      "response": " C'est gratuit! Nous apprécions les critiques positives sur Trip Advisor et/ou Google afin que d'autres nous trouvent et écoutent l'audio."
+    }
+  ],
+  "info": [
+    {
+      "id": "8900",
+      "title": "À PROPOS DE LA MARCHE AUDIO",
+      "descrip": "Une aventure hors du commun dans la vieille ville de Briançon ! Voyagez dans le temps, et visitez la cité Vauban autrement. Laissez-nous vous effrayer et vous surprendre en vous guidant à travers les ruelles et les passages. Vous serez transporté dans le temps et entendrez les récits des incendies qui ont ravagé la ville à deux reprises, la rencontre des sorcières et bien plus encore ! Découvrez la sombre histoire et les légendes de Briançon avec Briançon Fantômes !"
+    },
+    {},
+    {},
+    {
+      "id": "8911",
+      "title": "VOUS AVEZ BESOIN",
+      "descrip": "Vous aurez besoin d'un smartphone, d'un casque et d'Internet/des données. Briançon Fantômes prend entre 60 et 90 minutes si vous effectuez la promenade plus l'audio. Il est recommandé de réaliser la visite audio en fin d'après-midi ou en soirée car l'ambiance dans la vieille ville de Briançon est mystique à la tombée de la nuit."
+    },
+    {
+      "id": "8922",
+      "title": "ATTENTION",
+      "descrip": "Briançon Fantômes n'est pas pour les timides ! Il n'est pas recommandé aux enfants de moins de 8 ans d'écouter la visite audio. La ville est escarpée et a des surfaces inégales, veuillez faire attention lorsque vous vous promenez dans et autour de la vieille ville. Arrêtez-vous dans une zone sûre lorsque vous écoutez l'audio de la visite."
+    }
+  ],
+  "footer": [
+    {
+      "id": "tour",
+      "title": "Audio Tour",
+      "time": ".5"
+    },
+    {
+      "id": "about",
+      "title": "À propos",
+      "time": "1.0"
+    },
+    {
+      "id": "credits",
+      "title": "Crédits",
+      "time": "1.5"
+    },
+    {
+      "id": "faq",
+      "title": "FAQ",
+      "time": "2.0"
+    }
+  ],
+  "form": ["Email", "Nom", "Question", "Soumettre"],
+  "blankError": "Ne peut être vide",
+  "invalidFormat": "Format d'email invalide",
+  "notSubmitted": "Désolé votre question n'a pas été envoyée😟",
+  "submitted": "Formulaire envoyé avec succès"
+}
