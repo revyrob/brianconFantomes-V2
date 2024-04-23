@@ -72,11 +72,9 @@ function Footer() {
           <QuestionForm />
         </div>
       </div>
-<<<<<<< HEAD
-      <p className="mx-auto pb-4 text-center">©️ Briancon Fantomes 2024</p>
-=======
-      <p className="mx-auto pb-4 text-center">©️ Briancon Fantomes {currentYear}</p>
->>>>>>> 06232a04a4e198a92cfd2a1ac22c627b2b11ebd4
+      <p className="mx-auto pb-4 text-center">
+        ©️ Briancon Fantomes {currentYear}
+      </p>
     </section>
   );
 }
