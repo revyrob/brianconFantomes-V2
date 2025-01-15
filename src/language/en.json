@@ -1,9 +1,9 @@
 {
   "nav": [
-  {"id":"fc0e809ojpouuvgddscad9d","title":"About", "link":"about"},
-  {"id":"fc0eesecfcioc3siiiokd9d","title":"FAQ", "link":"faq"},
-  {"id":"fc0e809ojpoioc3soioklkl","title":"Contact", "link":"contact"}
- ],
+    { "id": "fc0e809ojpouuvgddscad9d", "title": "About", "link": "about" },
+    { "id": "fc0eesecfcioc3siiiokd9d", "title": "FAQ", "link": "faq" },
+    { "id": "fc0e809ojpoioc3soioklkl", "title": "Contact", "link": "contact" }
+  ],
   "footer": [
     {
       "id": "tour",
@@ -27,8 +27,8 @@
     }
   ],
   "lang": [
-    {"lang":"English", "flag":"../../images/english_flag.svg"},
-    {"lang":"French", "flag":"../../images/french_flag.svg"}
+    { "lang": "English", "flag": "../../images/english_flag.svg" },
+    { "lang": "French", "flag": "../../images/french_flag.svg" }
   ],
   "button": "Audio Tour",
   "credits": "Credits",
@@ -100,6 +100,13 @@
       "img": "../../images/routePhotos/arret9.jpg"
     }
   ],
+  "book": {
+    "id": "fcsfdsfa8-91fe-0ec3385cad9d",
+    "title": "Walk back into time and visit history.",
+    "descrip": " Transport back in time through the music and story of the medieval town of Briancon. Follow the map and stop at the markers for the each chapter.",
+    "btn": "Buy the Audio Tour",
+    "img": "../../images/EngCover.png"
+  },
   "faq": [
     {
       "id": "b6f35f03-7936-409b-bd2a-446bcc5f30e7",
