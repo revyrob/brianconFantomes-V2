@@ -10,6 +10,7 @@ import Map from "./components/Map/Map";
 import { LanguageProvider } from "./Language";
 import { useEffect } from "react";
 import ReactGA from "react-ga";
+import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
 
 const TRACKING_ID = "UA-201468426-1"; // OUR_TRACKING_ID
 
@@ -27,7 +28,8 @@ function App() {
       <Carousel />
       <Info />
       <Map />
-      <Tour />
+      <AudioBookLink />
+      {/* <Tour /> */}
       <Credits />
       <FAQ />
       <Footer />
