@@ -2,6 +2,7 @@ import facebook from "../../assets/photos/facebook.png";
 import insta from "../../assets/photos/insta-icon.png";
 import tripAdvisor from "../../assets/photos/tripadvisor.png";
 import logo from "../../assets/logo/logoskull.png";
+import mail from "../../assets/icons/mail-icon.png";
 import spotify from "../../assets/icons/spotify-icon.svg";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
@@ -21,7 +22,7 @@ function Footer() {
   return (
     <section className="bg-gray-900 text-slate-50">
       <div className="lg:grid grid-cols-3 px-16 pt-8" ref={ref}>
-        <div className="md:order-2 flex flex-col pb-4 align-middle text-center">
+        <div className="md:order-2 flex flex-col pb-4 text-center justify-center align-middle">
           <img
             src={logo}
             className="sm:w-[12rem] md:w-[18rem] mx-auto"
@@ -45,6 +46,12 @@ function Footer() {
               <img className="h-8 m-2" src={spotify} alt="spotify-icon" />
             </a>
           </div>
+          <a
+            className="flex justify-center content-end items-center"
+            href="mailto:brianconfantomes@gmail.com"
+          >
+            <img src={mail} alt={"mail icon"} />
+          </a>
         </div>
 
         <div className=" flex flex-col pt-4 pb-6 justify-middle items-center md:order-3 ">
