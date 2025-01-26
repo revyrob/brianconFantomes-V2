@@ -7,7 +7,7 @@ const Carousel = () => {
 
   const data = [
     "../../images/book.jpg",
-    "../../images/briancon.jpg",
+    "../../images/brianconNight.jpg",
     "../../images/gargouille1.jpg",
   ];
 
@@ -35,9 +35,9 @@ const Carousel = () => {
               alt="book with headphones"
             ></img>
             <img
-              className="w-screen h-full object-cover"
+              className="w-screen h-full object-cover object-center"
               src={data[1]}
-              alt="braincon winter"
+              alt="braincon night"
             ></img>
             <img
               className="w-screen h-full object-cover"

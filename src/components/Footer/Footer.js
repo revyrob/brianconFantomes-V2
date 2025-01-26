@@ -3,7 +3,6 @@ import insta from "../../assets/photos/insta-icon.png";
 import tripAdvisor from "../../assets/photos/tripadvisor.png";
 import logo from "../../assets/logo/logoskull.png";
 import spotify from "../../assets/icons/spotify-icon.svg";
-import QuestionForm from "../QuestionForm/QuestionForm";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import React, { useContext } from "react";
@@ -66,10 +65,6 @@ function Footer() {
               </a>
             </div>
           ))}
-        </div>
-
-        <div className="pb-6 md:order-1">
-          <QuestionForm />
         </div>
       </div>
       <p className="mx-auto pb-4 text-center">

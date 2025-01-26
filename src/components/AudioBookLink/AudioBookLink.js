@@ -45,7 +45,13 @@ function AudioBookLink() {
             }
           >
             {dictionary.book.vendors?.map((vendor, index) => (
-              <a className="p-2" key={index} href={vendor.url}>
+              <a
+                className="p-2"
+                key={index}
+                href={vendor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {vendor.name}
               </a>
             ))}
