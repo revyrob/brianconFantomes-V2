@@ -5,8 +5,8 @@
     { "id": "fc0e809ojpoioc3swesd888", "title": "Contact", "link": "contact" }
   ],
   "lang": [
-    {"lang":"Anglais", "flag":"../../images/english_flag.svg"},
-    {"lang":"Francais", "flag":"../../images/french_flag.svg"}
+    { "lang": "Anglais", "flag": "../../images/english_flag.svg" },
+    { "lang": "Francais", "flag": "../../images/french_flag.svg" }
   ],
   "button": "Audio Tour",
   "credits": "Crédits",
@@ -140,5 +140,38 @@
   "blankError": "Ne peut être vide",
   "invalidFormat": "Format d'email invalide",
   "notSubmitted": "Désolé votre question n'a pas été envoyée😟",
-  "submitted": "Formulaire envoyé avec succès"
+  "submitted": "Formulaire envoyé avec succès",
+  "book": {
+    "id": "french-audio-ver-e897987cad9d",
+    "title": "Remontez le temps et plongez dans l'histoire.",
+    "descrip": "Voyagez dans le passé à travers la musique et les récits de la ville médiévale de Briançon. Suivez la carte et arrêtez-vous aux marqueurs pour chaque chapitre.",
+    "btn": "Achetez",
+    "img": "../../images/EngCover.png",
+    "vendors": [
+      {
+        "name": "Spotify",
+        "url": "https://open.spotify.com/show/529YlxSNOWcWnTKB3iRj6l"
+      },
+      {
+        "name": "NOOK Audiobooks",
+        "url": "https://www.barnesandnoble.com/w/brian-on-fant-mes-en-francais-kayle-robson/1146807448"
+      },
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/audiobooks/details/Kayle_Robson_Brian%C3%A7on_Fant%C3%B4mes_en_Francais?id=AQAAAEAKSE0IVM"
+      },
+      {
+        "name": "Kobo",
+        "url": "https://www.kobo.com/us/en/audiobook/briancon-fantomes-en-francais"
+      },
+      {
+        "name": "Audiobooks",
+        "url": "https://www.audiobooks.com/audiobook/brian-on-fant-mes-en-francais/863989"
+      },
+      {
+        "name": "Hoopla",
+        "url": "https://www.hoopladigital.com/title/17701347"
+      }
+    ]
+  }
 }

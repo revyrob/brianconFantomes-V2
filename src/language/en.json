@@ -100,13 +100,7 @@
       "img": "../../images/routePhotos/arret9.jpg"
     }
   ],
-  "book": {
-    "id": "fcsfdsfa8-91fe-0ec3385cad9d",
-    "title": "Walk back into time and visit history.",
-    "descrip": " Transport back in time through the music and story of the medieval town of Briancon. Follow the map and stop at the markers for the each chapter.",
-    "btn": "Buy the Audio Tour",
-    "img": "../../images/EngCover.png"
-  },
+
   "faq": [
     {
       "id": "b6f35f03-7936-409b-bd2a-446bcc5f30e7",
@@ -147,5 +141,42 @@
   "blankError": "Cannot be blank",
   "invalidFormat": "Invalid email format",
   "notSubmitted": "Sorry your question was not sent😟",
-  "submitted": "Form submitted successfully"
+  "submitted": "Form submitted successfully",
+  "book": {
+    "id": "english-audio-ver-0ec3385cad9d",
+    "title": "Walk back into time and visit history.",
+    "descrip": "Transport back in time through the music and story of the medieval town of Briancon. Follow the map and stop at the markers for the each chapter.",
+    "btn": "Buy",
+    "img": "../../images/EngCover.png",
+    "vendors": [
+      {
+        "name": "Spotify",
+        "url": "https://open.spotify.com/show/17lMuAJV8aj27il0mRFYOt"
+      },
+      {
+        "name": "NOOK Audiobooks",
+        "url": "https://www.barnesandnoble.com/w/brian-on-fant-mes-in-english-kayle-robson/1146807447"
+      },
+      {
+        "name": "Google Play",
+        "url": "https://play.google.com/store/audiobooks/details/Kayle_Robson_Brian%C3%A7on_Fant%C3%B4mes_in_English?id=AQAAAEAK8GawfM"
+      },
+      {
+        "name": "Kobo",
+        "url": "https://www.kobo.com/us/en/audiobook/briancon-fantomes-in-english"
+      },
+      {
+        "name": "Storytel",
+        "url": "https://www.storytel.com/se/sv/books/briançon-fantômes-in-english-10313580"
+      },
+      {
+        "name": "Audiobooks",
+        "url": "https://www.audiobooks.co.uk/audiobook/brian-on-fant-mes-in-english/863990"
+      },
+      {
+        "name": "Hoopla",
+        "url": "https://www.hoopladigital.com/title/17700945"
+      }
+    ]
+  }
 }
