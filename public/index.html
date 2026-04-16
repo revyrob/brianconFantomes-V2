@@ -1,43 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="Briancon Fantomes"
-      content="Ghost tour of Briancon.  Tour de fantomes a Briancon."
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Briancon Fantomes</title>
+    <!-- Primary Meta Tags -->
+    <title>Briançon Fantômes | Balade Audio Historique - Cité Vauban</title>
+    <meta name="title" content="Briançon Fantômes | Balade Audio Historique - Cité Vauban" />
+    <meta name="description" content="Découvrez Briançon autrement avec notre balade audio fantôme ! Explorez la Cité Vauban, remontez le temps et vivez une aventure historique unique. Gratuit ! Disponible sur Spotify, Google Play et plus. Ghost audio walk in Briançon, France." />
+    <meta name="keywords" content="Briançon fantômes, balade audio Briançon, visite guidée Briançon, Cité Vauban, tourisme Briançon, audio walk Briançon, ghost tour Briançon, visite historique Briançon, Hautes-Alpes tourisme, Briançon France, promenade historique Briançon, guide audio gratuit Briançon, vieille ville Briançon, Briancon Fantomes" />
+    <meta name="author" content="Briançon Fantômes" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://brianconfantomes.com/" />
+
+    <!-- Geo / Local SEO -->
+    <meta name="geo.region" content="FR-05" />
+    <meta name="geo.placename" content="Briançon, Hautes-Alpes" />
+    <meta name="geo.position" content="44.8954;6.6339" />
+    <meta name="ICBM" content="44.8954, 6.6339" />
+
+    <!-- Language alternates -->
+    <link rel="alternate" hreflang="fr" href="https://brianconfantomes.com/" />
+    <link rel="alternate" hreflang="en" href="https://brianconfantomes.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://brianconfantomes.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://brianconfantomes.com/" />
+    <meta property="og:title" content="Briançon Fantômes | Balade Audio Historique - Cité Vauban" />
+    <meta property="og:description" content="Découvrez Briançon autrement avec notre balade audio fantôme ! Explorez la Cité Vauban, remontez le temps et vivez une aventure historique unique. Ghost audio walk in Briançon, France." />
+    <meta property="og:image" content="https://brianconfantomes.com/images/brianconNight.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Briançon la nuit - Balade audio fantôme dans la Cité Vauban" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta property="og:site_name" content="Briançon Fantômes" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://brianconfantomes.com/" />
+    <meta name="twitter:title" content="Briançon Fantômes | Balade Audio Historique - Cité Vauban" />
+    <meta name="twitter:description" content="Découvrez Briançon autrement avec notre balade audio fantôme ! Explorez la Cité Vauban, remontez le temps et vivez une aventure historique unique. Gratuit !" />
+    <meta name="twitter:image" content="https://brianconfantomes.com/images/brianconNight.jpg" />
+
+    <!-- PWA -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["LocalBusiness", "TouristAttraction"],
+          "@id": "https://brianconfantomes.com/#business",
+          "name": "Briançon Fantômes",
+          "alternateName": "Briancon Fantomes",
+          "description": "Balade audio historique et fantôme dans la Cité Vauban de Briançon. Découvrez l'histoire de Briançon à travers une aventure audio unique en français et en anglais. Historical ghost audio walk through the Vauban city of Briançon, France.",
+          "url": "https://brianconfantomes.com",
+          "logo": "https://brianconfantomes.com/logo512.png",
+          "image": "https://brianconfantomes.com/images/brianconNight.jpg",
+          "email": "brianconfantomes@gmail.com",
+          "priceRange": "Gratuit / Free",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Briançon",
+            "addressRegion": "Hautes-Alpes",
+            "addressCountry": "FR",
+            "postalCode": "05100"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 44.8954,
+            "longitude": 6.6339
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Briançon"
+          },
+          "availableLanguage": [
+            { "@type": "Language", "name": "French" },
+            { "@type": "Language", "name": "English" }
+          ],
+          "sameAs": [
+            "https://www.facebook.com/BrianconFantomes/",
+            "https://www.instagram.com/brianconfantomes/",
+            "https://www.tripadvisor.com/Attraction_Review-g219218-d21176245-Reviews-Briancon_Fantomes-Briancon_Hautes_Alpes_Provence_Alpes_Cote_d_Azur.html",
+            "https://open.spotify.com/playlist/3tCHTiFJrSC1HexGdCDesq"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Combien de temps dure la visite audio Briançon Fantômes ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Si vous marchez, 60 à 90 minutes. Si vous écoutez dans le confort de votre maison, 30 minutes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Dois-je faire tous les arrêts de la balade Briançon Fantômes ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Non, il n'y a pas d'ordre et vous n'êtes pas obligé de faire tous les arrêts dans l'audio."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Combien coûte la balade audio Briançon Fantômes ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "C'est gratuit ! Nous apprécions les critiques positives sur Trip Advisor et/ou Google afin que d'autres nous trouvent et écoutent l'audio."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>Pour profiter de la balade audio Briançon Fantômes, veuillez activer JavaScript. / You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
