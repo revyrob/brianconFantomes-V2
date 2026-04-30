@@ -227,3 +227,27 @@ No Service Worker is used. Instead the **AudioPlayer** uses the browser **Cache 
 3. A **⬇** indicator on each chapter row shows what's already downloaded
 
 This avoids the URL-matching problem that Service Workers would face with signed URLs that change on every request.
+
+
+What was built
+New files:
+
+supabase/seed.sql — run this once in Supabase SQL Editor
+README.md — full setup guide (Supabase, PayPal, Resend, deploy checklist)
+src/lib/supabase.js — Supabase client
+src/hooks/useAuth.js — session + profile state hook
+src/components/AudioPlayer/AudioPlayer.js — in-app player with offline caching
+netlify/functions/get-audio-url.js — validates user + issues 1-hour signed URL
+Updated:
+
+PurchaseModal.js — now has Register / Sign in → PayPal → Success flow
+AudioBookLink.js — shows player if paid, buy cards if not, expiry notice if lapsed
+paypal-capture-order.js — writes to Supabase user_profile instead of Netlify Blobs
+scripts/upload-audio.mjs — now uploads to Supabase Storage
+Deleted: validate-token.js, download-audio.mjs, DownloadPage component
+
+Your next steps (in order)
+✅ Create Supabase account → new project → run supabase/seed.sql → create audio ✅ bucket → disable email confirmation → copy credentials into .env
+✅ Upload audio: node --env-file=.env scripts/upload-audio.mjs
+Add Supabase vars to Netlify dashboard environment variables
+Test with netlify dev — full purchase flow locally

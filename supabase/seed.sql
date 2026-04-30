@@ -22,12 +22,16 @@ CREATE TABLE IF NOT EXISTS public.user_profile (
 --    Writes always come from the server (service role bypasses RLS).
 ALTER TABLE public.user_profile ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Users can read own profile" ON public.user_profile;
+
 CREATE POLICY "Users can read own profile"
   ON public.user_profile
   FOR SELECT
   USING (auth.uid() = id);
 
 -- 3. Auto-update updated_at on every change
+DROP TRIGGER IF EXISTS trg_user_profile_updated_at ON public.user_profile;
+
 CREATE OR REPLACE FUNCTION public.set_updated_at()
 RETURNS TRIGGER LANGUAGE plpgsql AS $$
 BEGIN
