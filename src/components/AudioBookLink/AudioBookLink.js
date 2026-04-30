@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { LanguageContext } from "../../Language";
+import { useAuth } from "../../hooks/useAuth";
 import PurchaseModal from "../Purchase/PurchaseModal";
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
 
 const PRODUCTS = [
   {
@@ -30,12 +32,21 @@ const PRODUCTS = [
 
 function AudioBookLink() {
   const { dictionary, userLanguage } = useContext(LanguageContext);
+  const { loading, isPaid, isExpired, profile, refreshProfile } = useAuth();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const isFrench = userLanguage === "fr";
+
+  const expiryLabel = profile?.end_date
+    ? new Date(profile.end_date).toLocaleDateString(
+        isFrench ? "fr-FR" : "en-GB",
+        { day: "numeric", month: "long", year: "numeric" }
+      )
+    : "";
 
   return (
     <section id="tour" className="bg-gray-900 px-6 py-12">
       <div className="max-w-3xl mx-auto">
+        {/* Book cover + description — always visible */}
         <div className="grid grid-cols-[auto_1fr] gap-8 items-start mb-10">
           <img
             className="w-40 md:w-48 rounded-lg shadow-lg"
@@ -52,45 +63,90 @@ function AudioBookLink() {
           </div>
         </div>
 
-        <h2 className="text-gray-400 text-center text-xs uppercase tracking-widest mb-5">
-          {isFrench ? "Achetez directement" : "Buy directly"}
-        </h2>
+        {/* Loading */}
+        {loading && (
+          <div className="flex justify-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-400" />
+          </div>
+        )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {PRODUCTS.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => setSelectedProduct(p.id)}
-              className="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-yellow-400 rounded-xl p-6 text-center transition-all cursor-pointer"
-            >
-              <div className="text-3xl mb-2">{p.flag}</div>
-              <div className="text-white font-semibold text-sm mb-2">
-                {isFrench ? p.labelFr : p.labelEn}
-              </div>
-              <div className="text-yellow-300 text-3xl font-bold mb-1">
-                €{p.price}
-              </div>
-              {(isFrench ? p.saveFr : p.saveEn) && (
-                <div className="text-green-400 text-xs font-medium">
-                  {isFrench ? p.saveFr : p.saveEn}
-                </div>
-              )}
-            </button>
-          ))}
-        </div>
+        {/* Paid + active — show the audio player */}
+        {!loading && isPaid && (
+          <>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-white font-oswald text-xl">
+                {isFrench ? "Vos chapitres audio" : "Your audio chapters"}
+              </h2>
+              <span className="text-gray-500 text-xs">
+                {isFrench ? `Accès jusqu'au ` : "Access until "}
+                <span className="text-yellow-400">{expiryLabel}</span>
+              </span>
+            </div>
+            <AudioPlayer product={profile.product} />
+          </>
+        )}
 
-        <p className="text-gray-600 text-xs text-center mt-5">
-          {isFrench
-            ? "Paiement sécurisé via PayPal. Lien de téléchargement envoyé par email, valide 7 jours."
-            : "Secure payment via PayPal. Download link sent by email, valid for 7 days."}
-        </p>
+        {/* Expired — show message + renewal */}
+        {!loading && isExpired && (
+          <div className="bg-gray-800 rounded-xl p-6 mb-6 text-center">
+            <p className="text-red-400 font-semibold mb-1">
+              {isFrench ? "Votre accès a expiré." : "Your access has expired."}
+            </p>
+            <p className="text-gray-400 text-sm mb-4">
+              {isFrench
+                ? `Il a expiré le ${expiryLabel}. Achetez à nouveau pour 7 jours d'accès.`
+                : `It expired on ${expiryLabel}. Purchase again for 7 days of access.`}
+            </p>
+          </div>
+        )}
+
+        {/* Guest or expired — show buy cards */}
+        {!loading && (!isPaid) && (
+          <>
+            <h2 className="text-gray-400 text-center text-xs uppercase tracking-widest mb-5">
+              {isFrench ? "Achetez directement" : "Buy directly"}
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {PRODUCTS.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => setSelectedProduct(p.id)}
+                  className="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-yellow-400 rounded-xl p-6 text-center transition-all cursor-pointer"
+                >
+                  <div className="text-3xl mb-2">{p.flag}</div>
+                  <div className="text-white font-semibold text-sm mb-2">
+                    {isFrench ? p.labelFr : p.labelEn}
+                  </div>
+                  <div className="text-yellow-300 text-3xl font-bold mb-1">
+                    €{p.price}
+                  </div>
+                  {(isFrench ? p.saveFr : p.saveEn) && (
+                    <div className="text-green-400 text-xs font-medium">
+                      {isFrench ? p.saveFr : p.saveEn}
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
+
+            <p className="text-gray-600 text-xs text-center mt-5">
+              {isFrench
+                ? "Paiement sécurisé via PayPal. Accès 7 jours, écoute hors ligne."
+                : "Secure payment via PayPal. 7-day access, offline playback."}
+            </p>
+          </>
+        )}
       </div>
 
       {selectedProduct && (
         <PurchaseModal
           product={selectedProduct}
-          lang={userLanguage}
           onClose={() => setSelectedProduct(null)}
+          onSuccess={() => {
+            setSelectedProduct(null);
+            refreshProfile();
+          }}
         />
       )}
     </section>
