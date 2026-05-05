@@ -5,35 +5,36 @@ import FAQ from "./components/FAQ/FAQ";
 import Carousel from "./components/Carousel/carousel";
 import Nav from "./components/Nav/Nav";
 import Credits from "./components/Credits/Credits";
-import Tour from "./components/Tour/Tour";
 import Map from "./components/Map/Map";
-import { LanguageProvider } from "./Language";
-import { useEffect } from "react";
-import ReactGA from "react-ga";
 import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
+import { LanguageProvider } from "./Language";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
-const TRACKING_ID = "UA-201468426-1"; // OUR_TRACKING_ID
-
-ReactGA.initialize(TRACKING_ID);
+// TODO: Replace REACT_APP_GA_MEASUREMENT_ID with your GA4 property ID in .env
+// (analytics.google.com → create GA4 property → get G-XXXXXXX)
 
 function App() {
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
   return (
-    <LanguageProvider>
-      <div className="bg-gray-900">
-        <Nav />
-      </div>
-      <Carousel />
-      <Info />
-      <Map />
-      <AudioBookLink />
-      {/* <Tour /> */}
-      <Credits />
-      <FAQ />
-      <Footer />
-    </LanguageProvider>
+    <PayPalScriptProvider
+      options={{
+        "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID || "test",
+        currency: "EUR",
+        intent: "capture",
+      }}
+    >
+      <LanguageProvider>
+        <div className="bg-gray-900">
+          <Nav />
+        </div>
+        <Carousel />
+        <Info />
+        <Map />
+        <AudioBookLink />
+        <Credits />
+        <FAQ />
+        <Footer />
+      </LanguageProvider>
+    </PayPalScriptProvider>
   );
 }
 

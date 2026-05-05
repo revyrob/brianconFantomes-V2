@@ -3,6 +3,10 @@ base = ""
 publish = "build/"
 command = "npm run build"
 
+[functions]
+directory = "netlify/functions"
+node_bundler = "esbuild"
+
 [[redirects]]
 from = "/*"
 to = "index.html"
