@@ -30,7 +30,6 @@
     "react-image-gallery": "^1.2.11",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.4.5",
-    "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
     "resend": "^6.12.0",
     "sass": "^1.56.1",
@@ -39,19 +38,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "upload-audio": "node --env-file=.env scripts/upload-audio.mjs"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
+"browserslist": {
     "production": [
       ">0.2%",
       "not dead",
@@ -64,6 +56,10 @@
     ]
   },
   "devDependencies": {
-    "tailwindcss": "^3.2.4"
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.2.4",
+    "vite": "^5.4.0"
   }
 }

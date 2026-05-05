@@ -46,12 +46,6 @@ function Footer() {
               <img className="h-8 m-2" src={spotify} alt="spotify-icon" />
             </a>
           </div>
-          <a
-            className="flex justify-center content-end items-center"
-            href="mailto:brianconfantomes@gmail.com"
-          >
-            <img src={mail} alt={"mail icon"} />
-          </a>
         </div>
 
         <div className=" flex flex-col pt-4 pb-6 justify-middle items-center md:order-3 ">
