@@ -39,6 +39,15 @@ function PurchaseModal({ product, onClose, onSuccess }) {
     });
   }, []);
 
+  async function handleOAuth(provider) {
+    sessionStorage.setItem("pendingProduct", product);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: { redirectTo: window.location.origin },
+    });
+    if (error) setAuthError(error.message);
+  }
+
   async function handleAuth(e) {
     e.preventDefault();
     setAuthError("");
@@ -178,6 +187,42 @@ function PurchaseModal({ product, onClose, onSuccess }) {
                   : isFr ? "Se connecter" : "Sign in"}
               </button>
             </form>
+
+            {/* OAuth divider */}
+            <div className="relative flex items-center my-4">
+              <div className="flex-grow border-t border-gray-600" />
+              <span className="mx-3 text-gray-500 text-xs shrink-0">
+                {isFr ? "ou continuer avec" : "or continue with"}
+              </span>
+              <div className="flex-grow border-t border-gray-600" />
+            </div>
+
+            {/* Google */}
+            <button
+              type="button"
+              onClick={() => handleOAuth("google")}
+              className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 font-medium py-3 rounded-full mb-3 hover:bg-gray-100 transition-colors"
+            >
+              <svg width="18" height="18" viewBox="0 0 48 48">
+                <path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.2l6.7-6.7C35.7 2.5 30.2 0 24 0 14.7 0 6.7 5.4 2.7 13.3l7.8 6.1C12.4 13 17.8 9.5 24 9.5z"/>
+                <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.5 2.9-2.2 5.4-4.7 7l7.3 5.7c4.3-4 6.9-9.9 7.2-16.7z"/>
+                <path fill="#FBBC05" d="M10.5 28.6A14.6 14.6 0 0 1 9.5 24c0-1.6.3-3.1.7-4.6l-7.8-6.1A23.9 23.9 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.2z"/>
+                <path fill="#34A853" d="M24 48c6.2 0 11.4-2 15.2-5.5l-7.3-5.7c-2 1.4-4.6 2.2-7.9 2.2-6.2 0-11.5-4.2-13.4-9.9l-7.9 6.2C6.7 42.6 14.7 48 24 48z"/>
+              </svg>
+              Google
+            </button>
+
+            {/* Facebook */}
+            <button
+              type="button"
+              onClick={() => handleOAuth("facebook")}
+              className="w-full flex items-center justify-center gap-3 bg-[#1877F2] text-white font-medium py-3 rounded-full hover:bg-[#166FE5] transition-colors"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+              </svg>
+              Facebook
+            </button>
 
             <p className="text-gray-500 text-xs text-center mt-4">
               {isFr

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { LanguageContext } from "../../Language";
 import { useAuth } from "../../hooks/useAuth";
 import PurchaseModal from "../Purchase/PurchaseModal";
@@ -32,9 +32,20 @@ const PRODUCTS = [
 
 function AudioBookLink() {
   const { dictionary, userLanguage } = useContext(LanguageContext);
-  const { loading, isPaid, isExpired, profile, refreshProfile } = useAuth();
+  const { session, loading, isPaid, isExpired, profile, refreshProfile } = useAuth();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const isFrench = userLanguage === "fr";
+
+  // After OAuth redirect: restore the product the user was purchasing
+  useEffect(() => {
+    if (!loading && session) {
+      const pending = sessionStorage.getItem("pendingProduct");
+      if (pending) {
+        sessionStorage.removeItem("pendingProduct");
+        setSelectedProduct(pending);
+      }
+    }
+  }, [loading, session]);
 
   const expiryLabel = profile?.end_date
     ? new Date(profile.end_date).toLocaleDateString(
