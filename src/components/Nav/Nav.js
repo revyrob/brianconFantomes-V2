@@ -12,13 +12,28 @@ import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
 import logo from "../../assets/logo/logoskull.png";
 import LanguageSelector from "../LanguageSelector/LanguageSelector";
+import { useAuth } from "../../hooks/useAuth";
+import { supabase } from "../../lib/supabase";
 
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [lang, setLang] = useState(null);
   const open = Boolean(lang);
 
-  const { dictionary } = useContext(LanguageContext);
+  const { dictionary, userLanguage } = useContext(LanguageContext);
+  const { session, profile, isPaid } = useAuth();
+  const isFr = userLanguage === "fr";
+
+  const expiryLabel = profile?.end_date
+    ? new Date(profile.end_date).toLocaleDateString(
+        isFr ? "fr-FR" : "en-GB",
+        { day: "numeric", month: "short" }
+      )
+    : null;
+
+  async function handleSignOut() {
+    await supabase.auth.signOut();
+  }
 
   const handleClose = () => {
     setLang(null);
@@ -180,6 +195,28 @@ function Nav() {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           ></Menu>
+
+          {/* Account indicator */}
+          {session && (
+            <Box sx={{ display: "flex", alignItems: "center", mr: 1, gap: 1 }}>
+              <div className="flex flex-col items-end">
+                <span className="text-gray-300 text-xs leading-tight max-w-[120px] truncate hidden sm:block">
+                  {session.user.email}
+                </span>
+                {isPaid && expiryLabel && (
+                  <span className="text-yellow-400 text-xs leading-tight hidden sm:block">
+                    {isFr ? `Accès jusqu'au ${expiryLabel}` : `Access until ${expiryLabel}`}
+                  </span>
+                )}
+              </div>
+              <button
+                onClick={handleSignOut}
+                className="text-gray-400 hover:text-white text-xs border border-gray-600 hover:border-gray-400 rounded px-2 py-1 transition-colors whitespace-nowrap"
+              >
+                {isFr ? "Déconnexion" : "Sign out"}
+              </button>
+            </Box>
+          )}
 
           <a href="#tour">
             <Box
