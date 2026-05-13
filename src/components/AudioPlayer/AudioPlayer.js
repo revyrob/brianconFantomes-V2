@@ -20,9 +20,7 @@ function AudioPlayer({ product }) {
   const { userLanguage } = useContext(LanguageContext);
   const isFrenchUI = userLanguage === "fr";
 
-  const [activeLang, setActiveLang] = useState(
-    product === "en" ? "en" : "fr"
-  );
+  const [activeLang, setActiveLang] = useState(product === "en" ? "en" : "fr");
   const [playingChapter, setPlayingChapter] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [loadingChapter, setLoadingChapter] = useState(null);
@@ -44,7 +42,7 @@ function AudioPlayer({ product }) {
               const match = req.url.match(/\/audio\/((?:fr|en)\/\d+)/);
               return match ? match[1] : null;
             })
-            .filter(Boolean)
+            .filter(Boolean),
         );
         setCachedChapters(cached);
       });
@@ -95,24 +93,27 @@ function AudioPlayer({ product }) {
       const cacheKey = `${activeLang}/${chapter}`;
       let audioUrl;
 
-      // Check Cache API first (offline support)
+      console.log("[audio] 1. checking cache for", cacheKey);
       const cached = await audioCacheRef.current?.match(`/audio/${cacheKey}`);
       if (cached) {
+        console.log("[audio] 2. cache hit — reading blob");
         const blob = await cached.blob();
         audioUrl = URL.createObjectURL(blob);
+        console.log("[audio] 3. blob URL from cache ready");
       } else {
-        // Get user's session token to call the function
+        console.log("[audio] 2. no cache — fetching session");
         const {
           data: { session },
         } = await supabase.auth.getSession();
+        console.log("[audio] 3. session:", session ? "ok" : "NULL (not logged in)");
 
         const res = await fetch(
           `/.netlify/functions/get-audio-url?lang=${activeLang}&chapter=${chapter}`,
           {
-            headers: { Authorization: `Bearer ${session.access_token}` },
-          }
+            headers: { Authorization: `Bearer ${session?.access_token}` },
+          },
         );
-
+        console.log("[audio] 4. netlify fn status:", res.status);
         if (!res.ok) {
           let errorMsg = `HTTP ${res.status}`;
           try {
@@ -123,23 +124,27 @@ function AudioPlayer({ product }) {
         }
 
         const { url } = await res.json();
+        console.log("[audio] 5. signed URL:", url ? url.slice(0, 80) + "…" : "MISSING");
 
-        // Fetch audio and cache it for offline use
+        console.log("[audio] 6. fetching audio blob");
         const audioRes = await fetch(url);
+        console.log("[audio] 7. audio fetch status:", audioRes.status);
         const audioBlob = await audioRes.blob();
+        console.log("[audio] 8. blob size:", audioBlob.size, "type:", audioBlob.type);
 
         await audioCacheRef.current?.put(
           `/audio/${cacheKey}`,
           new Response(audioBlob.slice(), {
             headers: { "Content-Type": "audio/mpeg" },
-          })
+          }),
         );
 
         setCachedChapters((prev) => new Set([...prev, cacheKey]));
         audioUrl = URL.createObjectURL(audioBlob);
+        console.log("[audio] 9. blob URL from fetch ready");
       }
 
-      // Clean up previous audio
+      console.log("[audio] 10. cleaning up previous audio");
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -149,6 +154,7 @@ function AudioPlayer({ product }) {
       }
       objectUrlRef.current = audioUrl;
 
+      console.log("[audio] 11. creating Audio element");
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
 
@@ -161,11 +167,13 @@ function AudioPlayer({ product }) {
         setProgress(0);
       });
 
+      console.log("[audio] 12. calling audio.play()");
       await audio.play();
       setPlayingChapter(chapter);
       setIsPlaying(true);
+      console.log("[audio] 13. playback started");
     } catch (err) {
-      console.error("Audio playback error:", err);
+      console.error("[audio] FAILED at step above ^^^", err);
     } finally {
       setLoadingChapter(null);
     }

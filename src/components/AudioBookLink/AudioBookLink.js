@@ -94,7 +94,8 @@ function AudioBookLink() {
                 <span className="text-yellow-400">{expiryLabel}</span>
               </span>
             </div>
-            <AudioPlayer product={"en"} />
+            <AudioPlayer product={profile.product} />
+            {/* <AudioPlayer product={"en"} /> */}
           </>
         )}
 
@@ -113,6 +114,7 @@ function AudioBookLink() {
         )}
 
         {/* Guest or expired — show buy cards */}
+
         {!loading && !isPaid && (
           <>
             <h2 className="text-gray-400 text-center text-xs uppercase tracking-widest mb-5">

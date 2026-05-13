@@ -29,49 +29,51 @@ exports.handler = async (event) => {
     process.env.SUPABASE_SERVICE_ROLE_KEY
   );
 
-  // Verify the user's JWT
-  const {
-    data: { user },
-    error: authError,
-  } = await supabaseAdmin.auth.getUser(userToken);
+  if (process.env.DEV_BYPASS_AUTH !== "true") {
+    // Verify the user's JWT
+    const {
+      data: { user },
+      error: authError,
+    } = await supabaseAdmin.auth.getUser(userToken);
 
-  if (authError || !user) {
-    return { statusCode: 401, body: JSON.stringify({ error: "Unauthorized" }) };
-  }
+    if (authError || !user) {
+      return { statusCode: 401, body: JSON.stringify({ error: "Unauthorized" }) };
+    }
 
-  // Check their profile: paid + not expired + correct language
-  const { data: profile, error: profileError } = await supabaseAdmin
-    .from("user_profile")
-    .select("paid, product, end_date")
-    .eq("id", user.id)
-    .single();
+    // Check their profile: paid + not expired + correct language
+    const { data: profile, error: profileError } = await supabaseAdmin
+      .from("user_profile")
+      .select("paid, product, end_date")
+      .eq("id", user.id)
+      .single();
 
-  if (profileError || !profile) {
-    return {
-      statusCode: 403,
-      body: JSON.stringify({ error: "No profile found" }),
-    };
-  }
+    if (profileError || !profile) {
+      return {
+        statusCode: 403,
+        body: JSON.stringify({ error: "No profile found" }),
+      };
+    }
 
-  if (!profile.paid) {
-    return {
-      statusCode: 403,
-      body: JSON.stringify({ error: "Payment required" }),
-    };
-  }
+    if (!profile.paid) {
+      return {
+        statusCode: 403,
+        body: JSON.stringify({ error: "Payment required" }),
+      };
+    }
 
-  if (new Date(profile.end_date) < new Date()) {
-    return {
-      statusCode: 403,
-      body: JSON.stringify({ error: "Access expired" }),
-    };
-  }
+    if (new Date(profile.end_date) < new Date()) {
+      return {
+        statusCode: 403,
+        body: JSON.stringify({ error: "Access expired" }),
+      };
+    }
 
-  if (profile.product !== lang && profile.product !== "both") {
-    return {
-      statusCode: 403,
-      body: JSON.stringify({ error: "Language not included in purchase" }),
-    };
+    if (profile.product !== lang && profile.product !== "both") {
+      return {
+        statusCode: 403,
+        body: JSON.stringify({ error: "Language not included in purchase" }),
+      };
+    }
   }
 
   // Generate a 1-hour signed URL
