@@ -93,19 +93,22 @@ function AudioPlayer({ product }) {
       const cacheKey = `${activeLang}/${chapter}`;
       let audioUrl;
 
-      console.log("[audio] 1. checking cache for", cacheKey);
+      // console.log("[audio] 1. checking cache for", cacheKey);
       const cached = await audioCacheRef.current?.match(`/audio/${cacheKey}`);
       if (cached) {
-        console.log("[audio] 2. cache hit — reading blob");
+        // console.log("[audio] 2. cache hit — reading blob");
         const blob = await cached.blob();
         audioUrl = URL.createObjectURL(blob);
-        console.log("[audio] 3. blob URL from cache ready");
+        // console.log("[audio] 3. blob URL from cache ready");
       } else {
-        console.log("[audio] 2. no cache — fetching session");
+        // console.log("[audio] 2. no cache — fetching session");
         const {
           data: { session },
         } = await supabase.auth.getSession();
-        console.log("[audio] 3. session:", session ? "ok" : "NULL (not logged in)");
+        // console.log(
+        //   "[audio] 3. session:",
+        //   session ? "ok" : "NULL (not logged in)",
+        // );
 
         const res = await fetch(
           `/.netlify/functions/get-audio-url?lang=${activeLang}&chapter=${chapter}`,
@@ -113,7 +116,7 @@ function AudioPlayer({ product }) {
             headers: { Authorization: `Bearer ${session?.access_token}` },
           },
         );
-        console.log("[audio] 4. netlify fn status:", res.status);
+        // console.log("[audio] 4. netlify fn status:", res.status);
         if (!res.ok) {
           let errorMsg = `HTTP ${res.status}`;
           try {
@@ -124,13 +127,21 @@ function AudioPlayer({ product }) {
         }
 
         const { url } = await res.json();
-        console.log("[audio] 5. signed URL:", url ? url.slice(0, 80) + "…" : "MISSING");
+        // console.log(
+        //   "[audio] 5. signed URL:",
+        //   url ? url.slice(0, 80) + "…" : "MISSING",
+        // );
 
-        console.log("[audio] 6. fetching audio blob");
+        // console.log("[audio] 6. fetching audio blob");
         const audioRes = await fetch(url);
-        console.log("[audio] 7. audio fetch status:", audioRes.status);
+        // console.log("[audio] 7. audio fetch status:", audioRes.status);
         const audioBlob = await audioRes.blob();
-        console.log("[audio] 8. blob size:", audioBlob.size, "type:", audioBlob.type);
+        // console.log(
+        //   "[audio] 8. blob size:",
+        //   audioBlob.size,
+        //   "type:",
+        //   audioBlob.type,
+        // );
 
         await audioCacheRef.current?.put(
           `/audio/${cacheKey}`,
@@ -141,10 +152,10 @@ function AudioPlayer({ product }) {
 
         setCachedChapters((prev) => new Set([...prev, cacheKey]));
         audioUrl = URL.createObjectURL(audioBlob);
-        console.log("[audio] 9. blob URL from fetch ready");
+        // console.log("[audio] 9. blob URL from fetch ready");
       }
 
-      console.log("[audio] 10. cleaning up previous audio");
+      // console.log("[audio] 10. cleaning up previous audio");
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -154,7 +165,7 @@ function AudioPlayer({ product }) {
       }
       objectUrlRef.current = audioUrl;
 
-      console.log("[audio] 11. creating Audio element");
+      // console.log("[audio] 11. creating Audio element");
       const audio = new Audio(audioUrl);
       audioRef.current = audio;
 
@@ -167,11 +178,11 @@ function AudioPlayer({ product }) {
         setProgress(0);
       });
 
-      console.log("[audio] 12. calling audio.play()");
+      // console.log("[audio] 12. calling audio.play()");
       await audio.play();
       setPlayingChapter(chapter);
       setIsPlaying(true);
-      console.log("[audio] 13. playback started");
+      // console.log("[audio] 13. playback started");
     } catch (err) {
       console.error("[audio] FAILED at step above ^^^", err);
     } finally {
