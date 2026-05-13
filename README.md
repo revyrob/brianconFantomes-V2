@@ -86,13 +86,13 @@ Fill in your `.env` file with all the values above:
 
 ```env
 # Supabase
-REACT_APP_SUPABASE_URL=https://xxxxx.supabase.co
-REACT_APP_SUPABASE_ANON_KEY=eyJ...
+VITE_SUPABASE_URL=https://xxxxx.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJ...
 SUPABASE_URL=https://xxxxx.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 
 # PayPal (same client ID in both — one for frontend, one for backend)
-REACT_APP_PAYPAL_CLIENT_ID=your-paypal-client-id
+VITE_PAYPAL_CLIENT_ID=your-paypal-client-id
 PAYPAL_CLIENT_ID=your-paypal-client-id
 PAYPAL_CLIENT_SECRET=your-paypal-secret
 PAYPAL_LIVE=false

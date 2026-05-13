@@ -71,7 +71,7 @@ exports.handler = async (event) => {
     if (profile.product !== lang && profile.product !== "both") {
       return {
         statusCode: 403,
-        body: JSON.stringify({ error: "Language not included in purchase" }),
+        body: JSON.stringify({ error: `Language not included in purchase (profile.product="${profile.product}", requested lang="${lang}")` }),
       };
     }
   }
