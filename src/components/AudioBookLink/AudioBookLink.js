@@ -32,7 +32,8 @@ const PRODUCTS = [
 
 function AudioBookLink() {
   const { dictionary, userLanguage } = useContext(LanguageContext);
-  const { session, loading, isPaid, isExpired, profile, refreshProfile } = useAuth();
+  const { session, loading, isPaid, isExpired, profile, refreshProfile } =
+    useAuth();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const isFrench = userLanguage === "fr";
 
@@ -50,7 +51,7 @@ function AudioBookLink() {
   const expiryLabel = profile?.end_date
     ? new Date(profile.end_date).toLocaleDateString(
         isFrench ? "fr-FR" : "en-GB",
-        { day: "numeric", month: "long", year: "numeric" }
+        { day: "numeric", month: "long", year: "numeric" },
       )
     : "";
 
@@ -93,7 +94,7 @@ function AudioBookLink() {
                 <span className="text-yellow-400">{expiryLabel}</span>
               </span>
             </div>
-            <AudioPlayer product={profile.product} />
+            <AudioPlayer product={"en"} />
           </>
         )}
 
@@ -112,7 +113,7 @@ function AudioBookLink() {
         )}
 
         {/* Guest or expired — show buy cards */}
-        {!loading && (!isPaid) && (
+        {!loading && !isPaid && (
           <>
             <h2 className="text-gray-400 text-center text-xs uppercase tracking-widest mb-5">
               {isFrench ? "Achetez directement" : "Buy directly"}

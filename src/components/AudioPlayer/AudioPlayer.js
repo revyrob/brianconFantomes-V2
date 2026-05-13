@@ -114,8 +114,12 @@ function AudioPlayer({ product }) {
         );
 
         if (!res.ok) {
-          const err = await res.json();
-          throw new Error(err.error || "Failed to get audio URL");
+          let errorMsg = `HTTP ${res.status}`;
+          try {
+            const err = await res.json();
+            errorMsg = err.error || errorMsg;
+          } catch {}
+          throw new Error(errorMsg);
         }
 
         const { url } = await res.json();
