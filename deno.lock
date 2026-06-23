@@ -1,0 +1,55 @@
+{
+  "version": "5",
+  "remote": {
+    "https://edge.netlify.com/": "fd941d61d88673d5f28aab283fb86fcc50f08a3bc80ee5470498fcfa88c65cfb",
+    "https://edge.netlify.com/bootstrap/config.ts": "6a2ce0e544e15e8f8883a5c18da5948e37fd0f2619f68cb31f3af53c51817025",
+    "https://edge.netlify.com/bootstrap/context.ts": "e97240232121e2f369f6546ce961490f34d961ea1ea54be3ff09633e3f08373f",
+    "https://edge.netlify.com/bootstrap/cookie.ts": "8b0baae708989ca183c6f3b4ab3d029e6abcbc2e43f93edeb0ff447b3bbc3a05",
+    "https://edge.netlify.com/bootstrap/edge_function.ts": "b8253e86aa83c67341f5cfedeba5049d77fbf84dcab7eceff7566b7728ae9b39",
+    "https://edge.netlify.com/bootstrap/globals/types.ts": "eaa6148ded3121d8dee62dd91c86e7fe76601df0f3ca8d7962243a30f4c8935f"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:@emailjs/browser@^3.10.0",
+        "npm:@emotion/react@^11.10.5",
+        "npm:@emotion/styled@^11.10.5",
+        "npm:@mui/icons-material@^5.11.0",
+        "npm:@mui/joy@^5.0.0-alpha.63",
+        "npm:@mui/material@^5.11.1",
+        "npm:@mui/styled-engine-sc@^5.10.16",
+        "npm:@netlify/blobs@^10.7.4",
+        "npm:@paypal/react-paypal-js@^9.1.1",
+        "npm:@supabase/supabase-js@^2.105.1",
+        "npm:@testing-library/jest-dom@^5.16.5",
+        "npm:@testing-library/react@^13.4.0",
+        "npm:@testing-library/user-event@^13.5.0",
+        "npm:@vitejs/plugin-react@^4.3.1",
+        "npm:autolinker@4",
+        "npm:autoprefixer@^10.4.14",
+        "npm:dotenv@^16.0.3",
+        "npm:flowbite-react@~0.3.7",
+        "npm:flowbite@^1.5.5",
+        "npm:formik@^2.2.9",
+        "npm:framer-motion@^8.4.3",
+        "npm:leaflet@^1.9.4",
+        "npm:postcss@^8.4.31",
+        "npm:react-audio-player@0.17",
+        "npm:react-dom@^18.2.0",
+        "npm:react-ga@^3.3.1",
+        "npm:react-image-gallery@^1.2.11",
+        "npm:react-leaflet@^4.2.1",
+        "npm:react-router-dom@^6.4.5",
+        "npm:react-toastify@^9.1.1",
+        "npm:react@^18.2.0",
+        "npm:resend@^6.12.0",
+        "npm:sass@^1.56.1",
+        "npm:styled-components@^5.3.6",
+        "npm:tailwindcss@^3.2.4",
+        "npm:tw-elements@^1.0.0-alpha13",
+        "npm:vite@^5.4.0",
+        "npm:web-vitals@^2.1.4"
+      ]
+    }
+  }
+}
