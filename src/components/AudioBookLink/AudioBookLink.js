@@ -146,8 +146,8 @@ function AudioBookLink() {
 
             <p className="text-gray-600 text-xs text-center mt-5">
               {isFrench
-                ? "Paiement sécurisé via Stripe. Accès 7 jours, écoute hors ligne."
-                : "Secure payment via Stripe. 7-day access, offline playback."}
+                ? "Paiement sécurisé via PayPal. Accès 7 jours, écoute hors ligne."
+                : "Secure payment via PayPal. 7-day access, offline playback."}
             </p>
           </>
         )}
@@ -157,7 +157,10 @@ function AudioBookLink() {
         <PurchaseModal
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
-          onSuccess={refreshProfile}
+          onSuccess={() => {
+            setSelectedProduct(null);
+            refreshProfile();
+          }}
         />
       )}
     </section>

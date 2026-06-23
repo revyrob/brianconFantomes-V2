@@ -8,21 +8,31 @@ import Credits from "./components/Credits/Credits";
 import Map from "./components/Map/Map";
 import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
 import { LanguageProvider } from "./Language";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
 
 function App() {
   return (
-    <LanguageProvider>
-      <div className="bg-gray-900">
-        <Nav />
-      </div>
-      <Carousel />
-      <Info />
-      <Map />
-      <AudioBookLink />
-      <Credits />
-      <FAQ />
-      <Footer />
-    </LanguageProvider>
+    <PayPalScriptProvider
+      options={{
+        "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID || "test",
+        currency: "EUR",
+        intent: "capture",
+      }}
+    >
+      <LanguageProvider>
+        <div className="bg-gray-900">
+          <Nav />
+        </div>
+        <Carousel />
+        <Info />
+        <Map />
+        <AudioBookLink />
+        <Credits />
+        <FAQ />
+        <Footer />
+      </LanguageProvider>
+    </PayPalScriptProvider>
   );
 }
 
