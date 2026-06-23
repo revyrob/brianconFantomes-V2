@@ -13,11 +13,11 @@ Available in French and English — [brianconfantomes.com](https://brianconfanto
 | Auth | Supabase Auth (email + password) |
 | Database | Supabase (`user_profile` table) |
 | Audio storage | Supabase Storage (private bucket) |
-| Payments | PayPal Orders API v2 |
+| Payments | Stripe Payment Intents (Elements) |
 | Email | Resend |
 | Hosting | Netlify + Serverless Functions |
 
-**Access model:** User registers → pays via PayPal → gets 7-day access → listens in-app.
+**Access model:** User registers → pays via Stripe → gets 7-day access → listens in-app.
 Audio chapters stream via short-lived signed URLs and are cached by the browser for offline playback while walking in the old town.
 
 ---
@@ -60,14 +60,14 @@ Go to **Project Settings** → **API** and copy:
 
 ---
 
-### 2. PayPal — payments
+### 2. Stripe — payments
 
-1. Go to [developer.paypal.com](https://developer.paypal.com) and log in with your existing PayPal account
-2. Click **Apps & Credentials** — stay on the **Sandbox** tab for now
-3. Open the default app and copy:
-   - **Client ID** → `REACT_APP_PAYPAL_CLIENT_ID` and `PAYPAL_CLIENT_ID`
-   - **Secret** → `PAYPAL_CLIENT_SECRET`
-4. When ready for real payments: switch to **Live** tab, copy those credentials, and set `PAYPAL_LIVE=true`
+1. Go to [dashboard.stripe.com](https://dashboard.stripe.com) and create an account
+2. Go to **Developers** → **API keys** — stay in **Test mode** for now (toggle top-right)
+3. Copy:
+   - **Publishable key** (`pk_test_...`) → `VITE_STRIPE_PUBLISHABLE_KEY`
+   - **Secret key** (`sk_test_...`) → `STRIPE_SECRET_KEY`
+4. When ready for real payments: switch to **Live mode** and copy the `pk_live_...` / `sk_live_...` keys instead — no separate flag needed, the key prefix determines the mode
 
 ---
 
@@ -91,11 +91,9 @@ VITE_SUPABASE_ANON_KEY=eyJ...
 SUPABASE_URL=https://xxxxx.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
 
-# PayPal (same client ID in both — one for frontend, one for backend)
-VITE_PAYPAL_CLIENT_ID=your-paypal-client-id
-PAYPAL_CLIENT_ID=your-paypal-client-id
-PAYPAL_CLIENT_SECRET=your-paypal-secret
-PAYPAL_LIVE=false
+# Stripe
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
 
 # Resend
 RESEND_API_KEY=re_...
@@ -158,9 +156,8 @@ Netlify auto-deploys on push. Before going live, set these variables in **Netlif
 |---|---|
 | `SUPABASE_URL` | |
 | `SUPABASE_SERVICE_ROLE_KEY` | Keep secret — never put in frontend |
-| `PAYPAL_CLIENT_ID` | |
-| `PAYPAL_CLIENT_SECRET` | |
-| `PAYPAL_LIVE` | `false` for sandbox, `true` for real payments |
+| `STRIPE_SECRET_KEY` | Keep secret — never put in frontend |
+| `VITE_STRIPE_PUBLISHABLE_KEY` | Safe for frontend, bundled at build time |
 | `RESEND_API_KEY` | |
 | `SITE_URL` | `https://brianconfantomes.com` |
 
@@ -173,7 +170,7 @@ Netlify auto-deploys on push. Before going live, set these variables in **Netlif
 - [ ] Email confirmation disabled in Supabase Auth settings
 - [ ] Audio files uploaded (`node --env-file=.env scripts/upload-audio.mjs`)
 - [ ] Resend domain verified
-- [ ] PayPal Live credentials set + `PAYPAL_LIVE=true`
+- [ ] Stripe Live mode keys set (`pk_live_...` / `sk_live_...`)
 - [ ] All environment variables set in Netlify dashboard
 - [ ] Test full purchase flow end-to-end with a real card
 - [ ] Confirm email arrives and audio plays then caches for offline use
@@ -185,7 +182,7 @@ Netlify auto-deploys on push. Before going live, set these variables in **Netlif
 ```
 Visitor clicks buy card (🇫🇷 €5 / 🇬🇧 €5 / 🇫🇷🇬🇧 €8)
   → Modal opens: Register or Sign in
-  → Authenticated → PayPal checkout
+  → Authenticated → Stripe payment
   → Payment captured
       → user_profile row created in Supabase (paid: true, end_date: +7 days)
       → confirmation email sent via Resend
@@ -208,7 +205,7 @@ user_profile
   paid            BOOLEAN
   start_date      TIMESTAMPTZ
   end_date        TIMESTAMPTZ -- start_date + 7 days
-  paypal_order_id TEXT
+  stripe_payment_intent_id TEXT
   created_at      TIMESTAMPTZ
   updated_at      TIMESTAMPTZ (auto-updated by trigger)
 ```
@@ -233,16 +230,16 @@ What was built
 New files:
 
 supabase/seed.sql — run this once in Supabase SQL Editor
-README.md — full setup guide (Supabase, PayPal, Resend, deploy checklist)
+README.md — full setup guide (Supabase, Stripe, Resend, deploy checklist)
 src/lib/supabase.js — Supabase client
 src/hooks/useAuth.js — session + profile state hook
 src/components/AudioPlayer/AudioPlayer.js — in-app player with offline caching
 netlify/functions/get-audio-url.js — validates user + issues 1-hour signed URL
 Updated:
 
-PurchaseModal.js — now has Register / Sign in → PayPal → Success flow
+PurchaseModal.js — now has Register / Sign in → Stripe → Success flow
 AudioBookLink.js — shows player if paid, buy cards if not, expiry notice if lapsed
-paypal-capture-order.js — writes to Supabase user_profile instead of Netlify Blobs
+stripe-confirm-payment.js — writes to Supabase user_profile instead of Netlify Blobs
 scripts/upload-audio.mjs — now uploads to Supabase Storage
 Deleted: validate-token.js, download-audio.mjs, DownloadPage component
 

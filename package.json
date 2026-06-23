@@ -11,7 +11,8 @@
     "@mui/material": "^5.11.1",
     "@mui/styled-engine-sc": "^5.10.16",
     "@netlify/blobs": "^10.7.4",
-    "@paypal/react-paypal-js": "^9.1.1",
+    "@stripe/react-stripe-js": "^2.8.1",
+    "@stripe/stripe-js": "^4.10.0",
     "@supabase/supabase-js": "^2.105.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -33,6 +34,7 @@
     "react-toastify": "^9.1.1",
     "resend": "^6.12.0",
     "sass": "^1.56.1",
+    "stripe": "^17.4.0",
     "styled-components": "^5.3.6",
     "tw-elements": "^1.0.0-alpha13",
     "web-vitals": "^2.1.4"

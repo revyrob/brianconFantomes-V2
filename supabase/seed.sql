@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS public.user_profile (
   paid            BOOLEAN     NOT NULL DEFAULT FALSE,
   start_date      TIMESTAMPTZ,
   end_date        TIMESTAMPTZ,                        -- access expires after 7 days
-  paypal_order_id TEXT,
+  stripe_payment_intent_id TEXT,
   created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
