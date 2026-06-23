@@ -6,33 +6,29 @@ import Carousel from "./components/Carousel/carousel";
 import Nav from "./components/Nav/Nav";
 import Credits from "./components/Credits/Credits";
 import Map from "./components/Map/Map";
-import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
 import { LanguageProvider } from "./Language";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
 
+// TODO: Migrate to Google Analytics 4.
+// Your UA-201468426-1 tracking ID stopped working July 2023 (Universal Analytics is deprecated).
+// Steps: go to analytics.google.com → create a GA4 property → get your G-XXXXXXX measurement ID
+// then install: npm install gtag  and add the GA4 script tag to public/index.html
 
 function App() {
   return (
-    <PayPalScriptProvider
-      options={{
-        "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID || "test",
-        currency: "EUR",
-        intent: "capture",
-      }}
-    >
-      <LanguageProvider>
-        <div className="bg-gray-900">
-          <Nav />
-        </div>
-        <Carousel />
-        <Info />
-        <Map />
-        <AudioBookLink />
-        <Credits />
-        <FAQ />
-        <Footer />
-      </LanguageProvider>
-    </PayPalScriptProvider>
+    <LanguageProvider>
+      <div className="bg-gray-900">
+        <Nav />
+      </div>
+      <Carousel />
+      <Info />
+      <Map />
+      <AudioBookLink />
+      {/* <Tour /> */}
+      <Credits />
+      <FAQ />
+      <Footer />
+    </LanguageProvider>
   );
 }
 
