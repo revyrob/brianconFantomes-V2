@@ -1,5 +1,11 @@
 import { useState, useEffect, useContext } from "react";
-import { PayPalButtons } from "@paypal/react-paypal-js";
+import {
+  Elements,
+  PaymentElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
+import { stripePromise } from "../../lib/stripe";
 import { supabase } from "../../lib/supabase";
 import { LanguageContext } from "../../Language";
 
@@ -23,12 +29,67 @@ function PurchaseModal({ product, onClose, onSuccess }) {
   const [authLoading, setAuthLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [session, setSession] = useState(null);
+  const [clientSecret, setClientSecret] = useState(null);
 
   const productLabel = PRODUCT_LABELS[product]?.[userLanguage] || product;
   const price = PRICES[product];
 
-  // Check if user is already logged in
+  async function confirmPayment(paymentIntentId, userToken) {
+    setStep("processing");
+    try {
+      const res = await fetch("/.netlify/functions/stripe-confirm-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paymentIntentId, userToken }),
+      });
+      const result = await res.json();
+      if (result.success) {
+        setStep("success");
+        onSuccess?.();
+      } else {
+        throw new Error(result.error || "Confirmation failed");
+      }
+    } catch (err) {
+      setStep("error");
+      setErrorMsg(err.message);
+    }
+  }
+
+  // On mount: either resume a payment returning from a 3D Secure redirect,
+  // or check if the user is already logged in.
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const redirectStatus = params.get("redirect_status");
+    const paymentIntentId = params.get("payment_intent");
+
+    if (redirectStatus && paymentIntentId) {
+      window.history.replaceState({}, "", window.location.pathname);
+
+      if (redirectStatus === "succeeded") {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+          if (session) {
+            setSession(session);
+            confirmPayment(paymentIntentId, session.access_token);
+          } else {
+            setStep("error");
+            setErrorMsg(
+              isFr
+                ? "Session expirée. Veuillez vous reconnecter."
+                : "Session expired. Please sign in again."
+            );
+          }
+        });
+      } else {
+        setStep("error");
+        setErrorMsg(
+          isFr
+            ? "Le paiement a échoué ou a été annulé."
+            : "Payment failed or was canceled."
+        );
+      }
+      return;
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         setSession(session);
@@ -38,6 +99,26 @@ function PurchaseModal({ product, onClose, onSuccess }) {
       }
     });
   }, []);
+
+  // Once we're on the payment step, create the PaymentIntent.
+  useEffect(() => {
+    if (step !== "payment" || clientSecret) return;
+
+    fetch("/.netlify/functions/stripe-create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ product }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (!data.clientSecret) throw new Error("Failed to start payment");
+        setClientSecret(data.clientSecret);
+      })
+      .catch((err) => {
+        setStep("error");
+        setErrorMsg(err.message);
+      });
+  }, [step, clientSecret, product]);
 
   async function handleOAuth(provider) {
     sessionStorage.setItem("pendingProduct", product);
@@ -115,7 +196,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         )}
 
         {/* Loading */}
-        {step === "loading" && (
+        {(step === "loading" || (step === "payment" && !clientSecret)) && (
           <div className="flex justify-center py-8">
             <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-yellow-400" />
           </div>
@@ -232,68 +313,19 @@ function PurchaseModal({ product, onClose, onSuccess }) {
           </>
         )}
 
-        {/* Step 2 — PayPal payment */}
-        {step === "payment" && (
-          <>
-            {session && (
-              <p className="text-gray-400 text-sm mb-4">
-                {isFr ? "Connecté en tant que " : "Signed in as "}
-                <span className="text-gray-200">{session.user.email}</span>
-              </p>
-            )}
-
-            <PayPalButtons
-              style={{ layout: "vertical", color: "gold", shape: "pill", label: "pay" }}
-              createOrder={async () => {
-                const res = await fetch(
-                  "/.netlify/functions/paypal-create-order",
-                  {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ product }),
-                  }
-                );
-                const data = await res.json();
-                if (!data.id) throw new Error("Order creation failed");
-                return data.id;
-              }}
-              onApprove={async (data) => {
-                setStep("processing");
-                try {
-                  const res = await fetch(
-                    "/.netlify/functions/paypal-capture-order",
-                    {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        orderID: data.orderID,
-                        product,
-                        userToken: session.access_token,
-                      }),
-                    }
-                  );
-                  const result = await res.json();
-                  if (result.success) {
-                    setStep("success");
-                    onSuccess?.();
-                  } else {
-                    throw new Error(result.error || "Capture failed");
-                  }
-                } catch (err) {
-                  setStep("error");
-                  setErrorMsg(err.message);
-                }
-              }}
-              onError={() => {
-                setStep("error");
-                setErrorMsg(
-                  isFr
-                    ? "Erreur PayPal. Veuillez réessayer."
-                    : "PayPal error. Please try again."
-                );
-              }}
+        {/* Step 2 — Stripe payment */}
+        {step === "payment" && clientSecret && (
+          <Elements
+            stripe={stripePromise}
+            options={{ clientSecret, appearance: { theme: "night" } }}
+          >
+            <CheckoutForm
+              session={session}
+              isFr={isFr}
+              product={product}
+              onConfirm={confirmPayment}
             />
-          </>
+          </Elements>
         )}
 
         {/* Processing */}
@@ -334,7 +366,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
             </p>
             <p className="text-gray-500 text-xs mb-4">{errorMsg}</p>
             <button
-              onClick={() => { setStep("payment"); setErrorMsg(""); }}
+              onClick={() => { setStep("payment"); setClientSecret(null); setErrorMsg(""); }}
               className="text-yellow-400 underline text-sm mr-4"
             >
               {isFr ? "Réessayer" : "Try again"}
@@ -346,6 +378,70 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         )}
       </div>
     </div>
+  );
+}
+
+function CheckoutForm({ session, isFr, product, onConfirm }) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [submitting, setSubmitting] = useState(false);
+  const [formError, setFormError] = useState("");
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!stripe || !elements) return;
+
+    setSubmitting(true);
+    setFormError("");
+    sessionStorage.setItem("pendingProduct", product);
+
+    const { error, paymentIntent } = await stripe.confirmPayment({
+      elements,
+      redirect: "if_required",
+      confirmParams: { return_url: window.location.href },
+    });
+
+    sessionStorage.removeItem("pendingProduct");
+
+    if (error) {
+      setFormError(error.message);
+      setSubmitting(false);
+      return;
+    }
+
+    if (paymentIntent?.status === "succeeded") {
+      onConfirm(paymentIntent.id, session.access_token);
+    } else {
+      setFormError(
+        isFr
+          ? "Le paiement n'a pas pu être confirmé."
+          : "Payment could not be confirmed."
+      );
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {session && (
+        <p className="text-gray-400 text-sm">
+          {isFr ? "Connecté en tant que " : "Signed in as "}
+          <span className="text-gray-200">{session.user.email}</span>
+        </p>
+      )}
+
+      <PaymentElement />
+
+      {formError && <p className="text-red-400 text-sm">{formError}</p>}
+
+      <button
+        type="submit"
+        disabled={!stripe || submitting}
+        className="w-full bg-yellow-400 text-gray-900 font-bold py-3 rounded-full hover:bg-yellow-300 transition-colors disabled:opacity-60"
+      >
+        {submitting ? "…" : isFr ? "Payer" : "Pay"}
+      </button>
+    </form>
   );
 }
 

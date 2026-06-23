@@ -1,15 +1,13 @@
 const { getStore } = require("@netlify/blobs");
 const { Resend } = require("resend");
+const Stripe = require("stripe");
 
-const PAYPAL_BASE =
-  process.env.PAYPAL_LIVE === "true"
-    ? "https://api-m.paypal.com"
-    : "https://api-m.sandbox.paypal.com";
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const PRODUCTS = {
-  fr: { amount: "5.00", description: "Briançon Fantômes - Version Française" },
-  en: { amount: "5.00", description: "Briançon Fantômes - English Version" },
-  both: { amount: "8.00", description: "Briançon Fantômes - FR + EN" },
+  fr: { amount: 500, description: "Briançon Fantômes - Version Française" },
+  en: { amount: 500, description: "Briançon Fantômes - English Version" },
+  both: { amount: 800, description: "Briançon Fantômes - FR + EN" },
 };
 
 const RATE_LIMIT = 10;
@@ -19,7 +17,7 @@ const WINDOW_MS = 60 * 60 * 1000; // 1 hour
 async function checkRateLimit(ip) {
   try {
     const store = getStore({ name: "rate-limits", consistency: "strong" });
-    const key = `paypal-create:${ip}`;
+    const key = `stripe-create:${ip}`;
     const now = Date.now();
 
     const data = await store.get(key, { type: "json" });
@@ -51,11 +49,11 @@ async function sendSpamAlert(ip) {
     await resend.emails.send({
       from: "Briançon Fantômes <noreply@brianconfantomes.com>",
       to: "brianconfantomes@gmail.com",
-      subject: "⚠️ Spam alert — PayPal order rate limit hit",
+      subject: "⚠️ Spam alert — Stripe payment intent rate limit hit",
       html: `
         <div style="font-family:Arial,sans-serif;background:#111827;color:#f9fafb;padding:32px;">
           <h2 style="color:#fbbf24;margin:0 0 16px;">⚠️ Rate limit triggered</h2>
-          <p>An IP address has made <strong>${RATE_LIMIT}+ requests</strong> to <code>paypal-create-order</code> within one hour.</p>
+          <p>An IP address has made <strong>${RATE_LIMIT}+ requests</strong> to <code>stripe-create-payment-intent</code> within one hour.</p>
           <table style="margin:16px 0;border-collapse:collapse;">
             <tr>
               <td style="color:#9ca3af;padding:4px 12px 4px 0;">IP address</td>
@@ -77,25 +75,6 @@ async function sendSpamAlert(ip) {
   } catch (err) {
     console.error("Failed to send spam alert:", err);
   }
-}
-
-async function getAccessToken() {
-  const creds = Buffer.from(
-    `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`
-  ).toString("base64");
-
-  const res = await fetch(`${PAYPAL_BASE}/v1/oauth2/token`, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${creds}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: "grant_type=client_credentials",
-  });
-
-  const data = await res.json();
-  if (!data.access_token) throw new Error("Failed to get PayPal access token");
-  return data.access_token;
 }
 
 exports.handler = async (event) => {
@@ -138,38 +117,25 @@ exports.handler = async (event) => {
       };
     }
 
-    const token = await getAccessToken();
-
-    const res = await fetch(`${PAYPAL_BASE}/v2/checkout/orders`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        intent: "CAPTURE",
-        purchase_units: [
-          {
-            amount: { currency_code: "EUR", value: productInfo.amount },
-            description: productInfo.description,
-          },
-        ],
-      }),
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: productInfo.amount,
+      currency: "eur",
+      description: productInfo.description,
+      metadata: { product },
+      automatic_payment_methods: { enabled: true },
     });
-
-    const order = await res.json();
 
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: order.id }),
+      body: JSON.stringify({ clientSecret: paymentIntent.client_secret }),
     };
   } catch (err) {
-    console.error("paypal-create-order error:", err);
+    console.error("stripe-create-payment-intent error:", err);
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Failed to create order" }),
+      body: JSON.stringify({ error: "Failed to create payment" }),
     };
   }
 };

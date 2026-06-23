@@ -1,31 +1,10 @@
 const { createClient } = require("@supabase/supabase-js");
 const { Resend } = require("resend");
+const Stripe = require("stripe");
 
-const PAYPAL_BASE =
-  process.env.PAYPAL_LIVE === "true"
-    ? "https://api-m.paypal.com"
-    : "https://api-m.sandbox.paypal.com";
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
-
-async function getPayPalAccessToken() {
-  const creds = Buffer.from(
-    `${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`
-  ).toString("base64");
-
-  const res = await fetch(`${PAYPAL_BASE}/v1/oauth2/token`, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${creds}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: "grant_type=client_credentials",
-  });
-
-  const data = await res.json();
-  if (!data.access_token) throw new Error("Failed to get PayPal access token");
-  return data.access_token;
-}
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
@@ -33,9 +12,9 @@ exports.handler = async (event) => {
   }
 
   try {
-    const { orderID, product, userToken } = JSON.parse(event.body);
+    const { paymentIntentId, userToken } = JSON.parse(event.body);
 
-    if (!orderID || !product || !userToken) {
+    if (!paymentIntentId || !userToken) {
       return {
         statusCode: 400,
         body: JSON.stringify({ error: "Missing required fields" }),
@@ -60,23 +39,18 @@ exports.handler = async (event) => {
       };
     }
 
-    // 2. Capture the PayPal payment
-    const accessToken = await getPayPalAccessToken();
-    const captureRes = await fetch(
-      `${PAYPAL_BASE}/v2/checkout/orders/${orderID}/capture`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    // 2. Verify the payment with Stripe — product comes from the
+    // PaymentIntent's own metadata (set at creation time), never from
+    // the client request, so a caller can't claim a cheaper purchase.
+    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
 
-    const captureData = await captureRes.json();
+    if (paymentIntent.status !== "succeeded") {
+      throw new Error(`Payment not completed: ${paymentIntent.status}`);
+    }
 
-    if (captureData.status !== "COMPLETED") {
-      throw new Error(`Payment not completed: ${captureData.status}`);
+    const product = paymentIntent.metadata?.product;
+    if (!product) {
+      throw new Error("Payment is missing product metadata");
     }
 
     // 3. Update user_profile in Supabase (7-day access)
@@ -92,7 +66,7 @@ exports.handler = async (event) => {
         paid: true,
         start_date: startDate.toISOString(),
         end_date: endDate.toISOString(),
-        paypal_order_id: orderID,
+        stripe_payment_intent_id: paymentIntentId,
         updated_at: startDate.toISOString(),
       });
 
@@ -132,11 +106,11 @@ exports.handler = async (event) => {
       body: JSON.stringify({ success: true }),
     };
   } catch (err) {
-    console.error("paypal-capture-order error:", err);
+    console.error("stripe-confirm-payment error:", err);
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ error: "Payment capture failed" }),
+      body: JSON.stringify({ error: "Payment confirmation failed" }),
     };
   }
 };
