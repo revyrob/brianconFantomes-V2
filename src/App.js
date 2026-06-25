@@ -1,4 +1,5 @@
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Info from "./components/Info/Info";
 import Footer from "./components/Footer/Footer";
 import FAQ from "./components/FAQ/FAQ";
@@ -7,22 +8,36 @@ import Nav from "./components/Nav/Nav";
 import Credits from "./components/Credits/Credits";
 import Map from "./components/Map/Map";
 import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
+import ContactForm from "./components/Contact/ContactForm";
 import { LanguageProvider } from "./Language";
 
-function App() {
+function HomePage() {
   return (
-    <LanguageProvider>
-      <div className="bg-gray-900">
-        <Nav />
-      </div>
+    <>
       <Carousel />
       <Info />
       <Map />
       <AudioBookLink />
       <Credits />
       <FAQ />
-      <Footer />
-    </LanguageProvider>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <LanguageProvider>
+        <div className="bg-gray-900">
+          <Nav />
+        </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/contact" element={<ContactForm />} />
+        </Routes>
+        <Footer />
+      </LanguageProvider>
+    </BrowserRouter>
   );
 }
 

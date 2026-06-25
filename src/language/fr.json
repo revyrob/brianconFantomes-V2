@@ -116,22 +116,22 @@
   ],
   "footer": [
     {
-      "id": "tour",
+      "id": "tourFR",
       "title": "Audio Tour",
       "time": ".5"
     },
     {
-      "id": "about",
+      "id": "aboutFR",
       "title": "À propos",
       "time": "1.0"
     },
     {
-      "id": "credits",
+      "id": "creditsFR",
       "title": "Crédits",
       "time": "1.5"
     },
     {
-      "id": "faq",
+      "id": "faqFR",
       "title": "FAQ",
       "time": "2.0"
     }
@@ -141,6 +141,21 @@
   "invalidFormat": "Format d'email invalide",
   "notSubmitted": "Désolé votre question n'a pas été envoyée😟",
   "submitted": "Formulaire envoyé avec succès",
+  "contact": {
+    "title": "Contactez-nous",
+    "back": "← Retour à l'accueil",
+    "reasonLabel": "Raison",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Comment pouvons-nous vous aider ?",
+    "send": "Envoyer",
+    "sending": "Envoi…",
+    "reasons": {
+      "Customer Question": "Question client",
+      "App Issue": "Problème avec l'application",
+      "Other": "Autre"
+    }
+  },
   "book": {
     "id": "french-audio-ver-e897987cad9d",
     "title": "Remontez le temps et plongez dans l'histoire.",
