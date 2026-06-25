@@ -6,22 +6,22 @@
   ],
   "footer": [
     {
-      "id": "tour",
+      "id": "tourEN",
       "title": "Audio Tour",
       "time": ".5"
     },
     {
-      "id": "about",
+      "id": "aboutEN",
       "title": "About",
       "time": "1.0"
     },
     {
-      "id": "credits",
+      "id": "creditsEN",
       "title": "Credits",
       "time": "1.5"
     },
     {
-      "id": "faq",
+      "id": "faqEN",
       "title": "FAQ",
       "time": "2.0"
     }
@@ -142,6 +142,21 @@
   "invalidFormat": "Invalid email format",
   "notSubmitted": "Sorry your question was not sent😟",
   "submitted": "Form submitted successfully",
+  "contact": {
+    "title": "Contact us",
+    "back": "← Back to home",
+    "reasonLabel": "Reason",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "messagePlaceholder": "How can we help?",
+    "send": "Send",
+    "sending": "Sending…",
+    "reasons": {
+      "Customer Question": "Customer Question",
+      "App Issue": "App Issue",
+      "Other": "Other"
+    }
+  },
   "book": {
     "id": "english-audio-ver-0ec3385cad9d",
     "title": "Walk back into time and visit history.",

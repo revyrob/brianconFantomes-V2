@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { LanguageContext } from "../../Language";
 import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
@@ -107,13 +108,20 @@ function Nav() {
               }}
             >
               {headings.map((i) => (
-                
                 <MenuItem onClick={handleCloseNavMenu} key={i.id}>
-                  <a href={`#${i.link}`}>
-                    <Typography className="text-black " sx={{ minWidth: 100 }}>
-                      {i.title}
-                    </Typography>
-                  </a>
+                  {i.link === "contact" ? (
+                    <Link to="/contact">
+                      <Typography className="text-black " sx={{ minWidth: 100 }}>
+                        {i.title}
+                      </Typography>
+                    </Link>
+                  ) : (
+                    <a href={`/#${i.link}`}>
+                      <Typography className="text-black " sx={{ minWidth: 100 }}>
+                        {i.title}
+                      </Typography>
+                    </a>
+                  )}
                 </MenuItem>
               ))}
 
@@ -150,13 +158,21 @@ function Nav() {
             className="flex justify-left items-center"
             sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
           >
-            {headings.map((i) => (
-              <a href={`#${i.link}`} key={i.id}>
-                <Typography className="text-white flex justify-center" sx={{ minWidth: 100 }}>
-                  {i.title}
-                </Typography>
-              </a>
-            ))}
+            {headings.map((i) =>
+              i.link === "contact" ? (
+                <Link to="/contact" key={i.id}>
+                  <Typography className="text-white flex justify-center" sx={{ minWidth: 100 }}>
+                    {i.title}
+                  </Typography>
+                </Link>
+              ) : (
+                <a href={`/#${i.link}`} key={i.id}>
+                  <Typography className="text-white flex justify-center" sx={{ minWidth: 100 }}>
+                    {i.title}
+                  </Typography>
+                </a>
+              ),
+            )}
             <LanguageSelector styling="border-none bg-gray-900 font-Roboto px-8" />
           </Box>
 
