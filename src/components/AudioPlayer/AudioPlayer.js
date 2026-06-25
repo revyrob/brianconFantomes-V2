@@ -26,6 +26,7 @@ function AudioPlayer({ product }) {
   const [loadingChapter, setLoadingChapter] = useState(null);
   const [progress, setProgress] = useState(0);
   const [cachedChapters, setCachedChapters] = useState(new Set());
+  const [playError, setPlayError] = useState(null);
 
   const audioRef = useRef(null);
   const audioCacheRef = useRef(null);
@@ -88,6 +89,7 @@ function AudioPlayer({ product }) {
     }
 
     setLoadingChapter(chapter);
+    setPlayError(null);
 
     try {
       const cacheKey = `${activeLang}/${chapter}`;
@@ -185,6 +187,11 @@ function AudioPlayer({ product }) {
       // console.log("[audio] 13. playback started");
     } catch (err) {
       console.error("[audio] FAILED at step above ^^^", err);
+      setPlayError(
+        isFrenchUI
+          ? "Impossible de lire ce chapitre. Réessayez."
+          : "Couldn't play this chapter. Please try again.",
+      );
     } finally {
       setLoadingChapter(null);
     }
@@ -232,6 +239,10 @@ function AudioPlayer({ product }) {
             </div>
           </div>
         </div>
+      )}
+
+      {playError && (
+        <p className="text-red-400 text-sm text-center mb-3">{playError}</p>
       )}
 
       {/* Chapter list */}
