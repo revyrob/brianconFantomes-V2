@@ -8,7 +8,9 @@ import Nav from "./components/Nav/Nav";
 import Credits from "./components/Credits/Credits";
 import Map from "./components/Map/Map";
 import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
-import ContactForm from "./components/Contact/ContactForm";
+import ContactForm from "./pages/Contact/ContactForm";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import CookieBanner from "./components/CookieBanner/CookieBanner";
 import { LanguageProvider } from "./Language";
 
 function HomePage() {
@@ -34,8 +36,10 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactForm />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         <Footer />
+        <CookieBanner />
       </LanguageProvider>
     </BrowserRouter>
   );

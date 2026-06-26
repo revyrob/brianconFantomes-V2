@@ -157,6 +157,17 @@
       "Other": "Other"
     }
   },
+  "dashboard": {
+    "tourReady": "Your tour is ready!",
+    "openButton": "Open Paid Tour",
+    "title": "Your audio chapters",
+    "back": "← Back to home"
+  },
+  "cookieBanner": {
+    "text": "We use cookies for Google Analytics to understand how visitors use this site.",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
   "book": {
     "id": "english-audio-ver-0ec3385cad9d",
     "title": "Walk back into time and visit history.",

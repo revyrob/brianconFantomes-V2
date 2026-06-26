@@ -156,6 +156,17 @@
       "Other": "Autre"
     }
   },
+  "dashboard": {
+    "tourReady": "Votre visite est prête !",
+    "openButton": "Ouvrir la visite payée",
+    "title": "Vos chapitres audio",
+    "back": "← Retour à l'accueil"
+  },
+  "cookieBanner": {
+    "text": "Nous utilisons des cookies pour Google Analytics afin de comprendre comment les visiteurs utilisent ce site.",
+    "accept": "Accepter",
+    "decline": "Refuser"
+  },
   "book": {
     "id": "french-audio-ver-e897987cad9d",
     "title": "Remontez le temps et plongez dans l'histoire.",
