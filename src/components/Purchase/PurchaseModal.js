@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Elements,
   PaymentElement,
@@ -20,6 +21,7 @@ const PRICES = { fr: "5", en: "5", both: "8" };
 function PurchaseModal({ product, onClose, onSuccess }) {
   const { userLanguage } = useContext(LanguageContext);
   const isFr = userLanguage === "fr";
+  const navigate = useNavigate();
 
   // Opened via "Login to Paid Account" rather than a specific FR/EN/Both
   // purchase — there's no product/price to show, and no payment step to run.
@@ -103,7 +105,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
       if (session) {
         setSession(session);
         if (isLoginOnly) {
-          onClose();
+          navigate("/dashboard");
         } else {
           setStep("payment");
         }
@@ -142,7 +144,11 @@ function PurchaseModal({ product, onClose, onSuccess }) {
     sessionStorage.setItem("pendingProduct", product);
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
-      options: { redirectTo: window.location.origin },
+      options: {
+        redirectTo: isLoginOnly
+          ? `${window.location.origin}/dashboard`
+          : window.location.origin,
+      },
     });
     if (error) setAuthError(error.message);
   }
@@ -159,7 +165,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         if (data.session) {
           setSession(data.session);
           if (isLoginOnly) {
-            onClose();
+            navigate("/dashboard");
           } else {
             setStep("payment");
           }
@@ -179,7 +185,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         if (error) throw error;
         setSession(data.session);
         if (isLoginOnly) {
-          onClose();
+          navigate("/dashboard");
         } else {
           setStep("payment");
         }
@@ -392,7 +398,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
                 : "Your audio chapters are available below. A confirmation email has been sent."}
             </p>
             <button
-              onClick={onClose}
+              onClick={() => navigate("/dashboard")}
               className="bg-yellow-400 text-gray-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-300 transition-colors"
             >
               {isFr ? "Écouter maintenant" : "Listen now"}
