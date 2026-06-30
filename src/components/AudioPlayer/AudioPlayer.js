@@ -27,6 +27,7 @@ function AudioPlayer({ product }) {
   const [progress, setProgress] = useState(0);
   const [cachedChapters, setCachedChapters] = useState(new Set());
   const [playError, setPlayError] = useState(null);
+  const [lightboxChapter, setLightboxChapter] = useState(null);
 
   const audioRef = useRef(null);
   const audioCacheRef = useRef(null);
@@ -59,6 +60,16 @@ function AudioPlayer({ product }) {
       }
     };
   }, []);
+
+  // Close the photo lightbox on Escape
+  useEffect(() => {
+    if (!lightboxChapter) return;
+    function handleKeyDown(e) {
+      if (e.key === "Escape") setLightboxChapter(null);
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxChapter]);
 
   // Stop playback when switching language
   useEffect(() => {
@@ -254,17 +265,42 @@ function AudioPlayer({ product }) {
           const isCached = cachedChapters.has(`${activeLang}/${chapter}`);
 
           return (
-            <button
+            <div
               key={chapter}
-              onClick={() => handleChapterClick(chapter)}
-              disabled={isLoading}
-              className={`w-full flex items-center justify-between px-4 py-3 mb-2 rounded-lg transition-colors text-left border ${
+              role="button"
+              tabIndex={0}
+              aria-disabled={isLoading}
+              onClick={() => !isLoading && handleChapterClick(chapter)}
+              onKeyDown={(e) => {
+                if ((e.key === "Enter" || e.key === " ") && !isLoading) {
+                  e.preventDefault();
+                  handleChapterClick(chapter);
+                }
+              }}
+              className={`w-full flex items-center justify-between px-4 py-3 mb-2 rounded-lg transition-colors text-left border cursor-pointer ${
                 isActive
                   ? "bg-yellow-400/10 border-yellow-400/40 text-white"
                   : "bg-gray-700 hover:bg-gray-600 border-transparent text-gray-200"
               }`}
             >
               <span className="text-sm flex items-center gap-3 min-w-0">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxChapter(chapter);
+                  }}
+                  className="flex-shrink-0"
+                  aria-label={
+                    isFrenchUI ? `Voir la photo : ${name}` : `View photo: ${name}`
+                  }
+                >
+                  <img
+                    src={`/images/routePhotos/arret${chapter}.jpg`}
+                    alt={name}
+                    className="w-10 h-10 rounded-md object-cover grayscale contrast-125 hover:opacity-80 transition-opacity"
+                  />
+                </button>
                 <span
                   className={`font-mono text-xs flex-shrink-0 ${
                     isActive ? "text-yellow-400" : "text-gray-500"
@@ -294,7 +330,7 @@ function AudioPlayer({ product }) {
                   </span>
                 )}
               </span>
-            </button>
+            </div>
           );
         })}
       </div>
@@ -304,6 +340,34 @@ function AudioPlayer({ product }) {
           ? "📶 Les chapitres écoutés sont mis en cache automatiquement pour une utilisation hors ligne."
           : "📶 Played chapters are automatically cached for offline use."}
       </p>
+
+      {/* Photo lightbox — full screen on mobile, same footprint as the auth modal on tablet/desktop */}
+      {lightboxChapter && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 sm:bg-black/75 sm:px-4"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setLightboxChapter(null);
+          }}
+        >
+          <div className="relative bg-gray-800 w-full h-full sm:h-auto sm:max-w-md sm:rounded-2xl sm:shadow-2xl overflow-hidden">
+            <button
+              onClick={() => setLightboxChapter(null)}
+              className="absolute top-4 right-5 text-gray-400 hover:text-white text-3xl leading-none z-10"
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <img
+              src={`/images/routePhotos/arret${lightboxChapter}.jpg`}
+              alt={CHAPTER_NAMES[lightboxChapter - 1]}
+              className="w-full h-full sm:h-auto object-cover grayscale contrast-125"
+            />
+            <p className="absolute bottom-0 inset-x-0 bg-black/60 text-white text-sm px-4 py-3">
+              Ch.{lightboxChapter} — {CHAPTER_NAMES[lightboxChapter - 1]}
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

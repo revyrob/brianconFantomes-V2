@@ -21,8 +21,12 @@ function PurchaseModal({ product, onClose, onSuccess }) {
   const { userLanguage } = useContext(LanguageContext);
   const isFr = userLanguage === "fr";
 
+  // Opened via "Login to Paid Account" rather than a specific FR/EN/Both
+  // purchase — there's no product/price to show, and no payment step to run.
+  const isLoginOnly = !["fr", "en", "both"].includes(product);
+
   const [step, setStep] = useState("loading");
-  const [authMode, setAuthMode] = useState("register"); // register | login
+  const [authMode, setAuthMode] = useState(isLoginOnly ? "login" : "register"); // register | login
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
@@ -43,7 +47,9 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         body: JSON.stringify({ paymentIntentId, userToken }),
       });
       if (!res.ok) {
-        throw new Error(`Confirmation endpoint unavailable (HTTP ${res.status})`);
+        throw new Error(
+          `Confirmation endpoint unavailable (HTTP ${res.status})`,
+        );
       }
       const result = await res.json();
       if (result.success) {
@@ -96,7 +102,11 @@ function PurchaseModal({ product, onClose, onSuccess }) {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         setSession(session);
-        setStep("payment");
+        if (isLoginOnly) {
+          onClose();
+        } else {
+          setStep("payment");
+        }
       } else {
         setStep("auth");
       }
@@ -148,7 +158,11 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         if (error) throw error;
         if (data.session) {
           setSession(data.session);
-          setStep("payment");
+          if (isLoginOnly) {
+            onClose();
+          } else {
+            setStep("payment");
+          }
         } else {
           // Email confirmation is enabled — ask user to verify
           setAuthError(
@@ -164,7 +178,11 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         });
         if (error) throw error;
         setSession(data.session);
-        setStep("payment");
+        if (isLoginOnly) {
+          onClose();
+        } else {
+          setStep("payment");
+        }
       }
     } catch (err) {
       setAuthError(
@@ -186,7 +204,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="bg-gray-800 rounded-2xl w-full max-w-md p-8 relative shadow-2xl">
+      <div className="bg-gray-800 rounded-2xl w-full max-w-md p-8 relative shadow-2xl max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
           className="absolute top-4 right-5 text-gray-400 hover:text-white text-3xl leading-none"
@@ -196,7 +214,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         </button>
 
         {/* Header */}
-        {step !== "success" && (
+        {step !== "success" && !isLoginOnly && (
           <div className="mb-6">
             <p className="text-white font-oswald text-2xl">{productLabel}</p>
             <p className="text-yellow-300 text-4xl font-bold">€{price}</p>

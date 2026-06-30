@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { LanguageContext } from "../../Language";
 import { useAuth } from "../../hooks/useAuth";
 import PurchaseModal from "../Purchase/PurchaseModal";
-import AudioPlayer from "../AudioPlayer/AudioPlayer";
 
 const PRODUCTS = [
   {
@@ -36,6 +36,8 @@ function AudioBookLink() {
     useAuth();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const isFrench = userLanguage === "fr";
+  const navigate = useNavigate();
+  const t = dictionary.dashboard;
 
   // After OAuth redirect: restore the product the user was purchasing
   useEffect(() => {
@@ -65,13 +67,25 @@ function AudioBookLink() {
             src={dictionary.book.img}
             alt={isFrench ? "Couverture du livre audio" : "Audio book cover"}
           />
-          <div className="flex flex-col justify-center">
-            <h1 className="text-white font-oswald text-2xl md:text-3xl border-b-2 border-gray-600 pb-2 mb-3">
-              {dictionary.book.title}
-            </h1>
-            <p className="text-gray-300 font-oswald text-base">
-              {dictionary.book.descrip}
-            </p>
+          <div className="flex flex-col h-100 gap-8">
+            <div>
+              <h1 className="text-white font-oswald text-2xl md:text-3xl border-b-2 border-gray-600 pb-2 mb-3">
+                {dictionary.book.title}
+              </h1>
+              <p className="text-gray-300 font-oswald text-base">
+                {dictionary.book.descrip}
+              </p>
+            </div>
+            <div>
+              {!loading && !isPaid ? (
+                <button
+                  onClick={() => setSelectedProduct(true)}
+                  className="bg-yellow-400 text-gray-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-300 transition-colors"
+                >
+                  Login to Paid Account
+                </button>
+              ) : null}
+            </div>
           </div>
         </div>
 
@@ -82,21 +96,21 @@ function AudioBookLink() {
           </div>
         )}
 
-        {/* Paid + active — show the audio player */}
+        {/* Paid + active — direct them to the dashboard */}
         {!loading && isPaid && (
-          <>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-white font-oswald text-xl">
-                {isFrench ? "Vos chapitres audio" : "Your audio chapters"}
-              </h2>
-              <span className="text-gray-500 text-xs">
-                {isFrench ? `Accès jusqu'au ` : "Access until "}
-                <span className="text-yellow-400">{expiryLabel}</span>
-              </span>
-            </div>
-            <AudioPlayer product={profile.product} />
-            {/* <AudioPlayer product={"en"} /> */}
-          </>
+          <div className="text-center py-6">
+            <p className="text-white font-oswald text-xl mb-1">{t.tourReady}</p>
+            <p className="text-gray-500 text-xs mb-5">
+              {isFrench ? `Accès jusqu'au ` : "Access until "}
+              <span className="text-yellow-400">{expiryLabel}</span>
+            </p>
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="bg-yellow-400 text-gray-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-300 transition-colors"
+            >
+              {t.openButton}
+            </button>
+          </div>
         )}
 
         {/* Expired — show message + renewal */}
