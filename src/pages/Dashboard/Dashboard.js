@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import { LanguageContext } from "../../Language";
 import { useAuth } from "../../hooks/useAuth";
 import AudioPlayer from "../../components/AudioPlayer/AudioPlayer";
-import Map from "../../components/Map/Map";
+import RouteMap from "../../components/Map/RouteMap";
 
 function Dashboard() {
   const { dictionary, userLanguage } = useContext(LanguageContext);
@@ -49,7 +49,7 @@ function Dashboard() {
         </div>
 
         <AudioPlayer product={profile.product} />
-        <Map />
+        <RouteMap />
       </div>
     </section>
   );
