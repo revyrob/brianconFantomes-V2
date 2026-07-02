@@ -205,7 +205,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 px-4"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-black/75 px-4"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
