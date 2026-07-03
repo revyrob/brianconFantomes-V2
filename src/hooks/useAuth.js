@@ -52,6 +52,19 @@ export function useAuth() {
     if (session?.user) fetchProfile(session.user.id);
   }, [session, fetchProfile]);
 
+  const logIn = useCallback(async (email, password) => {
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+  }, []);
+
+  const logInWithGoogle = useCallback(async (redirectTo) => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo },
+    });
+    if (error) throw error;
+  }, []);
+
   const isPaid = !!(
     profile?.paid && new Date(profile.end_date) > new Date()
   );
@@ -59,5 +72,5 @@ export function useAuth() {
     profile?.paid && new Date(profile.end_date) <= new Date()
   );
 
-  return { session, profile, loading, isPaid, isExpired, refreshProfile };
+  return { session, profile, loading, isPaid, isExpired, refreshProfile, logIn, logInWithGoogle };
 }
