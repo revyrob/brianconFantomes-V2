@@ -8,6 +8,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { stripePromise } from "../../lib/stripe";
 import { supabase } from "../../lib/supabase";
+import { useAuth } from "../../hooks/useAuth";
 import { LanguageContext } from "../../Language";
 
 const PRODUCT_LABELS = {
@@ -27,14 +28,16 @@ function PurchaseModal({ product, onClose, onSuccess }) {
   // purchase — there's no product/price to show, and no payment step to run.
   const isLoginOnly = !["fr", "en", "both"].includes(product);
 
+  const { session, logIn, logInWithGoogle } = useAuth();
+
   const [step, setStep] = useState("loading");
-  const [authMode, setAuthMode] = useState(isLoginOnly ? "login" : "register"); // register | login
+  const [authMode, setAuthMode] = useState(isLoginOnly ? "login" : "register");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [session, setSession] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
 
   const productLabel = PRODUCT_LABELS[product]?.[userLanguage] || product;
@@ -77,10 +80,9 @@ function PurchaseModal({ product, onClose, onSuccess }) {
       window.history.replaceState({}, "", window.location.pathname);
 
       if (redirectStatus === "succeeded") {
-        supabase.auth.getSession().then(({ data: { session } }) => {
-          if (session) {
-            setSession(session);
-            confirmPayment(paymentIntentId, session.access_token);
+        supabase.auth.getSession().then(({ data: { session: s } }) => {
+          if (s) {
+            confirmPayment(paymentIntentId, s.access_token);
           } else {
             setStep("error");
             setErrorMsg(
@@ -101,9 +103,8 @@ function PurchaseModal({ product, onClose, onSuccess }) {
       return;
     }
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        setSession(session);
+    supabase.auth.getSession().then(({ data: { session: s } }) => {
+      if (s) {
         if (isLoginOnly) {
           navigate("/dashboard");
         } else {
@@ -140,17 +141,15 @@ function PurchaseModal({ product, onClose, onSuccess }) {
       });
   }, [step, clientSecret, product]);
 
-  async function handleOAuth(provider) {
+  async function handleOAuth() {
     sessionStorage.setItem("pendingProduct", product);
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: isLoginOnly
-          ? `${window.location.origin}/dashboard`
-          : window.location.origin,
-      },
-    });
-    if (error) setAuthError(error.message);
+    try {
+      await logInWithGoogle(
+        isLoginOnly ? `${window.location.origin}/dashboard` : window.location.origin,
+      );
+    } catch (err) {
+      setAuthError(err.message);
+    }
   }
 
   async function handleAuth(e) {
@@ -163,14 +162,12 @@ function PurchaseModal({ product, onClose, onSuccess }) {
         const { data, error } = await supabase.auth.signUp({ email, password });
         if (error) throw error;
         if (data.session) {
-          setSession(data.session);
           if (isLoginOnly) {
             navigate("/dashboard");
           } else {
             setStep("payment");
           }
         } else {
-          // Email confirmation is enabled — ask user to verify
           setAuthError(
             isFr
               ? "Vérifiez vos emails pour confirmer votre compte, puis revenez vous connecter."
@@ -178,12 +175,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
           );
         }
       } else {
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) throw error;
-        setSession(data.session);
+        await logIn(email, password);
         if (isLoginOnly) {
           navigate("/dashboard");
         } else {
@@ -283,7 +275,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
                   {isFr ? "Mot de passe" : "Password"}
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -294,6 +286,16 @@ function PurchaseModal({ product, onClose, onSuccess }) {
                   className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-yellow-400 transition-colors"
                 />
               </div>
+
+              <label className="flex items-center gap-2 text-xs text-gray-400 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={showPassword}
+                  onChange={(e) => setShowPassword(e.target.checked)}
+                  className="accent-yellow-400"
+                />
+                {isFr ? "Afficher le mot de passe" : "Show password"}
+              </label>
 
               {authError && <p className="text-red-400 text-sm">{authError}</p>}
 
@@ -328,7 +330,7 @@ function PurchaseModal({ product, onClose, onSuccess }) {
             {/* Google */}
             <button
               type="button"
-              onClick={() => handleOAuth("google")}
+              onClick={handleOAuth}
               className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 font-medium py-3 rounded-full mb-3 hover:bg-gray-100 transition-colors"
             >
               <svg width="18" height="18" viewBox="0 0 48 48">
@@ -351,6 +353,16 @@ function PurchaseModal({ product, onClose, onSuccess }) {
               </svg>
               Google
             </button>
+
+            {authMode === "login" && (
+              <button
+                type="button"
+                onClick={() => navigate("/forgot-password")}
+                className="block text-center text-xs text-gray-500 hover:text-gray-300 transition-colors mt-1"
+              >
+                {isFr ? "Mot de passe oublié ?" : "Forgot password?"}
+              </button>
+            )}
 
             <p className="text-gray-500 text-xs text-center mt-4">
               {isFr
