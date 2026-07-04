@@ -1,9 +1,9 @@
-import "./App.css";
-import Info from "./components/Info/Info";
-import FAQ from "./components/FAQ/FAQ";
-import Carousel from "./components/Carousel/carousel";
-import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
-import RouteMap from "./components/Map/RouteMap";
+import Info from "../../components/Info/Info";
+import FAQ from "../../components/FAQ/FAQ";
+import Carousel from "../../components/Carousel/carousel";
+import AudioBookLink from "../../components/AudioBookLink/AudioBookLink";
+import RouteMap from "../../components/Map/RouteMap";
+import Credits from "../../components/Credits/Credits";
 
 function HomePage() {
   return (

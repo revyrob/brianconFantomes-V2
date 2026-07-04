@@ -118,22 +118,26 @@
     {
       "id": "tourFR",
       "title": "Audio Tour",
-      "time": ".5"
+      "time": ".5",
+      "link": "tour"
     },
     {
       "id": "aboutFR",
       "title": "À propos",
-      "time": "1.0"
+      "time": "1.0",
+      "link": "about"
     },
     {
       "id": "creditsFR",
       "title": "Crédits",
-      "time": "1.5"
+      "time": "1.5",
+      "link": "credits"
     },
     {
       "id": "faqFR",
       "title": "FAQ",
-      "time": "2.0"
+      "time": "2.0",
+      "link": "faq"
     }
   ],
   "form": ["Email", "Nom", "Question", "Soumettre"],

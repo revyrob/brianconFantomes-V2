@@ -7,6 +7,7 @@ import spotify from "../../assets/icons/spotify-icon.svg";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { LanguageContext } from "../../Language";
 
 function Footer() {
@@ -59,11 +60,11 @@ function Footer() {
                 width: "8rem",
               }}
             >
-              <a href={`#${headings.id}`}>
+              <Link to={`/#${headings.link}`}>
                 <p className="text-slate-50 p-5 text-lg text-middle border-l-2 hover:border-x-2">
                   {headings.title}
                 </p>
-              </a>
+              </Link>
             </div>
           ))}
         </div>

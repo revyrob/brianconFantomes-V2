@@ -8,22 +8,26 @@
     {
       "id": "tourEN",
       "title": "Audio Tour",
-      "time": ".5"
+      "time": ".5",
+      "link": "tour"
     },
     {
       "id": "aboutEN",
       "title": "About",
-      "time": "1.0"
+      "time": "1.0",
+      "link": "about"
     },
     {
       "id": "creditsEN",
       "title": "Credits",
-      "time": "1.5"
+      "time": "1.5",
+      "link": "credits"
     },
     {
       "id": "faqEN",
       "title": "FAQ",
-      "time": "2.0"
+      "time": "2.0",
+      "link": "faq"
     }
   ],
   "lang": [
