@@ -16,7 +16,8 @@ const PRODUCT_LABELS = {
   en: { fr: "🇬🇧 Version Anglaise", en: "🇬🇧 English Version" },
   both: { fr: "🇫🇷🇬🇧 Les Deux", en: "🇫🇷🇬🇧 Both Languages" },
 };
-const PRICES = { fr: "5", en: "5", both: "8" };
+// TEST PRICES — restore before going to production
+const PRICES = { fr: "0.50", en: "0.50", both: "0.50" };
 
 // step: loading | auth | payment | processing | success | error
 function PurchaseModal({ product, onClose, onSuccess }) {
@@ -498,6 +499,28 @@ function CheckoutForm({ session, isFr, product, onConfirm }) {
         </p>
       )}
 
+      {/* Card brand logos */}
+      <div className="flex items-center gap-2">
+        {/* Visa */}
+        <svg viewBox="0 0 48 16" className="h-5" aria-label="Visa">
+          <rect width="48" height="16" rx="2" fill="#1A1F71"/>
+          <text x="5" y="12" fontFamily="Arial" fontWeight="bold" fontSize="11" fill="#FFFFFF" letterSpacing="0.5">VISA</text>
+        </svg>
+        {/* Mastercard */}
+        <svg viewBox="0 0 38 24" className="h-5" aria-label="Mastercard">
+          <rect width="38" height="24" rx="3" fill="#252525"/>
+          <circle cx="14" cy="12" r="7" fill="#EB001B"/>
+          <circle cx="24" cy="12" r="7" fill="#F79E1B"/>
+          <path d="M19 6.8a7 7 0 0 1 0 10.4A7 7 0 0 1 19 6.8z" fill="#FF5F00"/>
+        </svg>
+        {/* Amex */}
+        <svg viewBox="0 0 48 16" className="h-5" aria-label="American Express">
+          <rect width="48" height="16" rx="2" fill="#2E77BC"/>
+          <text x="4" y="12" fontFamily="Arial" fontWeight="bold" fontSize="8" fill="#FFFFFF" letterSpacing="0.3">AMEX</text>
+        </svg>
+        <span className="text-gray-500 text-xs ml-auto">& more</span>
+      </div>
+
       <PaymentElement />
 
       {formError && <p className="text-red-400 text-sm">{formError}</p>}
@@ -509,6 +532,28 @@ function CheckoutForm({ session, isFr, product, onConfirm }) {
       >
         {submitting ? "…" : isFr ? "Payer" : "Pay"}
       </button>
+
+      {/* Trust bar */}
+      <div className="flex flex-col items-center gap-1.5 pt-1 border-t border-gray-700">
+        <div className="flex items-center gap-1.5">
+          <svg className="w-3.5 h-3.5 text-green-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+          </svg>
+          <span className="text-gray-400 text-xs">
+            {isFr ? "Paiement sécurisé par" : "Secured by"}
+          </span>
+          {/* Stripe wordmark */}
+          <svg viewBox="0 0 60 25" className="h-4" aria-label="Stripe" fill="none">
+            <rect width="60" height="25" rx="4" fill="#635BFF"/>
+            <text x="8" y="17" fontFamily="Arial" fontWeight="bold" fontSize="12" fill="#FFFFFF" letterSpacing="0.3">stripe</text>
+          </svg>
+        </div>
+        <p className="text-gray-600 text-xs text-center">
+          {isFr
+            ? "Vos coordonnées bancaires sont chiffrées et jamais stockées sur nos serveurs."
+            : "Your card details are encrypted and never stored on our servers."}
+        </p>
+      </div>
     </form>
   );
 }
