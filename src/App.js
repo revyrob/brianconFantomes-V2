@@ -10,6 +10,7 @@ import Credits from "./components/Credits/Credits";
 import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
 import ContactForm from "./pages/Contact/ContactForm";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import CookieBanner from "./components/CookieBanner/CookieBanner";
 import { LanguageProvider } from "./Language";
 import RouteMap from "./components/Map/RouteMap";
@@ -39,6 +40,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
         <Footer />
         <CookieBanner />
