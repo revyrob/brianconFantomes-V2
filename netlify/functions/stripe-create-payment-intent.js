@@ -4,10 +4,11 @@ const Stripe = require("stripe");
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
+// TEST PRICES — restore before going to production
 const PRODUCTS = {
-  fr: { amount: 500, description: "Briançon Fantômes - Version Française" },
-  en: { amount: 500, description: "Briançon Fantômes - English Version" },
-  both: { amount: 800, description: "Briançon Fantômes - FR + EN" },
+  fr: { amount: 50, description: "Briançon Fantômes - Version Française" },
+  en: { amount: 50, description: "Briançon Fantômes - English Version" },
+  both: { amount: 50, description: "Briançon Fantômes - FR + EN" },
 };
 
 const RATE_LIMIT = 10;
