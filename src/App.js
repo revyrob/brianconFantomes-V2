@@ -1,12 +1,10 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Info from "./components/Info/Info";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Footer from "./components/Footer/Footer";
-import FAQ from "./components/FAQ/FAQ";
 import Carousel from "./components/Carousel/carousel";
 import Nav from "./components/Nav/Nav";
-import Credits from "./components/Credits/Credits";
-// import Map from "./components/Map/Map";
+import HomePage from "./pages/HomePage/HomePage";
 import AudioBookLink from "./components/AudioBookLink/AudioBookLink";
 import ContactForm from "./pages/Contact/ContactForm";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -16,18 +14,14 @@ import CookieBanner from "./components/CookieBanner/CookieBanner";
 import { LanguageProvider } from "./Language";
 import RouteMap from "./components/Map/RouteMap";
 
-function HomePage() {
-  return (
-    <>
-      <Carousel />
-      <Info />
-      {/* <Map /> */}
-      <RouteMap />
-      <AudioBookLink />
-      <Credits />
-      <FAQ />
-    </>
-  );
+function ScrollToHash() {
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (!hash) return;
+    const el = document.getElementById(hash.slice(1));
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }, [hash]);
+  return null;
 }
 
 function App() {
@@ -37,6 +31,7 @@ function App() {
         <div className="bg-gray-900">
           <Nav />
         </div>
+        <ScrollToHash />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contact" element={<ContactForm />} />
