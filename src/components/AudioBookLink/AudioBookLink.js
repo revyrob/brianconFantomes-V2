@@ -82,7 +82,7 @@ function AudioBookLink() {
               </p>
             </div>
             <div>
-              {!loading && !isPaid ? (
+              {!loading && !isPaid && !session ? (
                 <button
                   onClick={() => setSelectedProduct(true)}
                   className="bg-yellow-400 text-gray-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-300 transition-colors"
