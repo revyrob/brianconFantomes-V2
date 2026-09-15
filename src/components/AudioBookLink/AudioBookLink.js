@@ -170,6 +170,17 @@ function AudioBookLink() {
             </p>
           </>
         )}
+
+        {selectedProduct && (
+          <PurchaseModal
+            product={selectedProduct}
+            onClose={() => setSelectedProduct(null)}
+            onSuccess={() => {
+              refreshProfile();
+              setSelectedProduct(null);
+            }}
+          />
+        )}
       </div>
     </section>
   );
