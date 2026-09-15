@@ -4,7 +4,7 @@ export function loadGoogleAnalytics() {
   if (loaded) return;
   loaded = true;
 
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+  const measurementId = process.env.REACT_APP_GA_MEASUREMENT_ID;
   if (!measurementId) return;
 
   const script = document.createElement("script");
