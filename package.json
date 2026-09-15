@@ -10,6 +10,10 @@
     "@mui/joy": "^5.0.0-alpha.63",
     "@mui/material": "^5.11.1",
     "@mui/styled-engine-sc": "^5.10.16",
+    "@netlify/blobs": "10.1.0",
+    "@stripe/react-stripe-js": "^2.8.1",
+    "@stripe/stripe-js": "^4.10.0",
+    "@supabase/supabase-js": "^2.105.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -19,6 +23,7 @@
     "flowbite-react": "^0.3.7",
     "formik": "^2.2.9",
     "framer-motion": "^8.4.3",
+    "labelgun": "^6.1.0",
     "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-audio-player": "^0.17.0",
@@ -39,12 +44,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [

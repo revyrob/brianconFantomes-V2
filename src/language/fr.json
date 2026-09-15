@@ -116,24 +116,28 @@
   ],
   "footer": [
     {
-      "id": "tour",
+      "id": "tourFR",
       "title": "Audio Tour",
-      "time": ".5"
+      "time": ".5",
+      "link": "tour"
     },
     {
-      "id": "about",
+      "id": "aboutFR",
       "title": "À propos",
-      "time": "1.0"
+      "time": "1.0",
+      "link": "about"
     },
     {
-      "id": "credits",
+      "id": "creditsFR",
       "title": "Crédits",
-      "time": "1.5"
+      "time": "1.5",
+      "link": "credits"
     },
     {
-      "id": "faq",
+      "id": "faqFR",
       "title": "FAQ",
-      "time": "2.0"
+      "time": "2.0",
+      "link": "faq"
     }
   ],
   "form": ["Email", "Nom", "Question", "Soumettre"],
@@ -141,6 +145,32 @@
   "invalidFormat": "Format d'email invalide",
   "notSubmitted": "Désolé votre question n'a pas été envoyée😟",
   "submitted": "Formulaire envoyé avec succès",
+  "contact": {
+    "title": "Contactez-nous",
+    "back": "← Retour à l'accueil",
+    "reasonLabel": "Raison",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Comment pouvons-nous vous aider ?",
+    "send": "Envoyer",
+    "sending": "Envoi…",
+    "reasons": {
+      "Customer Question": "Question client",
+      "App Issue": "Problème avec l'application",
+      "Other": "Autre"
+    }
+  },
+  "dashboard": {
+    "tourReady": "Votre visite est prête !",
+    "openButton": "Ouvrir la visite payée",
+    "title": "Vos chapitres audio",
+    "back": "← Retour à l'accueil"
+  },
+  "cookieBanner": {
+    "text": "Nous utilisons des cookies pour Google Analytics afin de comprendre comment les visiteurs utilisent ce site.",
+    "accept": "Accepter",
+    "decline": "Refuser"
+  },
   "book": {
     "id": "french-audio-ver-e897987cad9d",
     "title": "Remontez le temps et plongez dans l'histoire.",

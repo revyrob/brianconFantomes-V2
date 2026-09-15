@@ -1,0 +1,22 @@
+.route-map {
+  width: 70%;
+  height: 480px;
+  background-color: #ffffff;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.route-map .leaflet-tooltip {
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+
+.route-map .leaflet-tooltip-left::before,
+.route-map .leaflet-tooltip-right::before {
+  border: 0;
+}
+
+.route-stop-label {
+  pointer-events: none;
+}
