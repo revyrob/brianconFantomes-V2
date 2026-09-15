@@ -16,8 +16,7 @@ const PRODUCT_LABELS = {
   en: { fr: "🇬🇧 Version Anglaise", en: "🇬🇧 English Version" },
   both: { fr: "🇫🇷🇬🇧 Les Deux", en: "🇫🇷🇬🇧 Both Languages" },
 };
-// TEST PRICES — restore before going to production
-const PRICES = { fr: "0.50", en: "0.50", both: "0.50" };
+const PRICES = { fr: "5", en: "5", both: "8" };
 
 // step: loading | auth | payment | processing | success | error
 function PurchaseModal({ product, onClose, onSuccess }) {
