@@ -57,6 +57,11 @@ function AudioBookLink() {
       )
     : "";
 
+  //toggle function for drop down
+  function toggle() {
+    //if selected the question drop down, compare previous state
+    setIsShown((prevCheck) => !prevCheck);
+  }
   return (
     <section id="tour" className="bg-gray-900 px-6 py-12">
       <div className="max-w-3xl mx-auto">
@@ -77,7 +82,7 @@ function AudioBookLink() {
               </p>
             </div>
             <div>
-              {!loading && !isPaid ? (
+              {!loading && !isPaid && !session ? (
                 <button
                   onClick={() => setSelectedProduct(true)}
                   className="bg-yellow-400 text-gray-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-300 transition-colors"
@@ -165,15 +170,18 @@ function AudioBookLink() {
             </p>
           </>
         )}
-      </div>
 
-      {selectedProduct && (
-        <PurchaseModal
-          product={selectedProduct}
-          onClose={() => setSelectedProduct(null)}
-          onSuccess={refreshProfile}
-        />
-      )}
+        {selectedProduct && (
+          <PurchaseModal
+            product={selectedProduct}
+            onClose={() => setSelectedProduct(null)}
+            onSuccess={() => {
+              refreshProfile();
+              setSelectedProduct(null);
+            }}
+          />
+        )}
+      </div>
     </section>
   );
 }

@@ -28,7 +28,7 @@ function Nav() {
   const expiryLabel = profile?.end_date
     ? new Date(profile.end_date).toLocaleDateString(
         isFr ? "fr-FR" : "en-GB",
-        { day: "numeric", month: "short" }
+        { day: "numeric", month: "short" },
       )
     : null;
 

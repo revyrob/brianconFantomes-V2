@@ -1,10 +1,9 @@
 @import "react-image-gallery/styles/css/image-gallery.css";
-@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Oswald&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
 
 .App {
   text-align: center;
   font-family: Oswald;
+ 
 }
 
 .App-logo {
