@@ -11,10 +11,10 @@ import MapHashSync from "./MapHashSync";
 import { LanguageContext } from "../../Language";
 import "./RouteMap.css";
 
-const CARTO_TILE_URL =
-  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
-const CARTO_ATTRIBUTION =
-  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+const MAPTILER_KEY = import.meta.env.VITE_MAPTILER_KEY;
+const MAPTILER_TILE_URL = `https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}{r}.png?key=${MAPTILER_KEY}`;
+const MAPTILER_ATTRIBUTION =
+  '&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors';
 
 const autolinker = new Autolinker({
   truncate: { length: 30, location: "smart" },
@@ -137,13 +137,14 @@ export default function RouteMap() {
       <MapHashSync />
 
       <TileLayer
-        url={CARTO_TILE_URL}
+        url={MAPTILER_TILE_URL}
         opacity={1}
-        attribution={CARTO_ATTRIBUTION}
+        attribution={MAPTILER_ATTRIBUTION}
         minZoom={1}
         maxZoom={28}
         minNativeZoom={0}
-        maxNativeZoom={18}
+        maxNativeZoom={20}
+        detectRetina
       />
 
       <GeoJSON
